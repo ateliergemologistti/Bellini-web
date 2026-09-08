@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BELLINI | Alta joyería, anillos de compromiso y aros de matrimonio con diamantes certificados.">
+  <title>BELLINI | Anillos de Compromiso y Aros de Matrimonio</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="styles.css?v=3.4">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="img/logo-bellini-diamond.png?v=3.0">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo">
+        <img src="img/logo-bellini-horizontal-white.png?v=3.0" alt="BELLINI Fine Jewelry" class="logo-img logo-img-white">
+        <img src="img/logo-bellini-horizontal.png?v=3.0" alt="BELLINI Fine Jewelry" class="logo-img logo-img-dark">
+      </a>
+      <nav class="nav-desktop" id="navDesktop">
+        <div class="nav-item has-dropdown">
+          <a href="#productos">Anillos de Compromiso 
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#">Solitario</a>
+            <a href="#">Halo</a>
+            <a href="#">Pavé</a>
+            <a href="#">Tres Piedras</a>
+            <a href="#">Princess</a>
+          </div>
+        </div>
+        <div class="nav-item has-dropdown">
+          <a href="#productos">Aros de Matrimonio 
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="#">Clásico</a>
+            <a href="#">Medio Canal</a>
+            <a href="#">Eternidad</a>
+            <a href="#">Torcido</a>
+            <a href="#">Doble Banda</a>
+          </div>
+        </div>
+        <div class="nav-item">
+          <a href="https://wa.me/51997511144" target="_blank">Asesoría Personalizada</a>
+        </div>
+      </nav>
+      <div class="header-actions">
+        <button class="action-btn" id="searchBtn" aria-label="Buscar">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button class="action-btn cart-btn" id="cartBtn" aria-label="Carrito">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+          <span class="cart-badge" id="cartBadge">0</span>
+        </button>
+        <button class="action-btn" id="profileBtn" aria-label="Perfil">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button class="hamburger" id="hamburgerBtn" aria-label="Menú">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SEARCH OVERLAY -->
+  <div class="search-overlay" id="searchOverlay">
+    <button class="search-close" id="searchClose">&times;</button>
+    <div class="search-content">
+      <input type="text" id="searchInput" class="search-input" placeholder="Buscar anillos, diamantes..." autocomplete="off">
+      <div class="search-results" id="searchResults"></div>
+    </div>
+  </div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-overlay" id="mobileOverlay"></div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-header">
+      <a href="#" class="logo mobile-logo"><img src="img/logo-bellini-horizontal.png?v=3.0" alt="BELLINI Fine Jewelry" class="logo-img"></a>
+      <button class="cart-close" id="mobileClose">&times;</button>
+    </div>
+    <div class="mobile-nav">
+      <div class="mobile-nav-item">
+        <a href="#" class="mobile-nav-link" data-toggle="dropdown">Anillos de Compromiso <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="mobile-dropdown">
+          <a href="#">Solitario</a>
+          <a href="#">Halo</a>
+          <a href="#">Pavé</a>
+        </div>
+      </div>
+      <div class="mobile-nav-item">
+        <a href="#" class="mobile-nav-link" data-toggle="dropdown">Aros de Matrimonio <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="mobile-dropdown">
+          <a href="#">Clásico</a>
+          <a href="#">Medio Canal</a>
+        </div>
+      </div>
+    </div>
+    <div class="mobile-contact">
+      <a href="https://wa.me/51997511144" class="btn-primary" style="width:100%; text-align:center;">Asesoría Personalizada</a>
+    </div>
+  </div>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button class="cart-close" id="cartClose">&times;</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <p class="cart-empty">Tu carrito está vacío</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">Total: <span id="cartTotal">S/ 0</span></div>
+      <button class="checkout-btn">Finalizar Compra</button>
+    </div>
+  </div>
+
+  <!-- AUTH MODAL / DRAWER (Tiffany Style) -->
+  <div class="auth-overlay" id="authOverlay"></div>
+  <div class="auth-drawer" id="authDrawer">
+    <div class="auth-image-side">
+      <img src="img/auth-box.jpg" alt="BELLINI Jewelry Box">
+    </div>
+    <div class="auth-form-side">
+      <button class="auth-close-btn" id="authCloseBtn" aria-label="Cerrar">&times;</button>
+
+      <!-- GUEST VIEW -->
+      <div id="authGuestContainer">
+        <div class="auth-tabs">
+          <button class="auth-tab-btn active" id="tabSignInBtn" onclick="switchAuthTab('signin')">Iniciar Sesión</button>
+          <button class="auth-tab-btn" id="tabCreateBtn" onclick="switchAuthTab('create')">Crear una cuenta</button>
+        </div>
+
+        <!-- SIGN IN -->
+        <div class="auth-view active" id="viewSignIn">
+          <form id="formSignIn" onsubmit="handleSignInSubmit(event)">
+            <div class="auth-error-msg" id="signInError"></div>
+
+            <div class="auth-input-group">
+              <label class="auth-label">Correo electrónico*</label>
+              <input type="email" class="auth-input" id="signInEmail" required autocomplete="email" placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="auth-input-group">
+              <label class="auth-label">Contraseña*</label>
+              <div class="auth-password-wrap">
+                <input type="password" class="auth-input" id="signInPassword" required autocomplete="current-password" placeholder="••••••••">
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('signInPassword', this)" aria-label="Mostrar contraseña">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <a class="auth-forgot-link" onclick="handleForgotPassword()">¿Olvidaste tu contraseña?</a>
+
+            <button type="submit" class="auth-btn-black" id="btnSignInSubmit">INICIAR SESIÓN</button>
+            <div class="auth-required-note">*Campos obligatorios</div>
+
+            <div class="auth-value-props">
+              <h3>Crear una cuenta</h3>
+              <div class="auth-props-grid">
+                <div class="auth-prop-item">Compra más rápida</div>
+                <div class="auth-prop-item">Direcciones y pagos guardados</div>
+                <div class="auth-prop-item">Historial de pedidos</div>
+                <div class="auth-prop-item">Novedades y colecciones exclusivas</div>
+              </div>
+              <button type="button" class="auth-btn-outline" onclick="switchAuthTab('create')">CREAR UNA CUENTA</button>
+            </div>
+          </form>
+        </div>
+
+        <!-- CREATE ACCOUNT -->
+        <div class="auth-view" id="viewCreate">
+          <form id="formCreateAccount" onsubmit="handleCreateAccountSubmit(event)">
+            <div class="auth-error-msg" id="createError"></div>
+
+            <div class="auth-row-names">
+              <div class="auth-input-group">
+                <label class="auth-label">Nombre*</label>
+                <input type="text" class="auth-input" id="createFirstName" required autocomplete="given-name" placeholder="Tu nombre">
+              </div>
+              <div class="auth-input-group">
+                <label class="auth-label">Apellido*</label>
+                <input type="text" class="auth-input" id="createLastName" required autocomplete="family-name" placeholder="Tu apellido">
+              </div>
+            </div>
+
+            <div class="auth-input-group">
+              <label class="auth-label">Correo electrónico*</label>
+              <input type="email" class="auth-input" id="createEmail" required autocomplete="email" placeholder="ejemplo@correo.com">
+            </div>
+
+            <div class="auth-input-group">
+              <label class="auth-label">Contraseña*</label>
+              <div class="auth-password-wrap">
+                <input type="password" class="auth-input" id="createPassword" required minlength="6" autocomplete="new-password" placeholder="Mínimo 6 caracteres">
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('createPassword', this)" aria-label="Mostrar contraseña">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="auth-input-group">
+              <label class="auth-label">Confirmar contraseña*</label>
+              <div class="auth-password-wrap">
+                <input type="password" class="auth-input" id="createConfirmPassword" required minlength="6" autocomplete="new-password" placeholder="Repite tu contraseña">
+                <button type="button" class="auth-password-toggle" onclick="togglePasswordVisibility('createConfirmPassword', this)" aria-label="Mostrar contraseña">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="auth-row-phone">
+              <div class="auth-input-group">
+                <label class="auth-label">Prefijo*</label>
+                <select class="auth-select" id="createPhonePrefix">
+                  <option value="+51" selected>+51 (PE)</option>
+                  <option value="+1">+1 (US)</option>
+                  <option value="+52">+52 (MX)</option>
+                  <option value="+54">+54 (AR)</option>
+                  <option value="+56">+56 (CL)</option>
+                  <option value="+57">+57 (CO)</option>
+                  <option value="+34">+34 (ES)</option>
+                </select>
+              </div>
+              <div class="auth-input-group">
+                <label class="auth-label">Número de celular*</label>
+                <input type="tel" class="auth-input" id="createPhone" required autocomplete="tel-national" placeholder="997 511 144">
+              </div>
+            </div>
+
+            <div class="auth-consent">
+              <input type="checkbox" id="createConsent" checked>
+              <label for="createConsent">Acepto recibir correos electrónicos, mensajes y novedades de BELLINI sobre alta joyería, colecciones y promociones exclusivas.</label>
+            </div>
+
+            <div class="auth-legal-text">
+              Tómese este momento para revisar los términos de nuestra Política de Privacidad Global, disponible a través de su Asesor o en <a href="#">www.bellinijewelry.com/politica-de-privacidad</a>, la cual contiene información importante sobre cómo BELLINI se comunica con usted y protege sus datos personales. Puede cancelar su suscripción en cualquier momento.
+            </div>
+
+            <button type="submit" class="auth-btn-black" id="btnCreateSubmit">CREAR CUENTA</button>
+            <div class="auth-required-note">*Campos obligatorios</div>
+          </form>
+        </div>
+      </div>
+
+      <!-- LOGGED IN USER VIEW -->
+      <div id="authUserContainer" style="display: none;">
+        <div class="auth-user-profile">
+          <div class="auth-user-avatar" id="userAvatarLetter">U</div>
+          <h2 class="auth-user-name" id="userNameDisplay">Mi Cuenta</h2>
+
+          <div class="auth-info-card">
+            <div class="auth-info-row">
+              <span class="auth-info-label">Nombre Completo</span>
+              <span class="auth-info-val" id="userInfoFullName">-</span>
+            </div>
+            <div class="auth-info-row">
+              <span class="auth-info-label">Correo Electrónico</span>
+              <span class="auth-info-val" id="userInfoEmail">-</span>
+            </div>
+            <div class="auth-info-row">
+              <span class="auth-info-label">Teléfono Móvil</span>
+              <span class="auth-info-val" id="userInfoPhone">-</span>
+            </div>
+          </div>
+
+          <button class="auth-btn-outline" onclick="handleLogout()" style="margin-top: 1rem;">CERRAR SESIÓN</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="inicio">
+    <div class="hero-slideshow">
+      <div class="hero-slide active" style="background-image: url('img/hero.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('img/hero-2.jpg')"></div>
+      <div class="hero-slide" style="background-image: url('img/hero-3.jpg')"></div>
+    </div>
+    <div class="hero-content reveal">
+      <span class="small-label" style="color: white; opacity: 0.9;">Alta Joyería</span>
+      <h1>El Símbolo Perfecto de tu Amor Eterno</h1>
+      <p class="hero-subtitle">Descubre nuestra exclusiva colección de anillos de compromiso y aros de matrimonio, creados para capturar la esencia de su historia.</p>
+      <a href="#colecciones" class="btn-primary">Descubrir Colección</a>
+    </div>
+    <div class="scroll-indicator">
+      <span>Descubrir</span>
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </section>
+
+
+  <!-- CATEGORIES -->
+  <section class="categories" id="colecciones">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <h2 class="section-title">Nuestras Colecciones</h2>
+        <p class="section-subtitle">Piezas maestras diseñadas para deslumbrar y perdurar generación tras generación.</p>
+      </div>
+      <div class="categories-grid reveal-stagger">
+        <a href="#productos" class="category-card reveal" onclick="filterCategory('compromiso')">
+          <img src="img/cat-compromiso.jpg" alt="Anillos de Compromiso" class="category-img">
+          <div class="category-content">
+            <h3>Compromiso</h3>
+            <p>El primer paso hacia el siempre</p>
+          </div>
+        </a>
+        <a href="#productos" class="category-card reveal" onclick="filterCategory('matrimonio')">
+          <img src="img/cat-matrimonio.jpg" alt="Aros de Matrimonio" class="category-img">
+          <div class="category-content">
+            <h3>Matrimonio</h3>
+            <p>La unión perfecta de dos almas</p>
+          </div>
+        </a>
+        <a href="https://wa.me/51997511144" class="category-card reveal" target="_blank">
+          <img src="img/cat-asesoria.jpg" alt="Asesoría Personalizada" class="category-img">
+          <div class="category-content">
+            <h3>Asesoría Personalizada</h3>
+            <p>Diseña tu anillo a medida</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTS -->
+  <section class="products" id="productos">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <h2 class="section-title">Selección Exclusiva</h2>
+        <p class="section-subtitle">Explora nuestras piezas más destacadas, elaboradas con precisión y pasión por nuestros maestros joyeros.</p>
+      </div>
+      
+      <div class="filter-tabs reveal">
+        <button class="filter-btn active" data-filter="todos">Ver Todos</button>
+        <button class="filter-btn" data-filter="compromiso">Anillos de Compromiso</button>
+        <button class="filter-btn" data-filter="matrimonio">Aros de Matrimonio</button>
+      </div>
+      
+      <div class="products-grid reveal-stagger" id="productsGrid">
+        <!-- Products injected by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="nosotros">
+    <div class="container about-grid">
+      <div class="about-image reveal-left">
+        <img src="img/about.jpg" alt="Artesanía Joyera">
+      </div>
+      <div class="about-content reveal-right">
+        <span class="small-label">Nuestro Legado</span>
+        <h2>Maestría y Tradición en Cada Detalle</h2>
+        <p>En BELLINI, creemos que cada historia de amor merece ser celebrada con una obra de arte. Desde hace décadas, nuestros maestros joyeros combinan técnicas tradicionales con diseño vanguardista para crear piezas inigualables.</p>
+        <p>Seleccionamos meticulosamente cada diamante, asegurando los más altos estándares de corte, color, claridad y quilates, para ofrecerte joyas que brillarán eternamente.</p>
+        
+        <div class="counters">
+          <div class="counter-item">
+            <span class="counter-num" data-target="25">0</span>
+            <span class="counter-label">Años de Experiencia</span>
+          </div>
+          <div class="counter-item">
+            <span class="counter-num" data-target="5000">0</span>
+            <span class="counter-label">Historias de Amor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials">
+    <div class="container">
+      <div class="section-title-wrap reveal">
+        <h2 class="section-title">Lo Que Dicen Nuestros Clientes</h2>
+      </div>
+      
+      <div class="testimonial-carousel reveal" id="testimonialCarousel">
+        <div class="testimonial-slide active">
+          <div class="testimonial-photo-wrap">
+            <img src="img/testimonial-1.png?v=4.0" alt="Carlos & Valeria" class="testimonial-photo">
+          </div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">El anillo de compromiso superó todas mis expectativas. La atención personalizada y el nivel de detalle en el diseño final hicieron que el momento fuera absolutamente perfecto. Ella dijo que sí.</p>
+          <p class="testimonial-author">Carlos &amp; Valeria</p>
+        </div>
+        <div class="testimonial-slide">
+          <div class="testimonial-photo-wrap">
+            <img src="img/testimonial-2.png?v=4.0" alt="Mateo & Sofía" class="testimonial-photo">
+          </div>
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">Nuestros aros de matrimonio son preciosos. Buscábamos algo clásico pero con un toque moderno y lo encontramos en BELLINI. La calidad del oro y los diamantes es indiscutible.</p>
+          <p class="testimonial-author">Mateo &amp; Sofía</p>
+        </div>
+        
+        <div class="testimonial-nav">
+          <button class="nav-arrow" id="prevTestimonial">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <div class="testimonial-dots" id="testimonialDots">
+            <button class="dot active"></button>
+            <button class="dot"></button>
+          </div>
+          <button class="nav-arrow" id="nextTestimonial">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA BANNER -->
+  <section class="cta-banner reveal">
+    <div class="container">
+      <h2>Encuentra el Anillo Perfecto</h2>
+      <p>Nuestros expertos joyeros están listos para guiarte en cada paso de tu elección, desde la selección del diamante hasta el diseño final.</p>
+      <div class="cta-buttons">
+        <a href="#productos" class="btn-primary">Ver Colección</a>
+        <a href="https://wa.me/51997511144" target="_blank" class="btn-secondary">Agendar Asesoría</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div>
+        <div class="footer-logo">
+          <img src="img/logo-bellini-horizontal-white.png?v=3.0" alt="BELLINI Fine Jewelry">
+        </div>
+        <p class="footer-desc">Especialistas en alta joyería, diamantes certificados y el diseño exclusivo de anillos de compromiso y aros de matrimonio.</p>
+        <div class="social-icons">
+          <a href="#" class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+          <a href="#" class="social-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-title">Colecciones</h4>
+        <ul class="footer-links">
+          <li><a href="#">Anillos de Compromiso</a></li>
+          <li><a href="#">Aros de Matrimonio</a></li>
+          <li><a href="#">Alta Joyería</a></li>
+          <li><a href="#">Diamantes Sueltos</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Nosotros</h4>
+        <ul class="footer-links">
+          <li><a href="#">Nuestra Historia</a></li>
+          <li><a href="#">Guía de Diamantes</a></li>
+          <li><a href="#">Certificaciones</a></li>
+          <li><a href="#">Taller Joyero</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="footer-title">Atención</h4>
+        <ul class="footer-links">
+          <li><a href="#">Contacto</a></li>
+          <li><a href="#">Agendar Cita</a></li>
+          <li><a href="#">Envíos y Devoluciones</a></li>
+          <li><a href="#">Preguntas Frecuentes</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 BELLINI Fine Jewelry. Todos los derechos reservados.</p>
+      <div style="display:flex; gap:1.5rem;">
+        <a href="#" style="color:rgba(255,255,255,0.6);">Términos y Condiciones</a>
+        <a href="#" style="color:rgba(255,255,255,0.6);">Política de Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP BTN -->
+  <a href="https://wa.me/51997511144?text=Hola%20BELLINI%2C%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" class="whatsapp-btn" target="_blank" aria-label="WhatsApp">
+    <svg width="22" height="22" viewBox="-1 -1 26 26" fill="#FFFFFF">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+    </svg>
+    <span class="whatsapp-label">WhatsApp</span>
+  </a>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
+</body>
+</html>

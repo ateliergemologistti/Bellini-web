@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificar | BELLINI Fine Jewelry</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=3.3">
+</head>
+<body class="checkout-body">
+
+  <!-- CHECKOUT HEADER -->
+  <header class="checkout-header">
+    <div class="checkout-header-inner">
+      <a href="index.html" class="checkout-back-link">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        <span>VOLVER A LA CESTA DE LA COMPRA</span>
+      </a>
+
+      <a href="index.html" class="checkout-logo">
+        <img src="img/logo-bellini-horizontal.png?v=3.0" alt="BELLINI Fine Jewelry" style="height: 42px; width: auto; object-fit: contain;">
+      </a>
+
+      <a href="https://wa.me/51997511144?text=Hola%20BELLINI%2C%20necesito%20ayuda%20con%20mi%20proceso%20de%20compra" target="_blank" class="checkout-help-link">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4v3"/>
+          <path d="M10 4h4"/>
+          <path d="M4 15a8 8 0 0 1 16 0H4z"/>
+          <path d="M2 19h20"/>
+        </svg>
+        <span>¿NECESITAS AYUDA?</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- TITLE BAR -->
+  <div class="checkout-title-bar">
+    <h1>Verificar</h1>
+  </div>
+
+  <!-- MAIN CHECKOUT CONTAINER -->
+  <main class="checkout-main">
+    <div class="checkout-layout">
+
+      <!-- LEFT COLUMN: 3 CONSECUTIVE STEPS -->
+      <section class="checkout-steps-column">
+
+        <!-- STEP 1: EMAIL -->
+        <div class="checkout-step active" id="step1Container">
+          <div class="step-header">
+            <div class="step-number" id="step1Number">1</div>
+            <h2 class="step-title">Ingrese su dirección de correo electrónico</h2>
+            <button type="button" class="step-edit-btn" id="step1EditBtn" onclick="editStep(1)" style="display: none;">Editar</button>
+          </div>
+
+          <!-- Active Form -->
+          <div class="step-content" id="step1Content">
+            <div id="userSessionNotice" style="display: none; background: #FDF1F1; border-left: 3px solid var(--color-gold); padding: 10px 14px; font-size: 0.85rem; color: var(--color-dark); margin-bottom: 1.2rem; border-radius: 0 4px 4px 0;"></div>
+            <form id="formStep1" onsubmit="handleStep1Submit(event)">
+              <div class="auth-input-group">
+                <label class="auth-label">Dirección de correo electrónico*</label>
+                <input type="email" class="auth-input" id="checkoutEmail" required placeholder="ejemplo@correo.com" autocomplete="email">
+              </div>
+
+              <button type="submit" class="auth-btn-black checkout-btn-step" id="btnStep1Submit">
+                CONTINUAR CON EL ENVÍO
+              </button>
+            </form>
+          </div>
+
+          <!-- Collapsed Summary -->
+          <div class="step-summary" id="step1Summary" style="display: none;">
+            <p class="summary-text" id="summaryEmailText">-</p>
+          </div>
+        </div>
+
+        <!-- STEP 2: SHIPPING (ENVÍO) -->
+        <div class="checkout-step disabled" id="step2Container">
+          <div class="step-header">
+            <div class="step-number" id="step2Number">2</div>
+            <h2 class="step-title">Envío</h2>
+            <button type="button" class="step-edit-btn" id="step2EditBtn" onclick="editStep(2)" style="display: none;">Editar</button>
+          </div>
+
+          <!-- Active Form -->
+          <div class="step-content" id="step2Content" style="display: none;">
+            <form id="formStep2" onsubmit="handleStep2Submit(event)">
+              <h3 class="checkout-section-subtitle">Dirección de envío</h3>
+
+              <div class="auth-row-names">
+                <div class="auth-input-group">
+                  <label class="auth-label">Nombre de pila*</label>
+                  <input type="text" class="auth-input" id="shipFirstName" required placeholder="Nombre">
+                </div>
+                <div class="auth-input-group">
+                  <label class="auth-label">Apellido*</label>
+                  <input type="text" class="auth-input" id="shipLastName" required placeholder="Apellido">
+                </div>
+              </div>
+
+              <div class="auth-row-names">
+                <div class="auth-input-group">
+                  <label class="auth-label">DNI / Documento de Identidad*</label>
+                  <input type="text" class="auth-input" id="shipDni" required placeholder="8 dígitos" maxlength="12">
+                </div>
+                <div class="auth-input-group">
+                  <label class="auth-label">Número de teléfono del destinatario*</label>
+                  <div class="auth-row-phone" style="grid-template-columns: 85px 1fr;">
+                    <input type="text" class="auth-input" value="+51" readonly style="text-align: center; color: var(--color-dark);">
+                    <input type="tel" class="auth-input" id="shipPhone" required placeholder="997 511 144">
+                  </div>
+                </div>
+              </div>
+
+              <div class="auth-row-names">
+                <div class="auth-input-group">
+                  <label class="auth-label">Departamento*</label>
+                  <select class="auth-select" id="shipDepartment" required onchange="handleDepartmentChange()">
+                    <option value="">Selecciona Departamento</option>
+                    <option value="Lima" selected>Lima</option>
+                    <option value="Arequipa">Arequipa</option>
+                    <option value="Cusco">Cusco</option>
+                    <option value="La Libertad">La Libertad</option>
+                    <option value="Piura">Piura</option>
+                    <option value="Lambayeque">Lambayeque</option>
+                    <option value="Ancash">Ancash</option>
+                    <option value="Ica">Ica</option>
+                    <option value="Junín">Junín</option>
+                    <option value="San Martín">San Martín</option>
+                    <option value="Tacna">Tacna</option>
+                    <option value="Ucayali">Ucayali</option>
+                    <option value="Loreto">Loreto</option>
+                    <option value="Puno">Puno</option>
+                    <option value="Otro">Otro Departamento</option>
+                  </select>
+                </div>
+
+                <div class="auth-input-group">
+                  <label class="auth-label">Distrito / Ciudad*</label>
+                  <select class="auth-select" id="shipDistrict" required>
+                    <option value="">Selecciona Distrito</option>
+                    <option value="Miraflores" selected>Miraflores</option>
+                    <option value="San Isidro">San Isidro</option>
+                    <option value="Santiago de Surco">Santiago de Surco</option>
+                    <option value="San Borja">San Borja</option>
+                    <option value="La Molina">La Molina</option>
+                    <option value="Barranco">Barranco</option>
+                    <option value="San Miguel">San Miguel</option>
+                    <option value="Magdalena del Mar">Magdalena del Mar</option>
+                    <option value="Jesús María">Jesús María</option>
+                    <option value="Lince">Lince</option>
+                    <option value="Surquillo">Surquillo</option>
+                    <option value="Pueblo Libre">Pueblo Libre</option>
+                    <option value="Lima Cercado">Lima Cercado</option>
+                    <option value="Los Olivos">Los Olivos</option>
+                    <option value="Otro">Otro Distrito</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="auth-input-group">
+                <label class="auth-label">Dirección postal (Calle, Av., Jr., Número)*</label>
+                <input type="text" class="auth-input" id="shipAddress" required placeholder="Av. Los Conquistadores 123">
+              </div>
+
+              <div class="auth-input-group">
+                <label class="auth-label">Apartamento, Suite, Edificio, Referencia (Opcional)</label>
+                <input type="text" class="auth-input" id="shipReference" placeholder="Dpto 402 / Frente al parque">
+              </div>
+
+              <!-- SHIPPING METHOD SELECTION -->
+              <h3 class="checkout-section-subtitle" style="margin-top: 2.5rem;">Método de envío</h3>
+
+              <div class="shipping-methods-list">
+                <!-- Option 1: Standard Free -->
+                <label class="shipping-method-card active" id="shipMethod1">
+                  <input type="radio" name="shippingMethod" value="standard" checked onchange="handleShippingMethodChange('standard', 0)">
+                  <div class="method-info">
+                    <div class="method-title">Entrega asegurada gratuita con firma</div>
+                    <div class="method-desc">Entrega estimada en 2 a 4 días hábiles. Embalaje de seguridad sellado.</div>
+                  </div>
+                  <div class="method-price">Gratis</div>
+                </label>
+
+                <!-- Option 2: Express -->
+                <label class="shipping-method-card" id="shipMethod2">
+                  <input type="radio" name="shippingMethod" value="express" onchange="handleShippingMethodChange('express', 25)">
+                  <div class="method-info">
+                    <div class="method-title">Entrega Inmediata (Express)</div>
+                    <div class="method-desc">Mismo día o 24 horas en Lima Metropolitana. Courier privado de alta seguridad.</div>
+                  </div>
+                  <div class="method-price">S/ 25.00</div>
+                </label>
+
+                <!-- Option 3: Store Pickup -->
+                <label class="shipping-method-card" id="shipMethod3">
+                  <input type="radio" name="shippingMethod" value="pickup" onchange="handleShippingMethodChange('pickup', 0)">
+                  <div class="method-info">
+                    <div class="method-title">Recojo en Tienda / Boutique BELLINI</div>
+                    <div class="method-desc">Disponible para recoger previa coordinación en nuestra boutique privada.</div>
+                  </div>
+                  <div class="method-price">Gratis</div>
+                </label>
+              </div>
+
+              <!-- PACKAGING SECTION -->
+              <h3 class="checkout-section-subtitle" style="margin-top: 2.5rem;">Packaging</h3>
+              <p style="font-size: 0.85rem; color: var(--color-steel); margin-top: -1rem; margin-bottom: 1.2rem;">
+                Seleccione el estilo de caja y listón para el empaque de su joya:
+              </p>
+
+              <div class="packaging-options-grid">
+                <!-- Clásico (Salmón) -->
+                <label class="packaging-card active" id="pkgCardClassic" onclick="selectPackaging('clasico')">
+                  <input type="radio" name="packagingOption" value="clasico" checked>
+                  <div class="packaging-img-wrap">
+                    <img src="img/box-salmon.jpg" alt="Packaging Clásico Salmón">
+                  </div>
+                  <div class="packaging-details">
+                    <div class="packaging-color-badge" style="background: #E8A598;"></div>
+                    <span class="packaging-name">Clásico</span>
+                    <span class="packaging-tag">Salmón</span>
+                  </div>
+                </label>
+
+                <!-- Moderno (Negro) -->
+                <label class="packaging-card" id="pkgCardModern" onclick="selectPackaging('moderno')">
+                  <input type="radio" name="packagingOption" value="moderno">
+                  <div class="packaging-img-wrap">
+                    <img src="img/box-black.jpg" alt="Packaging Moderno Negro">
+                  </div>
+                  <div class="packaging-details">
+                    <div class="packaging-color-badge" style="background: #261E20;"></div>
+                    <span class="packaging-name">Moderno</span>
+                    <span class="packaging-tag">Negro</span>
+                  </div>
+                </label>
+
+                <!-- Alternativo (Plateado) -->
+                <label class="packaging-card" id="pkgCardAlt" onclick="selectPackaging('alternativo')">
+                  <input type="radio" name="packagingOption" value="alternativo">
+                  <div class="packaging-img-wrap">
+                    <img src="img/box-silver.jpg" alt="Packaging Alternativo Plateado">
+                  </div>
+                  <div class="packaging-details">
+                    <div class="packaging-color-badge" style="background: #E3C7B8;"></div>
+                    <span class="packaging-name">Alternativo</span>
+                    <span class="packaging-tag">Plateado</span>
+                  </div>
+                </label>
+              </div>
+
+              <!-- DEDICATION & BRIDE INFO -->
+              <div class="packaging-fields-box">
+                <div class="auth-input-group">
+                  <label class="auth-label">Añadir mensaje dedicatoria</label>
+                  <textarea class="auth-input" id="giftDedication" rows="2" placeholder="Escriba aquí las palabras especiales que incluiremos en su tarjeta caligrafiada..." style="resize: vertical; font-family: var(--font-body); padding: 12px; height: auto;"></textarea>
+                </div>
+
+                <div class="auth-row-names" style="margin-top: 1rem;">
+                  <div class="auth-input-group">
+                    <label class="auth-label">Nombre de la novia</label>
+                    <input type="text" class="auth-input" id="brideName" placeholder="Nombre completo">
+                  </div>
+                  <div class="auth-input-group">
+                    <label class="auth-label">Fecha de cumpleaños de la novia</label>
+                    <input type="date" class="auth-input" id="brideBirthday">
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="auth-btn-black checkout-btn-step">
+                CONTINUAR CON EL PAGO
+              </button>
+            </form>
+          </div>
+
+          <!-- Collapsed Summary -->
+          <div class="step-summary" id="step2Summary" style="display: none;">
+            <p class="summary-text" id="summaryAddressText">-</p>
+            <p class="summary-subtext" id="summaryMethodText">-</p>
+          </div>
+        </div>
+
+        <!-- STEP 3: PAYMENT (PAGO) -->
+        <div class="checkout-step disabled" id="step3Container">
+          <div class="step-header">
+            <div class="step-number" id="step3Number">3</div>
+            <h2 class="step-title">Pago</h2>
+          </div>
+
+          <!-- Active Form -->
+          <div class="step-content" id="step3Content" style="display: none;">
+            <h3 class="checkout-section-subtitle">Método de Pago</h3>
+
+            <div class="payment-methods-accordion">
+
+              <!-- OPTION A: CREDIT / DEBIT CARD (Default) -->
+              <div class="payment-card-option active" id="payOptionCards">
+                <label class="payment-card-header" onclick="selectPaymentMethod('cards')">
+                  <input type="radio" name="paymentOption" value="cards" checked>
+                  <div class="payment-card-title">
+                    <svg width="22" height="16" viewBox="0 0 24 16" fill="currentColor">
+                      <rect width="24" height="16" rx="2" fill="#261E20"/>
+                      <rect y="4" width="24" height="3" fill="#D9A7A3"/>
+                    </svg>
+                    <span>Tarjetas de Crédito / Débito</span>
+                  </div>
+                  <div class="card-icons">
+                    <span class="card-tag">VISA</span>
+                    <span class="card-tag">MC</span>
+                    <span class="card-tag">AMEX</span>
+                  </div>
+                </label>
+
+                <div class="payment-card-body" id="bodyPayCards">
+                  <p class="payment-note">Todos los campos son obligatorios para procesar su pago seguro con encriptación TLS de 256 bits.</p>
+
+                  <div class="auth-input-group">
+                    <label class="auth-label">Número de tarjeta*</label>
+                    <input type="text" class="auth-input" id="cardNum" placeholder="4557 8806 8697 4555" maxlength="19" oninput="formatCardNumber(this)">
+                  </div>
+
+                  <div class="auth-row-names">
+                    <div class="auth-input-group">
+                      <label class="auth-label">Fecha de expiración*</label>
+                      <input type="text" class="auth-input" id="cardExp" placeholder="MM/AA" maxlength="5" oninput="formatCardExp(this)">
+                    </div>
+                    <div class="auth-input-group">
+                      <label class="auth-label">Código de seguridad (CVV)*</label>
+                      <input type="password" class="auth-input" id="cardCvv" placeholder="3 dígitos" maxlength="4">
+                    </div>
+                  </div>
+
+                  <div class="auth-input-group">
+                    <label class="auth-label">Nombre del titular en la tarjeta*</label>
+                    <input type="text" class="auth-input" id="cardName" placeholder="Como figura en la tarjeta">
+                  </div>
+                </div>
+              </div>
+
+              <!-- OPTION B: YAPE / PLIN / TRANSFERENCIA -->
+              <div class="payment-card-option" id="payOptionTransfer">
+                <label class="payment-card-header" onclick="selectPaymentMethod('transfer')">
+                  <input type="radio" name="paymentOption" value="transfer">
+                  <div class="payment-card-title">
+                    <span style="font-weight: 700; color: #742284;">Yape</span> / 
+                    <span style="font-weight: 700; color: #00B3E6;">Plin</span> / 
+                    <span>Transferencia Bancaria BCP / BBVA</span>
+                  </div>
+                </label>
+
+                <div class="payment-card-body" id="bodyPayTransfer" style="display: none;">
+                  <div class="transfer-info-box">
+                    <p><strong>Cuentas Oficiales de BELLINI Fine Jewelry:</strong></p>
+                    <ul>
+                      <li><strong>BCP Soles:</strong> 194-98765432-0-12 (CCI: 002-194-009876543201-12)</li>
+                      <li><strong>BBVA Soles:</strong> 0011-0123-0200456789 (CCI: 011-123-000200456789-14)</li>
+                      <li><strong>Yape / Plin:</strong> 997 511 144 (Titular: BELLINI Joyería S.A.C.)</li>
+                    </ul>
+                    <p class="transfer-note">Una vez realizado su pedido, podrá enviar la constancia de pago de forma inmediata por WhatsApp para confirmación prioritaria.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- OPTION C: ASESORÃA POR WHATSAPP -->
+              <div class="payment-card-option" id="payOptionWhatsapp">
+                <label class="payment-card-header" onclick="selectPaymentMethod('whatsapp')">
+                  <input type="radio" name="paymentOption" value="whatsapp">
+                  <div class="payment-card-title">
+                    <span>Coordinar Pago con Asesor Personalizado (WhatsApp)</span>
+                  </div>
+                </label>
+
+                <div class="payment-card-body" id="bodyPayWhatsapp" style="display: none;">
+                  <p class="payment-note">Un asesor gemólogo se pondrá en contacto con usted de inmediato para coordinar el método de pago que prefiera (Link Niubiz, POS a domicilio o efectivo contra entrega).</p>
+                </div>
+              </div>
+
+            </div>
+
+            <button type="button" class="auth-btn-black checkout-btn-step" id="btnPlaceOrder" onclick="handlePlaceOrder()" style="margin-top: 2rem;">
+              REALIZAR PEDIDO
+            </button>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT COLUMN: ORDER SUMMARY (STICKY) -->
+      <aside class="checkout-summary-column">
+        <div class="checkout-summary-card">
+          <div class="summary-line">
+            <span>Total parcial</span>
+            <span id="chkSubtotal">S/ 0</span>
+          </div>
+          <div class="summary-line">
+            <span id="chkShippingLabel">Entrega asegurada con firma</span>
+            <span id="chkShippingPrice">Gratis</span>
+          </div>
+          <div class="summary-line">
+            <span>Impuesto estimado (IGV 18% incl.)</span>
+            <span id="chkTax">S/ 0</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <div class="summary-total-line">
+            <span>Total estimado</span>
+            <span id="chkGrandTotal">S/ 0</span>
+          </div>
+
+          <div class="summary-divider"></div>
+
+          <!-- Products Accordion -->
+          <div class="summary-products-box">
+            <h3 class="summary-products-title">Resumen del pedido</h3>
+            <div class="summary-products-list" id="chkProductsList">
+              <!-- Rendered by JS -->
+            </div>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- ORDER SUCCESS MODAL -->
+  <div class="order-modal-overlay" id="orderSuccessModal">
+    <div class="order-modal-card">
+      <div class="order-success-icon">✓</div>
+      <h2 class="order-success-title">¡Gracias por su compra!</h2>
+      <p class="order-success-subtitle">Su pedido ha sido registrado con éxito en BELLINI.</p>
+      
+      <div class="order-details-box">
+        <div class="order-detail-row">
+          <span>Código de Pedido:</span>
+          <strong id="modalOrderId">PED-00000</strong>
+        </div>
+        <div class="order-detail-row">
+          <span>Cliente:</span>
+          <span id="modalCustomerName">-</span>
+        </div>
+        <div class="order-detail-row">
+          <span>Total:</span>
+          <strong id="modalTotal">-</strong>
+        </div>
+        <div class="order-detail-row">
+          <span>Método de Envío:</span>
+          <span id="modalShipping">-</span>
+        </div>
+      </div>
+
+      <p class="order-next-step">Hemos enviado una confirmación a su correo electrónico. También puede contactar a su asesor para seguimiento en tiempo real:</p>
+
+      <a href="#" id="modalWhatsappBtn" target="_blank" class="auth-btn-black checkout-btn-step" style="display: block; text-align: center; text-decoration: none; margin-bottom: 0.8rem;">
+        CONFIRMAR POR WHATSAPP
+      </a>
+      <a href="index.html" class="auth-btn-outline" style="text-decoration: none;">
+        VOLVER A LA TIENDA
+      </a>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script src="script.js"></script>
+  <script>
+    // Checkout specific controller
+    let checkoutShippingCost = 0;
+    let checkoutShippingMethodName = 'Entrega asegurada con firma';
+    let checkoutShippingMethodCode = 'standard';
+    let selectedPackagingName = 'Clásico (Salmón)';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCheckoutSummary();
+      prefillLoggedInUser();
+    });
+
+    // Packaging Selection
+    window.selectPackaging = function(type) {
+      document.querySelectorAll('.packaging-card').forEach(c => c.classList.remove('active'));
+      if (type === 'clasico') {
+        document.getElementById('pkgCardClassic').classList.add('active');
+        selectedPackagingName = 'Clásico (Salmón)';
+      } else if (type === 'moderno') {
+        document.getElementById('pkgCardModern').classList.add('active');
+        selectedPackagingName = 'Moderno (Negro)';
+      } else if (type === 'alternativo') {
+        document.getElementById('pkgCardAlt').classList.add('active');
+        selectedPackagingName = 'Alternativo (Plateado)';
+      }
+    };
+
+    // Prefill if logged in
+    function prefillLoggedInUser() {
+      try {
+        const stored = localStorage.getItem('bellini_user');
+        if (stored) {
+          const user = JSON.parse(stored);
+          if (user.Correo) {
+            document.getElementById('checkoutEmail').value = user.Correo;
+            const noticeEl = document.getElementById('userSessionNotice');
+            if (noticeEl) {
+              noticeEl.innerHTML = `Sesión iniciada: <strong>${user.Nombre || ''} ${user.Apellido || ''}</strong> (${user.Correo})`;
+              noticeEl.style.display = 'block';
+            }
+          }
+          if (user.Nombre) {
+            document.getElementById('shipFirstName').value = user.Nombre;
+          }
+          if (user.Apellido) {
+            document.getElementById('shipLastName').value = user.Apellido;
+          }
+          // Todos los demás campos (DNI, Celular, Departamento, Distrito, Dirección, Referencia) se piden al usuario.
+        }
+      } catch (e) {}
+    }
+
+    // Render summary
+    function renderCheckoutSummary() {
+      const listEl = document.getElementById('chkProductsList');
+      const subtotalEl = document.getElementById('chkSubtotal');
+      const taxEl = document.getElementById('chkTax');
+      const grandTotalEl = document.getElementById('chkGrandTotal');
+      const shipPriceEl = document.getElementById('chkShippingPrice');
+      const shipLabelEl = document.getElementById('chkShippingLabel');
+
+      if (!listEl) return;
+
+      // Load cart
+      let currentCart = [];
+      try {
+        const storedCart = localStorage.getItem('bellini_cart');
+        if (storedCart) currentCart = JSON.parse(storedCart);
+      } catch (e) {}
+
+      if (currentCart.length === 0) {
+        listEl.innerHTML = '<p style="color:var(--color-steel); font-size:0.9rem;">No hay productos en la cesta.</p>';
+        subtotalEl.textContent = 'S/ 0';
+        taxEl.textContent = 'S/ 0';
+        grandTotalEl.textContent = 'S/ 0';
+        return;
+      }
+
+      let subtotal = 0;
+      listEl.innerHTML = '';
+
+      currentCart.forEach(item => {
+        const prod = products.find(p => p.id == item.id || p.ID_Producto === item.id) || item;
+        const qty = item.quantity || 1;
+        const price = prod.PV || prod.price || 0;
+        const itemTotal = price * qty;
+        subtotal += itemTotal;
+
+        const img = prod.image || `img/${prod.ID_Producto || 'PRD0001'}/1.jpg`;
+        const name = prod.Nombre_Producto || prod.name || 'Joya BELLINI';
+        const meta = prod.Metal || prod.metal || '';
+        const metaWithQty = qty > 1 ? `Cant: ${qty} • ${meta}` : meta;
+
+        const itemRow = document.createElement('div');
+        itemRow.className = 'summary-product-item';
+        itemRow.innerHTML = `
+          <div class="summary-product-thumb">
+            <img src="${img}" alt="${name}">
+          </div>
+          <div class="summary-product-details">
+            <div class="summary-product-name">${name}</div>
+            <div class="summary-product-meta">${metaWithQty}</div>
+            <div class="summary-product-price">S/ ${itemTotal.toLocaleString('es-PE')}</div>
+          </div>
+        `;
+        listEl.appendChild(itemRow);
+      });
+
+      const tax = Math.round(subtotal * 0.18);
+      const grandTotal = subtotal + checkoutShippingCost;
+
+      subtotalEl.textContent = `S/ ${subtotal.toLocaleString('es-PE')}`;
+      taxEl.textContent = `S/ ${tax.toLocaleString('es-PE')}`;
+      grandTotalEl.textContent = `S/ ${grandTotal.toLocaleString('es-PE')}`;
+
+      if (checkoutShippingCost > 0) {
+        shipPriceEl.textContent = `S/ ${checkoutShippingCost.toFixed(2)}`;
+      } else {
+        shipPriceEl.textContent = 'Gratis';
+      }
+      shipLabelEl.textContent = checkoutShippingMethodName;
+    }
+
+    // Step 1 Submit
+    window.handleStep1Submit = function(e) {
+      e.preventDefault();
+      const email = document.getElementById('checkoutEmail').value.trim();
+      if (!email) return;
+
+      document.getElementById('summaryEmailText').textContent = email;
+      document.getElementById('step1Content').style.display = 'none';
+      document.getElementById('step1Summary').style.display = 'block';
+      document.getElementById('step1EditBtn').style.display = 'block';
+      document.getElementById('step1Number').textContent = '1';
+      document.getElementById('step1Number').classList.add('completed');
+
+      // Unlock Step 2
+      const step2 = document.getElementById('step2Container');
+      step2.classList.remove('disabled');
+      step2.classList.add('active');
+      document.getElementById('step2Content').style.display = 'block';
+      step2.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+
+    // Step 2 Submit
+    window.handleStep2Submit = function(e) {
+      e.preventDefault();
+      const name = document.getElementById('shipFirstName').value.trim();
+      const lastName = document.getElementById('shipLastName').value.trim();
+      const phone = document.getElementById('shipPhone').value.trim();
+      const dept = document.getElementById('shipDepartment').value;
+      const dist = document.getElementById('shipDistrict').value;
+      const addr = document.getElementById('shipAddress').value.trim();
+      const ref = document.getElementById('shipReference').value.trim();
+      const brideName = document.getElementById('brideName').value.trim();
+
+      let pkgSummary = `Packaging: ${selectedPackagingName}`;
+      if (brideName) pkgSummary += ` • Novia: ${brideName}`;
+
+      document.getElementById('summaryAddressText').textContent = `${name} ${lastName}, ${addr}${ref ? ' (' + ref + ')' : ''}, ${dist}, ${dept} (Cel: +51 ${phone})`;
+      document.getElementById('summaryMethodText').textContent = `Método: ${checkoutShippingMethodName} (${checkoutShippingCost > 0 ? 'S/ ' + checkoutShippingCost.toFixed(2) : 'Gratis'}) | ${pkgSummary}`;
+
+      document.getElementById('step2Content').style.display = 'none';
+      document.getElementById('step2Summary').style.display = 'block';
+      document.getElementById('step2EditBtn').style.display = 'block';
+      document.getElementById('step2Number').textContent = '2';
+      document.getElementById('step2Number').classList.add('completed');
+
+      // Unlock Step 3
+      const step3 = document.getElementById('step3Container');
+      step3.classList.remove('disabled');
+      step3.classList.add('active');
+      document.getElementById('step3Content').style.display = 'block';
+      step3.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+
+    // Edit Step - Locks downstream steps
+    window.editStep = function(stepNum) {
+      if (stepNum === 1) {
+        document.getElementById('step1Content').style.display = 'block';
+        document.getElementById('step1Summary').style.display = 'none';
+        document.getElementById('step1EditBtn').style.display = 'none';
+        document.getElementById('step1Number').textContent = '1';
+        document.getElementById('step1Number').classList.remove('completed');
+
+        // Lock Step 2 and Step 3
+        const step2 = document.getElementById('step2Container');
+        step2.classList.add('disabled');
+        step2.classList.remove('active');
+        document.getElementById('step2Content').style.display = 'none';
+        document.getElementById('step2Summary').style.display = 'none';
+        document.getElementById('step2EditBtn').style.display = 'none';
+        document.getElementById('step2Number').classList.remove('completed');
+
+        const step3 = document.getElementById('step3Container');
+        step3.classList.add('disabled');
+        step3.classList.remove('active');
+        document.getElementById('step3Content').style.display = 'none';
+      } else if (stepNum === 2) {
+        document.getElementById('step2Content').style.display = 'block';
+        document.getElementById('step2Summary').style.display = 'none';
+        document.getElementById('step2EditBtn').style.display = 'none';
+        document.getElementById('step2Number').textContent = '2';
+        document.getElementById('step2Number').classList.remove('completed');
+
+        // Lock Step 3
+        const step3 = document.getElementById('step3Container');
+        step3.classList.add('disabled');
+        step3.classList.remove('active');
+        document.getElementById('step3Content').style.display = 'none';
+      }
+    };
+
+    // Department Change
+    window.handleDepartmentChange = function() {
+      const dept = document.getElementById('shipDepartment').value;
+      const distSelect = document.getElementById('shipDistrict');
+      distSelect.innerHTML = '';
+
+      if (dept === 'Lima') {
+        const limaDistricts = ['Miraflores', 'San Isidro', 'Santiago de Surco', 'San Borja', 'La Molina', 'Barranco', 'San Miguel', 'Magdalena del Mar', 'Jesús María', 'Lince', 'Surquillo', 'Pueblo Libre', 'Lima Cercado', 'Los Olivos', 'Otro'];
+        limaDistricts.forEach(d => {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = d;
+          distSelect.appendChild(opt);
+        });
+      } else {
+        const genericDistricts = ['Capital / Centro', 'Distrito Principal', 'Zona Norte', 'Zona Sur', 'Otro'];
+        genericDistricts.forEach(d => {
+          const opt = document.createElement('option');
+          opt.value = d;
+          opt.textContent = d;
+          distSelect.appendChild(opt);
+        });
+      }
+    };
+
+    // Shipping Method Change
+    window.handleShippingMethodChange = function(method, cost) {
+      checkoutShippingCost = cost;
+      checkoutShippingMethodCode = method;
+
+      if (method === 'standard') {
+        checkoutShippingMethodName = 'Entrega asegurada con firma';
+      } else if (method === 'express') {
+        checkoutShippingMethodName = 'Entrega Inmediata (Express)';
+      } else if (method === 'pickup') {
+        checkoutShippingMethodName = 'Recojo en Tienda / Boutique';
+      }
+
+      document.querySelectorAll('.shipping-method-card').forEach(c => c.classList.remove('active'));
+      if (method === 'standard') document.getElementById('shipMethod1').classList.add('active');
+      if (method === 'express') document.getElementById('shipMethod2').classList.add('active');
+      if (method === 'pickup') document.getElementById('shipMethod3').classList.add('active');
+
+      renderCheckoutSummary();
+    };
+
+    // Payment Method Selection
+    window.selectPaymentMethod = function(method) {
+      document.querySelectorAll('.payment-card-option').forEach(c => c.classList.remove('active'));
+      document.getElementById('bodyPayCards').style.display = 'none';
+      document.getElementById('bodyPayTransfer').style.display = 'none';
+      document.getElementById('bodyPayWhatsapp').style.display = 'none';
+
+      if (method === 'cards') {
+        document.getElementById('payOptionCards').classList.add('active');
+        document.getElementById('bodyPayCards').style.display = 'block';
+      } else if (method === 'transfer') {
+        document.getElementById('payOptionTransfer').classList.add('active');
+        document.getElementById('bodyPayTransfer').style.display = 'block';
+      } else if (method === 'whatsapp') {
+        document.getElementById('payOptionWhatsapp').classList.add('active');
+        document.getElementById('bodyPayWhatsapp').style.display = 'block';
+      }
+    };
+
+    // Formatters
+    window.formatCardNumber = function(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 16);
+      let parts = [];
+      for (let i = 0; i < v.length; i += 4) {
+        parts.push(v.substring(i, i + 4));
+      }
+      input.value = parts.join(' ');
+    };
+
+    window.formatCardExp = function(input) {
+      let v = input.value.replace(/\D/g, '').substring(0, 4);
+      if (v.length >= 2) {
+        input.value = v.substring(0, 2) + '/' + v.substring(2, 4);
+      } else {
+        input.value = v;
+      }
+    };
+
+    // Place Order
+    window.handlePlaceOrder = async function() {
+      const btn = document.getElementById('btnPlaceOrder');
+      btn.disabled = true;
+      btn.textContent = 'PROCESANDO PEDIDO...';
+
+      // 1. Datos Requisito 1 (Correo)
+      let email = document.getElementById('checkoutEmail').value.trim();
+
+      // 2. Datos Requisito 2 (Envío)
+      let firstName = document.getElementById('shipFirstName').value.trim();
+      let lastName = document.getElementById('shipLastName').value.trim();
+      const rawPhone = document.getElementById('shipPhone').value.trim();
+      const dept = document.getElementById('shipDepartment').value;
+      const dist = document.getElementById('shipDistrict').value;
+      const address = document.getElementById('shipAddress').value.trim();
+      const reference = document.getElementById('shipReference').value.trim();
+      const dni = document.getElementById('shipDni').value.trim();
+
+      // 3. ID_Cliente y extracción de datos si la sesión está iniciada
+      let idCliente = '';
+      try {
+        const storedUser = localStorage.getItem('bellini_user');
+        if (storedUser) {
+          const userObj = JSON.parse(storedUser);
+          idCliente = userObj.ID_Cliente || userObj.idCliente || '';
+          if (userObj.Correo && !email) email = userObj.Correo;
+          if (userObj.Nombre && !firstName) firstName = userObj.Nombre;
+          if (userObj.Apellido && !lastName) lastName = userObj.Apellido;
+        }
+      } catch (e) {}
+
+      // Formatear celular con apóstrofe (') antes de +51 para Google Sheets
+      let cleanPhone = rawPhone.replace(/^'/, '').trim();
+      if (!cleanPhone.startsWith('+51')) {
+        cleanPhone = '+51 ' + cleanPhone.replace(/^\+?51\s*/, '');
+      }
+      const formattedPhoneForSheet = "'" + cleanPhone;
+
+      // Packaging & Personalización
+      const dedication = document.getElementById('giftDedication') ? document.getElementById('giftDedication').value.trim() : '';
+      const brideName = document.getElementById('brideName') ? document.getElementById('brideName').value.trim() : '';
+      const brideBirthday = document.getElementById('brideBirthday') ? document.getElementById('brideBirthday').value : '';
+
+      // 4. Mapeo exacto de Met_Env: "entrega gratuita", "Express" o "recojo en tienda"
+      let metEnvValue = 'entrega gratuita';
+      if (checkoutShippingMethodCode === 'express') {
+        metEnvValue = 'Express';
+      } else if (checkoutShippingMethodCode === 'pickup') {
+        metEnvValue = 'recojo en tienda';
+      } else {
+        metEnvValue = 'entrega gratuita';
+      }
+
+      // 5. Productos y Cant_art
+      let currentCart = [];
+      try {
+        const storedCart = localStorage.getItem('bellini_cart');
+        if (storedCart) currentCart = JSON.parse(storedCart);
+      } catch (e) {}
+
+      let subtotal = 0;
+      let totalArticulos = 0;
+      const itemsPayload = currentCart.map(item => {
+        const prod = products.find(p => p.id == item.id || p.ID_Producto === item.id) || item;
+        const price = prod.PV || prod.price || 0;
+        const qty = item.quantity || 1;
+        subtotal += price * qty;
+        totalArticulos += qty;
+        return {
+          ID_Producto: prod.ID_Producto || `PRD${prod.id}`,
+          Nombre_Producto: prod.Nombre_Producto || prod.name || 'Joya',
+          quantity: qty,
+          PV: price
+        };
+      });
+
+      const total = subtotal + checkoutShippingCost;
+      const now = new Date();
+      const todayStr = now.getFullYear() + String(now.getMonth()+1).padStart(2,'0') + String(now.getDate()).padStart(2,'0');
+      let fallbackOrderId = 'PED-' + todayStr + '-001';
+
+      // 6. Payload alineado con la base de datos
+      const orderPayload = {
+        action: 'createOrder',
+        ID_Pedido: fallbackOrderId,
+        ID_Cliente: idCliente,
+        Correo: email,
+        Nombre: firstName,
+        Apellido: lastName,
+        DNI: dni,
+        Número_celular: formattedPhoneForSheet,
+        Departamento: dept,
+        Distrito: dist,
+        Direccion: address,
+        Refrenecia: reference,
+        Met_Env: metEnvValue,
+        Nombre_Novia: brideName,
+        Fecha_Novia: brideBirthday,
+        Cant_art: totalArticulos,
+        Total: total,
+        Packaging: selectedPackagingName,
+        Dedicatoria: dedication,
+        items: itemsPayload
+      };
+
+      let registeredOrderId = fallbackOrderId;
+
+      // 7. Enviar a Google Apps Script
+      try {
+        const response = await fetch(`${API_URL}?action=createOrder&data=${encodeURIComponent(JSON.stringify(orderPayload))}`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.status === 'success' && result.orderId) {
+            registeredOrderId = result.orderId;
+          }
+        }
+      } catch (err) {
+        // En caso de bloqueo CORS del navegador, respaldo por POST no-cors
+        fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(orderPayload)
+        }).catch(() => {});
+      }
+
+      // 8. Mostrar Modal de Éxito
+      document.getElementById('modalOrderId').textContent = registeredOrderId;
+      document.getElementById('modalCustomerName').textContent = `${firstName} ${lastName}`;
+      document.getElementById('modalTotal').textContent = `S/ ${total.toLocaleString('es-PE')}`;
+      document.getElementById('modalShipping').textContent = checkoutShippingMethodName;
+
+      let waMsg = `Hola BELLINI, acabo de realizar mi pedido ${registeredOrderId} por S/ ${total.toLocaleString('es-PE')}. Nombre: ${firstName} ${lastName}, Correo: ${email}, Packaging: ${selectedPackagingName}.`;
+      if (brideName) waMsg += ` Novia: ${brideName}.`;
+      if (dedication) waMsg += ` Dedicatoria: "${dedication}".`;
+      waMsg += ` Solicito confirmación y comprobante.`;
+
+      document.getElementById('modalWhatsappBtn').href = `https://wa.me/51997511144?text=${encodeURIComponent(waMsg)}`;
+
+      document.getElementById('orderSuccessModal').classList.add('open');
+
+      // 9. Limpiar carrito
+      localStorage.removeItem('bellini_cart');
+      cart = [];
+    };
+  </script>
+</body>
+</html>
