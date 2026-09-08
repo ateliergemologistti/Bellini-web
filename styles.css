@@ -32,6 +32,9 @@
 
 html {
   scroll-behavior: smooth;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
 }
 
 body {
@@ -40,7 +43,10 @@ body {
   font-family: var(--font-body);
   font-size: 1rem;
   line-height: 1.7;
-  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden !important;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -1164,13 +1170,17 @@ ul {
   background: var(--color-white);
   z-index: 2001;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  visibility: hidden;
+  pointer-events: none;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), visibility 0.4s;
   display: flex;
   flex-direction: column;
 }
 
 .cart-sidebar.open {
   transform: translateX(0);
+  visibility: visible;
+  pointer-events: auto;
 }
 
 .cart-overlay, .mobile-overlay {
@@ -1512,6 +1522,10 @@ ul {
 }
 
 @media (max-width: 768px) {
+  .reveal-left, .reveal-right {
+    transform: translateY(25px) !important;
+  }
+
   .container {
     padding: 0 1.25rem;
   }
