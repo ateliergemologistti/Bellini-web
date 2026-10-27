@@ -411,8 +411,8 @@ function renderProducts(filter = 'todos') {
       const metaText = caratVal ? `${caratVal} | ${metalVal}` : metalVal;
       const prodName = product.Nombre_Producto || product.name;
       const prodPrice = (product.PV || product.price || 0).toLocaleString('es-PE');
-      const prodImg = product.image || `img/${prodId}/1.jpg`;
-      const prodImgHover = product.imageHover || `img/${prodId}/2.jpg`;
+      const prodImg = `${(product.image || `img/${prodId}/1.jpg`).split('?')[0]}?v=5.0`;
+      const prodImgHover = `${(product.imageHover || `img/${prodId}/2.jpg`).split('?')[0]}?v=5.0`;
       
       card.innerHTML = `
         <a href="product-detail.html?id=${prodId}" class="product-card-link" style="text-decoration: none; color: inherit; display: block;">
@@ -529,7 +529,7 @@ function initSearch() {
       const el = document.createElement('div');
       el.className = 'search-result-item';
       el.innerHTML = `
-        <img src="${product.image}" class="search-result-img" onerror="this.style.display='none'">
+        <img src="${(product.image || `img/${product.ID_Producto}/1.jpg`).split('?')[0]}?v=5.0" class="search-result-img" onerror="this.style.display='none'">
         <div>
           <h4 style="margin:0;font-size:1.1rem;font-family:var(--font-heading)">${product.Nombre_Producto || product.name}</h4>
           <span style="font-size:0.8rem;opacity:0.7">${product.SKU || product.sku} | S/ ${(product.PV || product.price).toLocaleString()}</span>
@@ -632,7 +632,7 @@ function updateCartUI() {
     const el = document.createElement('div');
     el.className = 'cart-item';
     el.innerHTML = `
-      <img src="${item.image || `img/${item.ID_Producto}/1.jpg`}" alt="${item.Nombre_Producto || item.name}" class="cart-item-img" onerror="this.style.display='none'">
+      <img src="${(item.image || `img/${item.ID_Producto}/1.jpg`).split('?')[0]}?v=5.0" alt="${item.Nombre_Producto || item.name}" class="cart-item-img" onerror="this.style.display='none'">
       <div class="cart-item-info">
         <div class="cart-item-title">${item.Nombre_Producto || item.name}</div>
         <div class="cart-item-meta">Cant: ${qty} | ${item.Metal || item.metal || ''}</div>

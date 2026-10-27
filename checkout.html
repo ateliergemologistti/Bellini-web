@@ -556,7 +556,7 @@
         const itemTotal = price * qty;
         subtotal += itemTotal;
 
-        const img = prod.image || `img/${prod.ID_Producto || 'PRD0001'}/1.jpg`;
+        const img = `${(prod.image || `img/${prod.ID_Producto || 'PRD0001'}/1.jpg`).split('?')[0]}?v=5.0`;
         const name = prod.Nombre_Producto || prod.name || 'Joya BELLINI';
         const meta = prod.Metal || prod.metal || '';
         const metaWithQty = qty > 1 ? `Cant: ${qty} • ${meta}` : meta;

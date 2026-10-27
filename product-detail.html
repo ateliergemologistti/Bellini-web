@@ -92,7 +92,7 @@
   <div class="auth-overlay" id="authOverlay"></div>
   <div class="auth-drawer" id="authDrawer">
     <div class="auth-image-side">
-      <img src="img/auth-box.jpg" alt="BELLINI Jewelry Box">
+      <img src="img/auth-box.jpg?v=5.0" alt="BELLINI Jewelry Box">
     </div>
     <div class="auth-form-side">
       <button class="auth-close-btn" id="authCloseBtn" aria-label="Cerrar">&times;</button>
@@ -330,8 +330,8 @@
       const productPrice = (product.PV || product.price || 0).toLocaleString('es-PE');
       const productDetail = product.Detalle || product.description;
       
-      const img1 = `img/${product.ID_Producto}/1.jpg`;
-      const img2 = `img/${product.ID_Producto}/2.jpg`;
+      const img1 = `img/${product.ID_Producto}/1.jpg?v=5.0`;
+      const img2 = `img/${product.ID_Producto}/2.jpg?v=5.0`;
       
       // Render details
       document.getElementById('detailContainer').innerHTML = `
@@ -405,8 +405,8 @@
         const metaText = relCarat ? `${relCarat} | ${relMetal}` : relMetal;
         const relName = rel.Nombre_Producto || rel.name;
         const relPrice = (rel.PV || rel.price || 0).toLocaleString('es-PE');
-        const relImg1 = `img/${rel.ID_Producto}/1.jpg`;
-        const relImg2 = `img/${rel.ID_Producto}/2.jpg`;
+        const relImg1 = `img/${rel.ID_Producto}/1.jpg?v=5.0`;
+        const relImg2 = `img/${rel.ID_Producto}/2.jpg?v=5.0`;
         
         const card = document.createElement('div');
         card.className = 'product-card';
