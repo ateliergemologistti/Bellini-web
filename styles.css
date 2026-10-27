@@ -420,8 +420,10 @@ ul {
 .scroll-indicator {
   position: absolute;
   bottom: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  width: fit-content;
   z-index: 3;
   color: var(--color-white);
   animation: bounce 2s infinite;
@@ -435,6 +437,7 @@ ul {
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  padding-left: 0.1em;
   margin-bottom: 8px;
 }
 
