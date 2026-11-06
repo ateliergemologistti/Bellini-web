@@ -1000,9 +1000,9 @@ window.handleCreateAccountSubmit = async function(e) {
 window.handleForgotPassword = function() {
   const email = document.getElementById('signInEmail').value.trim();
   const msg = email 
-    ? `Hola BELLINI, deseo restablecer la contraseña de mi cuenta asociada al correo: ${email}`
-    : 'Hola BELLINI, deseo restablecer mi contraseña.';
-  window.open(`https://wa.me/51997511144?text=${encodeURIComponent(msg)}`, '_blank');
+    ? `Hola Bellini Fine Jewelry, deseo restablecer la contraseña de mi cuenta asociada al correo: ${email}`
+    : 'Hola Bellini Fine Jewelry, deseo restablecer mi contraseña.';
+  window.open(`https://wa.me/51922427713?text=${encodeURIComponent(msg)}`, '_blank');
 };
 
 // Handle Logout

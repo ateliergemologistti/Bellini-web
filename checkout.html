@@ -25,7 +25,7 @@
         <img src="img/logo-bellini-horizontal.png?v=3.0" alt="BELLINI Fine Jewelry" style="height: 42px; width: auto; object-fit: contain;">
       </a>
 
-      <a href="https://wa.me/51997511144?text=Hola%20BELLINI%2C%20necesito%20ayuda%20con%20mi%20proceso%20de%20compra" target="_blank" class="checkout-help-link">
+      <a href="https://wa.me/51922427713?text=Hola%20Bellini%20Fine%20Jewelry%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" target="_blank" class="checkout-help-link">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <path d="M12 4v3"/>
           <path d="M10 4h4"/>
@@ -111,7 +111,7 @@
                   <label class="auth-label">Número de teléfono del destinatario*</label>
                   <div class="auth-row-phone" style="grid-template-columns: 85px 1fr;">
                     <input type="text" class="auth-input" value="+51" readonly style="text-align: center; color: var(--color-dark);">
-                    <input type="tel" class="auth-input" id="shipPhone" required placeholder="997 511 144">
+                    <input type="tel" class="auth-input" id="shipPhone" required placeholder="922 427 713">
                   </div>
                 </div>
               </div>
@@ -360,7 +360,7 @@
                     <ul>
                       <li><strong>BCP Soles:</strong> 194-98765432-0-12 (CCI: 002-194-009876543201-12)</li>
                       <li><strong>BBVA Soles:</strong> 0011-0123-0200456789 (CCI: 011-123-000200456789-14)</li>
-                      <li><strong>Yape / Plin:</strong> 997 511 144 (Titular: BELLINI Joyería S.A.C.)</li>
+                      <li><strong>Yape / Plin:</strong> 922 427 713 (Titular: BELLINI Joyería S.A.C.)</li>
                     </ul>
                     <p class="transfer-note">Una vez realizado su pedido, podrá enviar la constancia de pago de forma inmediata por WhatsApp para confirmación prioritaria.</p>
                   </div>
@@ -467,7 +467,7 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="script.js"></script>
+  <script src="script.js?v=4.0"></script>
   <script>
     // Checkout specific controller
     let checkoutShippingCost = 0;
@@ -898,12 +898,12 @@
       document.getElementById('modalTotal').textContent = `S/ ${total.toLocaleString('es-PE')}`;
       document.getElementById('modalShipping').textContent = checkoutShippingMethodName;
 
-      let waMsg = `Hola BELLINI, acabo de realizar mi pedido ${registeredOrderId} por S/ ${total.toLocaleString('es-PE')}. Nombre: ${firstName} ${lastName}, Correo: ${email}, Packaging: ${selectedPackagingName}.`;
+      let waMsg = `Hola Bellini Fine Jewelry, acabo de realizar mi pedido ${registeredOrderId} por S/ ${total.toLocaleString('es-PE')}. Nombre: ${firstName} ${lastName}, Correo: ${email}, Packaging: ${selectedPackagingName}.`;
       if (brideName) waMsg += ` Novia: ${brideName}.`;
       if (dedication) waMsg += ` Dedicatoria: "${dedication}".`;
       waMsg += ` Solicito confirmación y comprobante.`;
 
-      document.getElementById('modalWhatsappBtn').href = `https://wa.me/51997511144?text=${encodeURIComponent(waMsg)}`;
+      document.getElementById('modalWhatsappBtn').href = `https://wa.me/51922427713?text=${encodeURIComponent(waMsg)}`;
 
       document.getElementById('orderSuccessModal').classList.add('open');
 
