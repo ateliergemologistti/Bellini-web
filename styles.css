@@ -846,13 +846,17 @@ ul {
   margin-bottom: 1rem;
 }
 
+.testimonials .section-title-wrap {
+  margin-bottom: 2.25rem;
+}
+
 .testimonial-text {
   font-size: 1.35rem;
   font-family: var(--font-heading);
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.65;
   color: var(--color-black);
-  margin-bottom: 2rem;
+  margin-bottom: 0;
 }
 
 .testimonial-stars {

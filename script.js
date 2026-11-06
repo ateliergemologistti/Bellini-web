@@ -673,7 +673,7 @@ function initTestimonials() {
   const prevBtn = document.getElementById('prevTestimonial');
   const nextBtn = document.getElementById('nextTestimonial');
   
-  if(slides.length === 0) return;
+  if (slides.length <= 1 || !prevBtn || !nextBtn) return;
   
   const showSlide = (index) => {
     slides.forEach(s => s.classList.remove('active'));
