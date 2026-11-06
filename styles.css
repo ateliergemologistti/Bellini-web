@@ -758,8 +758,12 @@ ul {
 }
 
 .about-content p {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   font-size: 1.05rem;
+}
+
+.about-content p:last-child {
+  margin-bottom: 0;
 }
 
 .counters {
