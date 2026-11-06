@@ -851,11 +851,11 @@ ul {
 }
 
 .testimonial-text {
-  font-size: 1.35rem;
-  font-family: var(--font-heading);
-  font-style: italic;
-  line-height: 1.65;
-  color: var(--color-black);
+  font-size: 1.05rem;
+  font-family: var(--font-body);
+  font-style: normal;
+  line-height: 1.7;
+  color: var(--color-dark);
   margin-bottom: 0;
 }
 
