@@ -352,7 +352,7 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="script.js?v=6.0"></script>
+  <script src="script.js?v=7.0"></script>
   <script>
     let detailCurrentProdId = null;
     let detailSelectedSku = null;
@@ -456,10 +456,16 @@
       const badgeText = getProductBadge(activeVariant);
       const badgeHTML = badgeText ? `<span class="detail-price-badge">${badgeText}</span>` : '';
 
-      const img1 = `img/${prodId}/1.jpg?v=5.0`;
-      const img2 = `img/${prodId}/2.jpg?v=5.0`;
+      const galleryImgs = getProductGallery(activeVariant);
       const existingMainImg = document.getElementById('mainImg');
-      const currentImgSrc = existingMainImg && existingMainImg.getAttribute('src') === img2 ? img2 : img1;
+      const existingSrc = existingMainImg ? existingMainImg.getAttribute('src') : '';
+      const currentImgSrc = galleryImgs.includes(existingSrc) ? existingSrc : galleryImgs[0];
+
+      const galleryThumbsHTML = galleryImgs.map((imgSrc, idx) => `
+        <div class="gallery-thumb${currentImgSrc === imgSrc ? ' active' : ''}" onclick="changeImage('${imgSrc}', this)">
+          <img src="${imgSrc}" alt="${productName} - Vista ${idx + 1}" onerror="handleImgFallback(this, true)">
+        </div>
+      `).join('');
 
       const metalButtonsHTML = metalOptions.map(metal => {
         const isActive = metal === detailSelectedMetal;
@@ -490,15 +496,10 @@
       document.getElementById('detailContainer').innerHTML = `
         <div class="product-gallery">
           <div class="gallery-main">
-            <img src="${currentImgSrc}" alt="${productName}" id="mainImg" onerror="this.src='${activeVariant.image}'">
+            <img src="${currentImgSrc}" alt="${productName}" id="mainImg" onerror="handleImgFallback(this)">
           </div>
           <div class="gallery-thumbs">
-            <div class="gallery-thumb${currentImgSrc === img1 ? ' active' : ''}" onclick="changeImage('${img1}', this)">
-              <img src="${img1}" alt="${productName}" onerror="this.src='${activeVariant.image}'">
-            </div>
-            <div class="gallery-thumb${currentImgSrc === img2 ? ' active' : ''}" onclick="changeImage('${img2}', this)">
-              <img src="${img2}" alt="${productName} en mano" onerror="this.src='${activeVariant.imageHover}'">
-            </div>
+            ${galleryThumbsHTML}
           </div>
         </div>
         <div class="product-detail-info">
@@ -578,8 +579,8 @@
         const relName = rel.Nombre_Producto || rel.name;
         const relPrice = (rel.PV || rel.price || 0).toLocaleString('es-PE');
         const relSku = rel.SKU || rel.sku || '';
-        const relImg1 = `img/${rel.ID_Producto}/1.jpg?v=5.0`;
-        const relImg2 = `img/${rel.ID_Producto}/2.jpg?v=5.0`;
+        const relImg1 = getProductPrimaryImage(rel);
+        const relImg2 = getProductHoverImage(rel);
         
         const card = document.createElement('div');
         card.className = 'product-card';
@@ -587,8 +588,8 @@
         card.innerHTML = `
           <div class="product-img-wrap">
             ${relBadgeHTML}
-            <img src="${relImg1}" alt="${relName}" class="product-img product-img-main" onerror="this.src='${rel.image}'">
-            <img src="${relImg2}" alt="${relName} en mano" class="product-img product-img-hover" onerror="this.style.display='none'">
+            <img src="${relImg1}" alt="${relName}" class="product-img product-img-main" onerror="handleImgFallback(this)">
+            <img src="${relImg2}" alt="${relName} en mano" class="product-img product-img-hover" onerror="handleImgFallback(this, true)">
           </div>
           <div class="product-info">
             <h3 class="product-name">${relName}</h3>

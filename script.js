@@ -7,7 +7,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 4500, Descuentos: 0,
     name: 'Brillante Solitario Clásico', sku: 'AC-01-01', price: 4500, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0001',
-    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/2.jpg'
+    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/3.jpg'
   },
   {
     id: 2, ID_Producto: 'PRD0001', SKU: 'AC-01-02', Nombre_Producto: 'Brillante Solitario Clásico',
@@ -15,7 +15,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5200, Descuentos: 0,
     name: 'Brillante Solitario Clásico', sku: 'AC-01-02', price: 5200, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0001',
-    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/2.jpg'
+    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/3.jpg'
   },
   {
     id: 3, ID_Producto: 'PRD0001', SKU: 'AC-01-03', Nombre_Producto: 'Brillante Solitario Clásico',
@@ -23,7 +23,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5600, Descuentos: 0,
     name: 'Brillante Solitario Clásico', sku: 'AC-01-03', price: 5600, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0001',
-    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/2.jpg'
+    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/3.jpg'
   },
 
   // PRD0002 - Brillante Solitario Sweet
@@ -59,7 +59,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6100, Descuentos: 0,
     name: 'Brillante Halo', sku: 'AC-03-01', price: 6100, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0003',
-    badge: '', image: 'img/PRD0003/1.jpg', imageHover: 'img/PRD0003/2.jpg'
+    badge: '', image: 'img/PRD0003/1.png', imageHover: 'img/PRD0003/3.png'
   },
   {
     id: 8, ID_Producto: 'PRD0003', SKU: 'AC-03-02', Nombre_Producto: 'Brillante Halo',
@@ -67,7 +67,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6700, Descuentos: 0,
     name: 'Brillante Halo', sku: 'AC-03-02', price: 6700, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0003',
-    badge: '', image: 'img/PRD0003/1.jpg', imageHover: 'img/PRD0003/2.jpg'
+    badge: '', image: 'img/PRD0003/1.png', imageHover: 'img/PRD0003/3.png'
   },
   {
     id: 9, ID_Producto: 'PRD0003', SKU: 'AC-03-03', Nombre_Producto: 'Brillante Halo',
@@ -75,7 +75,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 7150, Descuentos: 0,
     name: 'Brillante Halo', sku: 'AC-03-03', price: 7150, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0003',
-    badge: '', image: 'img/PRD0003/1.jpg', imageHover: 'img/PRD0003/2.jpg'
+    badge: '', image: 'img/PRD0003/1.png', imageHover: 'img/PRD0003/3.png'
   },
 
   // PRD0004 - Oval Glamuroso
@@ -163,7 +163,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5900, Descuentos: 0,
     name: 'Pera Glamuroso', sku: 'AC-07-01', price: 5900, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0007',
-    badge: '', image: 'img/PRD0007/1.jpg', imageHover: 'img/PRD0007/2.jpg'
+    badge: '', image: 'img/PRD0007/1.png', imageHover: 'img/PRD0007/3.png'
   },
   {
     id: 20, ID_Producto: 'PRD0007', SKU: 'AC-07-02', Nombre_Producto: 'Pera Glamuroso',
@@ -171,7 +171,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6550, Descuentos: 0,
     name: 'Pera Glamuroso', sku: 'AC-07-02', price: 6550, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0007',
-    badge: '', image: 'img/PRD0007/1.jpg', imageHover: 'img/PRD0007/2.jpg'
+    badge: '', image: 'img/PRD0007/1.png', imageHover: 'img/PRD0007/3.png'
   },
   {
     id: 21, ID_Producto: 'PRD0007', SKU: 'AC-07-03', Nombre_Producto: 'Pera Glamuroso',
@@ -179,7 +179,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6950, Descuentos: 0,
     name: 'Pera Glamuroso', sku: 'AC-07-03', price: 6950, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0007',
-    badge: '', image: 'img/PRD0007/1.jpg', imageHover: 'img/PRD0007/2.jpg'
+    badge: '', image: 'img/PRD0007/1.png', imageHover: 'img/PRD0007/3.png'
   }
 ];
 
@@ -262,6 +262,54 @@ function getProductVariants(prodId, sourceList = products) {
   });
 }
 
+const IMG_CACHE_VER = 'v=7.0';
+const PRODUCT_GALLERY_MAP = {
+  PRD0001: ['img/PRD0001/1.jpg', 'img/PRD0001/2.png', 'img/PRD0001/3.jpg'],
+  PRD0002: ['img/PRD0002/1.jpg', 'img/PRD0002/2.jpg'],
+  PRD0003: ['img/PRD0003/1.png', 'img/PRD0003/2.png', 'img/PRD0003/3.png'],
+  PRD0004: ['img/PRD0004/1.jpg', 'img/PRD0004/2.jpg'],
+  PRD0005: ['img/PRD0005/1.jpg', 'img/PRD0005/2.jpg'],
+  PRD0006: ['img/PRD0006/1.jpg', 'img/PRD0006/2.jpg'],
+  PRD0007: ['img/PRD0007/1.png', 'img/PRD0007/2.png', 'img/PRD0007/3.png'],
+  PRD0008: ['img/PRD0008/1.jpg', 'img/PRD0008/2.jpg']
+};
+
+function getProductGallery(productOrId) {
+  const prodId = typeof productOrId === 'string'
+    ? productOrId
+    : (productOrId && (productOrId.ID_Producto || `PRD${String(productOrId.id || 1).padStart(4, '0')}`)) || 'PRD0001';
+  const baseList = PRODUCT_GALLERY_MAP[prodId] || [
+    `img/${prodId}/1.jpg`,
+    `img/${prodId}/2.jpg`
+  ];
+  return baseList.map(src => `${src.split('?')[0]}?${IMG_CACHE_VER}`);
+}
+
+function getProductPrimaryImage(productOrId) {
+  const gallery = getProductGallery(productOrId);
+  return gallery[0];
+}
+
+function getProductHoverImage(productOrId) {
+  const gallery = getProductGallery(productOrId);
+  return gallery[gallery.length - 1] || gallery[0];
+}
+
+function handleImgFallback(imgEl, hideOnFail = false) {
+  if (!imgEl) return;
+  if (!imgEl.dataset.retriedPng) {
+    const currentSrc = imgEl.getAttribute('src') || '';
+    if (/\.jpg(\?|$)/i.test(currentSrc)) {
+      imgEl.dataset.retriedPng = '1';
+      imgEl.src = currentSrc.replace(/\.jpg(\?|$)/i, '.png$1');
+      return;
+    }
+  }
+  if (hideOnFail) {
+    imgEl.style.display = 'none';
+  }
+}
+
 window.getProductBadge = getProductBadge;
 window.formatCaratLabel = formatCaratLabel;
 window.parseMetalOptions = parseMetalOptions;
@@ -269,27 +317,40 @@ window.getDefaultMetal = getDefaultMetal;
 window.getMetalDotClass = getMetalDotClass;
 window.getDisplayProducts = getDisplayProducts;
 window.getProductVariants = getProductVariants;
+window.getProductGallery = getProductGallery;
+window.getProductPrimaryImage = getProductPrimaryImage;
+window.getProductHoverImage = getProductHoverImage;
+window.handleImgFallback = handleImgFallback;
 
 // API Endpoint - Google Apps Script (Atelier&Gemologist E-commerce DB)
 const API_URL = 'https://script.google.com/macros/s/AKfycbxXxlINQu2iUSKrFrvF8JuR_FW-VgJKYt8x-DBHX1DWrJO1zakfyf1ciDw6glUu2vM2/exec';
-const PRODUCTS_CACHE_KEY = 'bellini_products_v2';
+const PRODUCTS_CACHE_KEY = 'bellini_products_v3';
 
 // Load cached products if available, otherwise use initialProducts
 let products = (() => {
   try {
-    localStorage.removeItem('bellini_products'); // Limpiar caché antiguo de 10 productos
+    localStorage.removeItem('bellini_products');
+    localStorage.removeItem('bellini_products_v2');
     const cached = localStorage.getItem(PRODUCTS_CACHE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
       if (Array.isArray(parsed) && parsed.length > 0) {
         return parsed.map(p => ({
           ...p,
+          image: getProductPrimaryImage(p),
+          imageHover: getProductHoverImage(p),
+          gallery: getProductGallery(p),
           badge: getProductBadge(p)
         }));
       }
     }
   } catch (e) {}
-  return initialProducts;
+  return initialProducts.map(p => ({
+    ...p,
+    image: getProductPrimaryImage(p),
+    imageHover: getProductHoverImage(p),
+    gallery: getProductGallery(p)
+  }));
 })();
 
 // Global Variables
@@ -398,6 +459,9 @@ async function fetchLiveProducts() {
     if (json.status === 'success' && Array.isArray(json.data) && json.data.length > 0) {
       products = json.data.map(item => ({
         ...item,
+        image: getProductPrimaryImage(item),
+        imageHover: getProductHoverImage(item),
+        gallery: getProductGallery(item),
         badge: getProductBadge(item)
       }));
       localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(products));
@@ -505,15 +569,15 @@ function renderProducts(filter = 'todos') {
       const metaText = caratVal ? `${caratVal} | ${metalVal}` : metalVal;
       const prodName = product.Nombre_Producto || product.name;
       const prodPrice = (product.PV || product.price || 0).toLocaleString('es-PE');
-      const prodImg = `${(product.image || `img/${prodId}/1.jpg`).split('?')[0]}?v=5.0`;
-      const prodImgHover = `${(product.imageHover || `img/${prodId}/2.jpg`).split('?')[0]}?v=5.0`;
+      const prodImg = getProductPrimaryImage(product);
+      const prodImgHover = getProductHoverImage(product);
       
       card.innerHTML = `
         <a href="product-detail.html?id=${prodId}" class="product-card-link" style="text-decoration: none; color: inherit; display: block;">
           <div class="product-img-wrap">
             ${badgeHTML}
-            <img src="${prodImg}" alt="${prodName}" class="product-img product-img-main" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%25%22 height=%22100%25%22 viewBox=%220 0 100 100%22%3E%3Crect width=%22100%22 height=%22100%22 fill=%22%23F5F7FA%22/%3E%3Cpath d=%22M30 35h40l10 15-30 35-30-35z%22 fill=%22%23EAEAEF%22/%3E%3C/svg%3E'">
-            <img src="${prodImgHover}" alt="${prodName} en mano" class="product-img product-img-hover" onerror="this.style.display='none'">
+            <img src="${prodImg}" alt="${prodName}" class="product-img product-img-main" onerror="handleImgFallback(this)">
+            <img src="${prodImgHover}" alt="${prodName} en mano" class="product-img product-img-hover" onerror="handleImgFallback(this, true)">
           </div>
           <div class="product-info" style="padding-bottom: 0.5rem;">
             <h3 class="product-name">${prodName}</h3>
@@ -638,7 +702,7 @@ function initSearch() {
       const el = document.createElement('div');
       el.className = 'search-result-item';
       el.innerHTML = `
-        <img src="${(product.image || `img/${prodId}/1.jpg`).split('?')[0]}?v=5.0" class="search-result-img" onerror="this.style.display='none'">
+        <img src="${getProductPrimaryImage(product)}" class="search-result-img" onerror="handleImgFallback(this, true)">
         <div>
           <h4 style="margin:0;font-size:1.1rem;font-family:var(--font-heading)">${product.Nombre_Producto || product.name}</h4>
           <span style="font-size:0.8rem;opacity:0.7">${prodSku} | S/ ${(product.PV || product.price || 0).toLocaleString('es-PE')}</span>
@@ -775,7 +839,7 @@ function updateCartUI() {
     const el = document.createElement('div');
     el.className = 'cart-item';
     el.innerHTML = `
-      <img src="${(item.image || `img/${item.ID_Producto}/1.jpg`).split('?')[0]}?v=5.0" alt="${item.Nombre_Producto || item.name}" class="cart-item-img" onerror="this.style.display='none'">
+      <img src="${getProductPrimaryImage(item)}" alt="${item.Nombre_Producto || item.name}" class="cart-item-img" onerror="handleImgFallback(this, true)">
       <div class="cart-item-info">
         <div class="cart-item-title">${item.Nombre_Producto || item.name}</div>
         <div class="cart-item-meta">Cant: ${qty}${specsLine ? ' | ' + specsLine : ''}${itemSku ? ' (' + itemSku + ')' : ''}</div>

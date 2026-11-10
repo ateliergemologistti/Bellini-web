@@ -467,7 +467,7 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="script.js?v=6.0"></script>
+  <script src="script.js?v=7.0"></script>
   <script>
     // Checkout specific controller
     let checkoutShippingCost = 0;
@@ -563,7 +563,9 @@
         const itemTotal = price * qty;
         subtotal += itemTotal;
 
-        const img = `${(prod.image || `img/${prod.ID_Producto || 'PRD0001'}/1.jpg`).split('?')[0]}?v=5.0`;
+        const img = window.getProductPrimaryImage
+          ? getProductPrimaryImage(prod)
+          : `${(prod.image || `img/${prod.ID_Producto || 'PRD0001'}/1.jpg`).split('?')[0]}?v=7.0`;
         const name = prod.Nombre_Producto || prod.name || 'Joya BELLINI';
         const metal = item.selectedMetal || getDefaultMetal(prod.Metal || prod.metal || '');
         const carat = item.selectedCarat || formatCaratLabel(prod.Quilates || prod.carat || '');
@@ -574,7 +576,7 @@
         itemRow.className = 'summary-product-item';
         itemRow.innerHTML = `
           <div class="summary-product-thumb">
-            <img src="${img}" alt="${name}">
+            <img src="${img}" alt="${name}" onerror="if(window.handleImgFallback) handleImgFallback(this)">
           </div>
           <div class="summary-product-details">
             <div class="summary-product-name">${name}</div>
