@@ -312,9 +312,18 @@ const filterBtns = document.querySelectorAll('.filter-btn');
 
 // Initialization
 document.addEventListener('DOMContentLoaded', () => {
+  const urlCat = new URLSearchParams(window.location.search).get('cat');
+  if (urlCat === 'compromiso' || urlCat === 'matrimonio') {
+    currentFilter = urlCat;
+    filterBtns.forEach(btn => {
+      btn.classList.toggle('active', btn.getAttribute('data-filter') === urlCat);
+    });
+  }
+
   initScrollReveal();
   initNavbar();
-  renderProducts();
+  renderNavMenus();
+  renderProducts(currentFilter);
   initFilters();
   initSearch();
   initCart();
@@ -325,6 +334,60 @@ document.addEventListener('DOMContentLoaded', () => {
   initAuth();
   fetchLiveProducts();
 });
+
+// Sync desktop and mobile navigation dropdowns with actual Drive products
+function renderNavMenus() {
+  const displayProducts = getDisplayProducts(products);
+  const categoriesMap = {
+    AC: displayProducts.filter(p => p.Categoria === 'AC' || p.category === 'compromiso'),
+    AM: displayProducts.filter(p => p.Categoria === 'AM' || p.category === 'matrimonio')
+  };
+
+  // Desktop dropdowns
+  document.querySelectorAll('[data-nav-cat]').forEach(navItem => {
+    const catKey = navItem.getAttribute('data-nav-cat');
+    const items = categoriesMap[catKey] || [];
+    const dropdown = navItem.querySelector('.dropdown-menu');
+    if (!dropdown) return;
+
+    if (items.length > 0) {
+      navItem.classList.add('has-dropdown');
+      dropdown.innerHTML = items.map(prod => {
+        const prodId = prod.ID_Producto || prod.id;
+        const prodName = prod.Nombre_Producto || prod.name;
+        return `<a href="product-detail.html?id=${encodeURIComponent(prodId)}">${prodName}</a>`;
+      }).join('');
+    } else {
+      navItem.classList.remove('has-dropdown');
+      dropdown.innerHTML = '';
+    }
+  });
+
+  // Mobile dropdowns
+  document.querySelectorAll('[data-mobile-cat]').forEach(mobileItem => {
+    const catKey = mobileItem.getAttribute('data-mobile-cat');
+    const items = categoriesMap[catKey] || [];
+    const link = mobileItem.querySelector('.mobile-nav-link');
+    const chevron = link ? link.querySelector('svg') : null;
+    const dropdown = mobileItem.querySelector('.mobile-dropdown');
+    if (!link || !dropdown) return;
+
+    if (items.length > 0) {
+      link.setAttribute('data-toggle', 'dropdown');
+      if (chevron) chevron.style.display = '';
+      dropdown.innerHTML = items.map(prod => {
+        const prodId = prod.ID_Producto || prod.id;
+        const prodName = prod.Nombre_Producto || prod.name;
+        return `<a href="product-detail.html?id=${encodeURIComponent(prodId)}">${prodName}</a>`;
+      }).join('');
+    } else {
+      link.removeAttribute('data-toggle');
+      if (chevron) chevron.style.display = 'none';
+      dropdown.style.display = 'none';
+      dropdown.innerHTML = '';
+    }
+  });
+}
 
 // Fetch live products from Google Sheets
 async function fetchLiveProducts() {
@@ -338,6 +401,7 @@ async function fetchLiveProducts() {
         badge: getProductBadge(item)
       }));
       localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(products));
+      renderNavMenus();
       if (productsGrid) {
         renderProducts(currentFilter);
       }
@@ -396,6 +460,7 @@ function animateCounters() {
 
 // 2. Navbar Scroll
 function initNavbar() {
+  if (!header || header.dataset.alwaysScrolled === 'true') return;
   window.addEventListener('scroll', () => {
     if (window.scrollY > 80) {
       header.classList.add('scrolled');
@@ -806,39 +871,43 @@ function initMobileMenu() {
   const mobileMenu = document.getElementById('mobileMenu');
   const mobileOverlay = document.getElementById('mobileOverlay');
   const mobileClose = document.getElementById('mobileClose');
-  const dropdownToggles = document.querySelectorAll('.mobile-nav-link[data-toggle="dropdown"]');
-  
+
+  if (!hamburgerBtn || !mobileMenu) return;
+
   const toggleMenu = () => {
     mobileMenu.classList.toggle('open');
-    mobileOverlay.classList.toggle('open');
+    if (mobileOverlay) mobileOverlay.classList.toggle('open');
   };
-  
+
+  const closeMenu = () => {
+    mobileMenu.classList.remove('open');
+    if (mobileOverlay) mobileOverlay.classList.remove('open');
+  };
+
   hamburgerBtn.addEventListener('click', toggleMenu);
-  mobileClose.addEventListener('click', toggleMenu);
-  mobileOverlay.addEventListener('click', toggleMenu);
-  
-  // Accordion for dropdowns
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
+  if (mobileClose) mobileClose.addEventListener('click', closeMenu);
+  if (mobileOverlay) mobileOverlay.addEventListener('click', closeMenu);
+
+  // Delegated handling for accordion toggles and navigation links
+  mobileMenu.addEventListener('click', (e) => {
+    const toggle = e.target.closest('.mobile-nav-link[data-toggle="dropdown"]');
+    if (toggle) {
       e.preventDefault();
       const dropdown = toggle.nextElementSibling;
-      
-      // Close others
+      if (!dropdown) return;
+
       document.querySelectorAll('.mobile-dropdown').forEach(d => {
-        if(d !== dropdown) d.style.display = 'none';
+        if (d !== dropdown) d.style.display = 'none';
       });
-      
-      if (dropdown.style.display === 'block') {
-        dropdown.style.display = 'none';
-      } else {
-        dropdown.style.display = 'block';
-      }
-    });
-  });
-  
-  // Close menu on inner link click
-  document.querySelectorAll('.mobile-dropdown a, .mobile-contact a').forEach(link => {
-    link.addEventListener('click', toggleMenu);
+
+      dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+      return;
+    }
+
+    const clickedLink = e.target.closest('.mobile-dropdown a, .mobile-contact a, .mobile-nav-link:not([data-toggle="dropdown"])');
+    if (clickedLink) {
+      closeMenu();
+    }
   });
 }
 

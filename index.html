@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=5.0">
+  <link rel="stylesheet" href="styles.css?v=6.0">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo-bellini-diamond.png?v=3.0">
@@ -29,29 +29,25 @@
         <img src="img/logo-bellini-horizontal.png?v=3.0" alt="BELLINI Fine Jewelry" class="logo-img logo-img-dark">
       </a>
       <nav class="nav-desktop" id="navDesktop">
-        <div class="nav-item has-dropdown">
-          <a href="#productos">Anillos de Compromiso 
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav-item has-dropdown" data-nav-cat="AC">
+          <a href="#productos" onclick="filterCategory('compromiso')">Anillos de Compromiso 
+            <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
           <div class="dropdown-menu">
-            <a href="#">Solitario</a>
-            <a href="#">Halo</a>
-            <a href="#">Pavé</a>
-            <a href="#">Tres Piedras</a>
-            <a href="#">Princess</a>
+            <a href="product-detail.html?id=PRD0001">Brillante Solitario Clásico</a>
+            <a href="product-detail.html?id=PRD0002">Brillante Solitario Sweet</a>
+            <a href="product-detail.html?id=PRD0003">Brillante Halo</a>
+            <a href="product-detail.html?id=PRD0004">Oval Glamuroso</a>
+            <a href="product-detail.html?id=PRD0005">Esmeralda Elegante</a>
+            <a href="product-detail.html?id=PRD0006">Esmeralda Hidden Halo</a>
+            <a href="product-detail.html?id=PRD0007">Pera Glamuroso</a>
           </div>
         </div>
-        <div class="nav-item has-dropdown">
-          <a href="#productos">Aros de Matrimonio 
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="nav-item" data-nav-cat="AM">
+          <a href="#productos" onclick="filterCategory('matrimonio')">Aros de Matrimonio 
+            <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
           </a>
-          <div class="dropdown-menu">
-            <a href="#">Clásico</a>
-            <a href="#">Medio Canal</a>
-            <a href="#">Eternidad</a>
-            <a href="#">Torcido</a>
-            <a href="#">Doble Banda</a>
-          </div>
+          <div class="dropdown-menu"></div>
         </div>
         <div class="nav-item">
           <a href="https://wa.me/51922427713?text=Hola%20Bellini%20Fine%20Jewelry%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" target="_blank">Asesoría Personalizada</a>
@@ -92,20 +88,21 @@
       <button class="cart-close" id="mobileClose">&times;</button>
     </div>
     <div class="mobile-nav">
-      <div class="mobile-nav-item">
-        <a href="#" class="mobile-nav-link" data-toggle="dropdown">Anillos de Compromiso <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
+      <div class="mobile-nav-item" data-mobile-cat="AC">
+        <a href="#productos" class="mobile-nav-link" data-toggle="dropdown">Anillos de Compromiso <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
         <div class="mobile-dropdown">
-          <a href="#">Solitario</a>
-          <a href="#">Halo</a>
-          <a href="#">Pavé</a>
+          <a href="product-detail.html?id=PRD0001">Brillante Solitario Clásico</a>
+          <a href="product-detail.html?id=PRD0002">Brillante Solitario Sweet</a>
+          <a href="product-detail.html?id=PRD0003">Brillante Halo</a>
+          <a href="product-detail.html?id=PRD0004">Oval Glamuroso</a>
+          <a href="product-detail.html?id=PRD0005">Esmeralda Elegante</a>
+          <a href="product-detail.html?id=PRD0006">Esmeralda Hidden Halo</a>
+          <a href="product-detail.html?id=PRD0007">Pera Glamuroso</a>
         </div>
       </div>
-      <div class="mobile-nav-item">
-        <a href="#" class="mobile-nav-link" data-toggle="dropdown">Aros de Matrimonio <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></a>
-        <div class="mobile-dropdown">
-          <a href="#">Clásico</a>
-          <a href="#">Medio Canal</a>
-        </div>
+      <div class="mobile-nav-item" data-mobile-cat="AM">
+        <a href="#productos" class="mobile-nav-link" onclick="filterCategory('matrimonio')">Aros de Matrimonio <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none;"><polyline points="6 9 12 15 18 9"/></svg></a>
+        <div class="mobile-dropdown"></div>
       </div>
     </div>
     <div class="mobile-contact">
@@ -413,27 +410,21 @@
       <div>
         <h4 class="footer-title">Colecciones</h4>
         <ul class="footer-links">
-          <li><a href="#">Anillos de Compromiso</a></li>
-          <li><a href="#">Aros de Matrimonio</a></li>
-          <li><a href="#">Alta Joyería</a></li>
-          <li><a href="#">Diamantes Sueltos</a></li>
+          <li><a href="#productos" onclick="filterCategory('compromiso')">Anillos de Compromiso</a></li>
+          <li><a href="#productos" onclick="filterCategory('matrimonio')">Aros de Matrimonio</a></li>
         </ul>
       </div>
       <div>
         <h4 class="footer-title">Nosotros</h4>
         <ul class="footer-links">
-          <li><a href="#">Nuestra Historia</a></li>
-          <li><a href="#">Guía de Diamantes</a></li>
+          <li><a href="#nosotros">Nuestra Historia</a></li>
           <li><a href="#">Certificaciones</a></li>
-          <li><a href="#">Taller Joyero</a></li>
         </ul>
       </div>
       <div>
         <h4 class="footer-title">Atención</h4>
         <ul class="footer-links">
           <li><a href="https://wa.me/51922427713?text=Hola%20Bellini%20Fine%20Jewelry%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" target="_blank">Contacto</a></li>
-          <li><a href="https://wa.me/51922427713?text=Hola%20Bellini%20Fine%20Jewelry%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" target="_blank">Agendar Cita</a></li>
-          <li><a href="#">Envíos y Devoluciones</a></li>
           <li><a href="#">Preguntas Frecuentes</a></li>
         </ul>
       </div>
@@ -459,6 +450,6 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="script.js?v=5.0"></script>
+  <script src="script.js?v=6.0"></script>
 </body>
 </html>
