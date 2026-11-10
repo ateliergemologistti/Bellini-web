@@ -1,235 +1,185 @@
-// Product Data - Sincronizado con Google Sheets (Hoja: Inventario)
+// Product Data - Sincronizado con Google Sheets (Hoja: Inventario - 7 productos x 3 quilates = 21 filas)
 const initialProducts = [
+  // PRD0001 - Brillante Solitario Clásico
   {
-    id: 1,
-    ID_Producto: 'PRD0001',
-    SKU: 'AC-01',
-    Nombre_Producto: 'Solitario Brillante',
-    Stock: 5,
-    PV: 4500,
-    Categoria: 'AC',
-    Detalle: 'Anillo solitario con diamante central de talla brillante, engaste de cuatro garras en oro blanco 18K.',
-    Metal: 'Oro Blanco 18K',
-    Quilates: '0.50 ct',
-    Descuentos: null,
-    // Alias de conveniencia
-    name: 'Solitario Brillante',
-    sku: 'AC-01',
-    price: 4500,
-    category: 'compromiso',
-    metal: 'Oro Blanco 18K',
-    carat: '0.50 ct',
-    description: 'Anillo solitario con diamante central de talla brillante, engaste de cuatro garras en oro blanco 18K.',
-    badge: '',
-    image: 'img/PRD0001/1.jpg',
-    imageHover: 'img/PRD0001/2.jpg'
+    id: 1, ID_Producto: 'PRD0001', SKU: 'AC-01-01', Nombre_Producto: 'Brillante Solitario Clásico',
+    Stock: 5, Peso: '4 gr', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0001',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 4500, Descuentos: 0,
+    name: 'Brillante Solitario Clásico', sku: 'AC-01-01', price: 4500, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0001',
+    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/2.jpg'
   },
   {
-    id: 2,
-    ID_Producto: 'PRD0002',
-    SKU: 'AC-02',
-    Nombre_Producto: 'Halo Clásico',
-    Stock: 4,
-    PV: 6300,
-    Categoria: 'AC',
-    Detalle: 'Diamante central rodeado de un halo de micro-diamantes que maximiza el brillo.',
-    Metal: 'Oro Blanco 18K',
-    Quilates: '0.75 ct',
-    Descuentos: 0.14,
-    name: 'Halo Clásico',
-    sku: 'AC-02',
-    price: 6300,
-    category: 'compromiso',
-    metal: 'Oro Blanco 18K',
-    carat: '0.75 ct',
-    description: 'Diamante central rodeado de un halo de micro-diamantes que maximiza el brillo.',
-    badge: '14% OFF',
-    image: 'img/PRD0002/1.jpg',
-    imageHover: 'img/PRD0002/2.jpg'
+    id: 2, ID_Producto: 'PRD0001', SKU: 'AC-01-02', Nombre_Producto: 'Brillante Solitario Clásico',
+    Stock: 5, Peso: '4 gr', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0001',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5200, Descuentos: 0,
+    name: 'Brillante Solitario Clásico', sku: 'AC-01-02', price: 5200, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0001',
+    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/2.jpg'
   },
   {
-    id: 3,
-    ID_Producto: 'PRD0003',
-    SKU: 'AC-03',
-    Nombre_Producto: 'Pavé Elegance',
-    Stock: 3,
-    PV: 9900,
-    Categoria: 'AC',
-    Detalle: 'Banda pavé con diamantes incrustados en toda la banda, piedra central de 1 quilate.',
-    Metal: 'Oro Rosa 18K',
-    Quilates: '1.00 ct',
-    Descuentos: null,
-    name: 'Pavé Elegance',
-    sku: 'AC-03',
-    price: 9900,
-    category: 'compromiso',
-    metal: 'Oro Rosa 18K',
-    carat: '1.00 ct',
-    description: 'Banda pavé con diamantes incrustados en toda la banda, piedra central de 1 quilate.',
-    badge: '',
-    image: 'img/PRD0003/1.jpg',
-    imageHover: 'img/PRD0003/2.jpg'
+    id: 3, ID_Producto: 'PRD0001', SKU: 'AC-01-03', Nombre_Producto: 'Brillante Solitario Clásico',
+    Stock: 5, Peso: '4 gr', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0001',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5600, Descuentos: 0,
+    name: 'Brillante Solitario Clásico', sku: 'AC-01-03', price: 5600, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0001',
+    badge: '', image: 'img/PRD0001/1.jpg', imageHover: 'img/PRD0001/2.jpg'
+  },
+
+  // PRD0002 - Brillante Solitario Sweet
+  {
+    id: 4, ID_Producto: 'PRD0002', SKU: 'AC-02-01', Nombre_Producto: 'Brillante Solitario Sweet',
+    Stock: 5, Peso: '3 gr', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0002',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 3600, Descuentos: 0,
+    name: 'Brillante Solitario Sweet', sku: 'AC-02-01', price: 3600, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0002',
+    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/2.jpg'
   },
   {
-    id: 4,
-    ID_Producto: 'PRD0004',
-    SKU: 'AC-04',
-    Nombre_Producto: 'Tres Piedras Royal',
-    Stock: 4,
-    PV: 12500,
-    Categoria: 'AC',
-    Detalle: 'Tres diamantes simbolizando pasado, presente y futuro en oro amarillo 18K.',
-    Metal: 'Oro Amarillo 18K',
-    Quilates: '1.20 ct',
-    Descuentos: null,
-    name: 'Tres Piedras Royal',
-    sku: 'AC-04',
-    price: 12500,
-    category: 'compromiso',
-    metal: 'Oro Amarillo 18K',
-    carat: '1.20 ct',
-    description: 'Tres diamantes simbolizando pasado, presente y futuro en oro amarillo 18K.',
-    badge: '',
-    image: 'img/PRD0004/1.jpg',
-    imageHover: 'img/PRD0004/2.jpg'
+    id: 5, ID_Producto: 'PRD0002', SKU: 'AC-02-02', Nombre_Producto: 'Brillante Solitario Sweet',
+    Stock: 5, Peso: '3 gr', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0002',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 4200, Descuentos: 0,
+    name: 'Brillante Solitario Sweet', sku: 'AC-02-02', price: 4200, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0002',
+    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/2.jpg'
   },
   {
-    id: 5,
-    ID_Producto: 'PRD0005',
-    SKU: 'AC-05',
-    Nombre_Producto: 'Princess Cut',
-    Stock: 1,
-    PV: 7200,
-    Categoria: 'AC',
-    Detalle: 'Talla princesa con líneas limpias y modernas, engaste catedral en oro blanco.',
-    Metal: 'Oro Blanco 18K',
-    Quilates: '0.45 ct',
-    Descuentos: null,
-    name: 'Princess Cut',
-    sku: 'AC-05',
-    price: 7200,
-    category: 'compromiso',
-    metal: 'Oro Blanco 18K',
-    carat: '0.45 ct',
-    description: 'Talla princesa con líneas limpias y modernas, engaste catedral en oro blanco.',
-    badge: '',
-    image: 'img/PRD0005/1.jpg',
-    imageHover: 'img/PRD0005/2.jpg'
+    id: 6, ID_Producto: 'PRD0002', SKU: 'AC-02-03', Nombre_Producto: 'Brillante Solitario Sweet',
+    Stock: 5, Peso: '3 gr', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0002',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 4700, Descuentos: 0,
+    name: 'Brillante Solitario Sweet', sku: 'AC-02-03', price: 4700, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0002',
+    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/2.jpg'
+  },
+
+  // PRD0003 - Brillante Halo
+  {
+    id: 7, ID_Producto: 'PRD0003', SKU: 'AC-03-01', Nombre_Producto: 'Brillante Halo',
+    Stock: 5, Peso: '4 gr', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0003',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6100, Descuentos: 0,
+    name: 'Brillante Halo', sku: 'AC-03-01', price: 6100, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0003',
+    badge: '', image: 'img/PRD0003/1.jpg', imageHover: 'img/PRD0003/2.jpg'
   },
   {
-    id: 6,
-    ID_Producto: 'PRD0006',
-    SKU: 'AM-06',
-    Nombre_Producto: 'Clásico Liso',
-    Stock: 1,
-    PV: 2700,
-    Categoria: 'AM',
-    Detalle: 'Aro de matrimonio clásico liso en oro amarillo 18K, acabado pulido espejo.',
-    Metal: 'Oro Amarillo 18K',
-    Quilates: '0.45 ct',
-    Descuentos: null,
-    name: 'Clásico Liso',
-    sku: 'AM-06',
-    price: 2700,
-    category: 'matrimonio',
-    metal: 'Oro Amarillo 18K',
-    carat: '0.45 ct',
-    description: 'Aro de matrimonio clásico liso en oro amarillo 18K, acabado pulido espejo.',
-    badge: '',
-    image: 'img/PRD0006/1.jpg',
-    imageHover: 'img/PRD0006/2.jpg'
+    id: 8, ID_Producto: 'PRD0003', SKU: 'AC-03-02', Nombre_Producto: 'Brillante Halo',
+    Stock: 5, Peso: '4 gr', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0003',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6700, Descuentos: 0,
+    name: 'Brillante Halo', sku: 'AC-03-02', price: 6700, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0003',
+    badge: '', image: 'img/PRD0003/1.jpg', imageHover: 'img/PRD0003/2.jpg'
   },
   {
-    id: 7,
-    ID_Producto: 'PRD0007',
-    SKU: 'AM-07',
-    Nombre_Producto: 'Medio Canal Diamantes',
-    Stock: 5,
-    PV: 4300,
-    Categoria: 'AM',
-    Detalle: 'Diamantes engastados en canal en la mitad de la banda, combinando elegancia y confort.',
-    Metal: 'Oro Blanco 18K',
-    Quilates: '0.45 ct',
-    Descuentos: null,
-    name: 'Medio Canal Diamantes',
-    sku: 'AM-07',
-    price: 4300,
-    category: 'matrimonio',
-    metal: 'Oro Blanco 18K',
-    carat: '0.45 ct',
-    description: 'Diamantes engastados en canal en la mitad de la banda, combinando elegancia y confort.',
-    badge: '',
-    image: 'img/PRD0007/1.jpg',
-    imageHover: 'img/PRD0007/2.jpg'
+    id: 9, ID_Producto: 'PRD0003', SKU: 'AC-03-03', Nombre_Producto: 'Brillante Halo',
+    Stock: 5, Peso: '4 gr', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0003',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 7150, Descuentos: 0,
+    name: 'Brillante Halo', sku: 'AC-03-03', price: 7150, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0003',
+    badge: '', image: 'img/PRD0003/1.jpg', imageHover: 'img/PRD0003/2.jpg'
+  },
+
+  // PRD0004 - Oval Glamuroso
+  {
+    id: 10, ID_Producto: 'PRD0004', SKU: 'AC-04-01', Nombre_Producto: 'Oval Glamuroso',
+    Stock: 5, Peso: '', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0004',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5900, Descuentos: 0,
+    name: 'Oval Glamuroso', sku: 'AC-04-01', price: 5900, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0004',
+    badge: '', image: 'img/PRD0004/1.jpg', imageHover: 'img/PRD0004/2.jpg'
   },
   {
-    id: 8,
-    ID_Producto: 'PRD0008',
-    SKU: 'AM-08',
-    Nombre_Producto: 'Eternidad Completa',
-    Stock: 5,
-    PV: 8700,
-    Categoria: 'AM',
-    Detalle: 'Diamantes rodeando completamente la banda, símbolo de amor eterno.',
-    Metal: 'Oro Blanco 18K',
-    Quilates: '0.45 ct',
-    Descuentos: null,
-    name: 'Eternidad Completa',
-    sku: 'AM-08',
-    price: 8700,
-    category: 'matrimonio',
-    metal: 'Oro Blanco 18K',
-    carat: '0.45 ct',
-    description: 'Diamantes rodeando completamente la banda, símbolo de amor eterno.',
-    badge: '',
-    image: 'img/PRD0008/1.jpg',
-    imageHover: 'img/PRD0008/2.jpg'
+    id: 11, ID_Producto: 'PRD0004', SKU: 'AC-04-02', Nombre_Producto: 'Oval Glamuroso',
+    Stock: 5, Peso: '', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0004',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6550, Descuentos: 0,
+    name: 'Oval Glamuroso', sku: 'AC-04-02', price: 6550, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0004',
+    badge: '', image: 'img/PRD0004/1.jpg', imageHover: 'img/PRD0004/2.jpg'
   },
   {
-    id: 9,
-    ID_Producto: 'PRD0009',
-    SKU: 'AM-09',
-    Nombre_Producto: 'Torcido Brillantes',
-    Stock: 5,
-    PV: 5200,
-    Categoria: 'AM',
-    Detalle: 'Diseño twist con diamantes que siguen la curvatura de la banda en oro rosa.',
-    Metal: 'Oro Rosa 18K',
-    Quilates: '0.45 ct',
-    Descuentos: null,
-    name: 'Torcido Brillantes',
-    sku: 'AM-09',
-    price: 5200,
-    category: 'matrimonio',
-    metal: 'Oro Rosa 18K',
-    carat: '0.45 ct',
-    description: 'Diseño twist con diamantes que siguen la curvatura de la banda en oro rosa.',
-    badge: '',
-    image: 'img/PRD0009/1.jpg',
-    imageHover: 'img/PRD0009/2.jpg'
+    id: 12, ID_Producto: 'PRD0004', SKU: 'AC-04-03', Nombre_Producto: 'Oval Glamuroso',
+    Stock: 5, Peso: '', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0004',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6950, Descuentos: 0,
+    name: 'Oval Glamuroso', sku: 'AC-04-03', price: 6950, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0004',
+    badge: '', image: 'img/PRD0004/1.jpg', imageHover: 'img/PRD0004/2.jpg'
+  },
+
+  // PRD0005 - Esmeralda Elegante
+  {
+    id: 13, ID_Producto: 'PRD0005', SKU: 'AC-05-01', Nombre_Producto: 'Esmeralda Elegante',
+    Stock: 5, Peso: '', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0005',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 4500, Descuentos: 0,
+    name: 'Esmeralda Elegante', sku: 'AC-05-01', price: 4500, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0005',
+    badge: '', image: 'img/PRD0005/1.jpg', imageHover: 'img/PRD0005/2.jpg'
   },
   {
-    id: 10,
-    ID_Producto: 'PRD0010',
-    SKU: 'AM-10',
-    Nombre_Producto: 'Doble Banda Premium',
-    Stock: 5,
-    PV: 6600,
-    Categoria: 'AM',
-    Detalle: 'Doble banda entrelazada con diamantes, diseño contemporáneo y sofisticado.',
-    Metal: 'Oro Blanco 18K',
-    Quilates: '0.45 ct',
-    Descuentos: null,
-    name: 'Doble Banda Premium',
-    sku: 'AM-10',
-    price: 6600,
-    category: 'matrimonio',
-    metal: 'Oro Blanco 18K',
-    carat: '0.45 ct',
-    description: 'Doble banda entrelazada con diamantes, diseño contemporáneo y sofisticado.',
-    badge: '',
-    image: 'img/PRD0010/1.jpg',
-    imageHover: 'img/PRD0010/2.jpg'
+    id: 14, ID_Producto: 'PRD0005', SKU: 'AC-05-02', Nombre_Producto: 'Esmeralda Elegante',
+    Stock: 5, Peso: '', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0005',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5200, Descuentos: 0,
+    name: 'Esmeralda Elegante', sku: 'AC-05-02', price: 5200, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0005',
+    badge: '', image: 'img/PRD0005/1.jpg', imageHover: 'img/PRD0005/2.jpg'
+  },
+  {
+    id: 15, ID_Producto: 'PRD0005', SKU: 'AC-05-03', Nombre_Producto: 'Esmeralda Elegante',
+    Stock: 5, Peso: '', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0005',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5600, Descuentos: 0,
+    name: 'Esmeralda Elegante', sku: 'AC-05-03', price: 5600, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0005',
+    badge: '', image: 'img/PRD0005/1.jpg', imageHover: 'img/PRD0005/2.jpg'
+  },
+
+  // PRD0006 - Esmeralda Hidden Halo
+  {
+    id: 16, ID_Producto: 'PRD0006', SKU: 'AC-06-01', Nombre_Producto: 'Esmeralda Hidden Halo',
+    Stock: 5, Peso: '3,5 gr', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0006',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5550, Descuentos: 0,
+    name: 'Esmeralda Hidden Halo', sku: 'AC-06-01', price: 5550, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0006',
+    badge: '', image: 'img/PRD0006/1.jpg', imageHover: 'img/PRD0006/2.jpg'
+  },
+  {
+    id: 17, ID_Producto: 'PRD0006', SKU: 'AC-06-02', Nombre_Producto: 'Esmeralda Hidden Halo',
+    Stock: 5, Peso: '3,5 gr', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0006',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6200, Descuentos: 0,
+    name: 'Esmeralda Hidden Halo', sku: 'AC-06-02', price: 6200, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0006',
+    badge: '', image: 'img/PRD0006/1.jpg', imageHover: 'img/PRD0006/2.jpg'
+  },
+  {
+    id: 18, ID_Producto: 'PRD0006', SKU: 'AC-06-03', Nombre_Producto: 'Esmeralda Hidden Halo',
+    Stock: 5, Peso: '3,5 gr', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0006',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6700, Descuentos: 0,
+    name: 'Esmeralda Hidden Halo', sku: 'AC-06-03', price: 6700, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0006',
+    badge: '', image: 'img/PRD0006/1.jpg', imageHover: 'img/PRD0006/2.jpg'
+  },
+
+  // PRD0007 - Pera Glamuroso
+  {
+    id: 19, ID_Producto: 'PRD0007', SKU: 'AC-07-01', Nombre_Producto: 'Pera Glamuroso',
+    Stock: 5, Peso: '', Quilates: '1 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0007',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 5900, Descuentos: 0,
+    name: 'Pera Glamuroso', sku: 'AC-07-01', price: 5900, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0007',
+    badge: '', image: 'img/PRD0007/1.jpg', imageHover: 'img/PRD0007/2.jpg'
+  },
+  {
+    id: 20, ID_Producto: 'PRD0007', SKU: 'AC-07-02', Nombre_Producto: 'Pera Glamuroso',
+    Stock: 5, Peso: '', Quilates: '1,5 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0007',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6550, Descuentos: 0,
+    name: 'Pera Glamuroso', sku: 'AC-07-02', price: 6550, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0007',
+    badge: '', image: 'img/PRD0007/1.jpg', imageHover: 'img/PRD0007/2.jpg'
+  },
+  {
+    id: 21, ID_Producto: 'PRD0007', SKU: 'AC-07-03', Nombre_Producto: 'Pera Glamuroso',
+    Stock: 5, Peso: '', Quilates: '2 ct', Categoria: 'AC', Detalle: 'Texto descripción PRD0007',
+    Metal: 'Oro Blanco / Oro Amarillo', PV: 6950, Descuentos: 0,
+    name: 'Pera Glamuroso', sku: 'AC-07-03', price: 6950, category: 'compromiso',
+    metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0007',
+    badge: '', image: 'img/PRD0007/1.jpg', imageHover: 'img/PRD0007/2.jpg'
   }
 ];
 
@@ -252,20 +202,91 @@ function getProductBadge(product) {
   return '';
 }
 
+// Helpers for Multi-Variant (Metal + Carat) Products
+function formatCaratLabel(rawCarat) {
+  if (!rawCarat) return '';
+  return String(rawCarat).trim().replace(',', '.');
+}
+
+function parseMetalOptions(rawMetal) {
+  if (!rawMetal) return ['Oro Amarillo', 'Oro Blanco'];
+  const parts = String(rawMetal)
+    .split('/')
+    .map(m => m.trim())
+    .filter(Boolean);
+  if (parts.length === 0) return ['Oro Amarillo', 'Oro Blanco'];
+  // Ordenar para que Oro Amarillo aparezca primero como opción por defecto
+  return parts.sort((a, b) => {
+    const rank = (s) => (/amarillo/i.test(s) ? 0 : /blanco/i.test(s) ? 1 : 2);
+    return rank(a) - rank(b);
+  });
+}
+
+function getDefaultMetal(rawMetal) {
+  const opts = parseMetalOptions(rawMetal);
+  return opts.find(m => /amarillo/i.test(m)) || opts[0] || 'Oro Amarillo';
+}
+
+function getMetalDotClass(metalName) {
+  if (/blanco/i.test(metalName)) return 'metal-dot-white';
+  if (/rosa/i.test(metalName)) return 'metal-dot-rose';
+  return 'metal-dot-yellow';
+}
+
+// Returns 1 representative row per unique ID_Producto (always preferring SKU ending in '01')
+function getDisplayProducts(sourceList = products) {
+  const groups = new Map();
+  sourceList.forEach(item => {
+    const key = item.ID_Producto || String(item.id);
+    if (!groups.has(key)) {
+      groups.set(key, []);
+    }
+    groups.get(key).push(item);
+  });
+
+  const displayList = [];
+  groups.forEach(variants => {
+    const baseVariant = variants.find(v => String(v.SKU || v.sku || '').trim().endsWith('01')) || variants[0];
+    if (baseVariant) displayList.push(baseVariant);
+  });
+  return displayList;
+}
+
+// Returns all carat/SKU variants for a given ID_Producto, sorted ascending (-01, -02, -03)
+function getProductVariants(prodId, sourceList = products) {
+  const list = sourceList.filter(p => p.ID_Producto === prodId || String(p.id) === String(prodId));
+  return list.slice().sort((a, b) => {
+    const skuA = String(a.SKU || a.sku || '');
+    const skuB = String(b.SKU || b.sku || '');
+    return skuA.localeCompare(skuB, undefined, { numeric: true });
+  });
+}
+
+window.getProductBadge = getProductBadge;
+window.formatCaratLabel = formatCaratLabel;
+window.parseMetalOptions = parseMetalOptions;
+window.getDefaultMetal = getDefaultMetal;
+window.getMetalDotClass = getMetalDotClass;
+window.getDisplayProducts = getDisplayProducts;
+window.getProductVariants = getProductVariants;
+
 // API Endpoint - Google Apps Script (Atelier&Gemologist E-commerce DB)
 const API_URL = 'https://script.google.com/macros/s/AKfycbxXxlINQu2iUSKrFrvF8JuR_FW-VgJKYt8x-DBHX1DWrJO1zakfyf1ciDw6glUu2vM2/exec';
+const PRODUCTS_CACHE_KEY = 'bellini_products_v2';
 
 // Load cached products if available, otherwise use initialProducts
 let products = (() => {
   try {
-    const cached = localStorage.getItem('bellini_products');
+    localStorage.removeItem('bellini_products'); // Limpiar caché antiguo de 10 productos
+    const cached = localStorage.getItem(PRODUCTS_CACHE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
-      // Clean up legacy non-discount badges from cache
-      return parsed.map(p => ({
-        ...p,
-        badge: getProductBadge(p)
-      }));
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        return parsed.map(p => ({
+          ...p,
+          badge: getProductBadge(p)
+        }));
+      }
     }
   } catch (e) {}
   return initialProducts;
@@ -316,7 +337,7 @@ async function fetchLiveProducts() {
         ...item,
         badge: getProductBadge(item)
       }));
-      localStorage.setItem('bellini_products', JSON.stringify(products));
+      localStorage.setItem(PRODUCTS_CACHE_KEY, JSON.stringify(products));
       if (productsGrid) {
         renderProducts(currentFilter);
       }
@@ -384,7 +405,7 @@ function initNavbar() {
   });
 }
 
-// 3. Product Rendering
+// 3. Product Rendering (Main Page always displays SKUs ending in 01 -> 7 products)
 function renderProducts(filter = 'todos') {
   if (!productsGrid) return;
   productsGrid.style.opacity = '0';
@@ -392,21 +413,29 @@ function renderProducts(filter = 'todos') {
   setTimeout(() => {
     productsGrid.innerHTML = '';
     
-    const filteredProducts = products.filter(p => {
+    const displayProducts = getDisplayProducts(products);
+    const filteredProducts = displayProducts.filter(p => {
       if (filter === 'todos') return true;
       if (filter === 'compromiso' || filter === 'AC') return p.category === 'compromiso' || p.Categoria === 'AC';
       if (filter === 'matrimonio' || filter === 'AM') return p.category === 'matrimonio' || p.Categoria === 'AM';
       return p.category === filter || p.Categoria === filter;
     });
+
+    if (filteredProducts.length === 0) {
+      productsGrid.innerHTML = '<p style="grid-column: 1 / -1; text-align: center; color: var(--color-steel); padding: 2rem 0;">Próximamente nuevas piezas en esta colección.</p>';
+      productsGrid.style.opacity = '1';
+      return;
+    }
     
     filteredProducts.forEach(product => {
       const prodId = product.ID_Producto || product.id;
+      const prodSku = product.SKU || product.sku || '';
       const card = document.createElement('div');
       card.className = 'product-card reveal-stagger';
       
       const badgeText = getProductBadge(product);
       const badgeHTML = badgeText ? `<span class="product-badge">${badgeText}</span>` : '';
-      const caratVal = product.Quilates || product.carat;
+      const caratVal = formatCaratLabel(product.Quilates || product.carat);
       const metalVal = product.Metal || product.metal || '';
       const metaText = caratVal ? `${caratVal} | ${metalVal}` : metalVal;
       const prodName = product.Nombre_Producto || product.name;
@@ -428,20 +457,21 @@ function renderProducts(filter = 'todos') {
           </div>
         </a>
         <div style="padding: 0 1.5rem 1.5rem;">
-          <button class="btn-outline add-to-cart-btn" data-id="${product.id || 1}" style="width: 100%;">Agregar al Carrito</button>
+          <button class="btn-outline add-to-cart-btn" data-sku="${prodSku}" data-id="${product.id || 1}" style="width: 100%;">Agregar al Carrito</button>
         </div>
       `;
       
       productsGrid.appendChild(card);
     });
     
-    // Add event listeners to cart buttons
+    // Add event listeners to cart buttons (default SKU -01 + default Oro Amarillo)
     document.querySelectorAll('#productsGrid .add-to-cart-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const id = parseInt(e.target.getAttribute('data-id'));
-        addToCart(id);
+        const sku = e.currentTarget.getAttribute('data-sku');
+        const id = parseInt(e.currentTarget.getAttribute('data-id'));
+        addToCart(sku || id);
       });
     });
     
@@ -511,12 +541,24 @@ function initSearch() {
       return;
     }
     
-    const matches = products.filter(p => 
-      (p.Nombre_Producto || p.name).toLowerCase().includes(query) ||
-      (p.Detalle || p.description || '').toLowerCase().includes(query) ||
-      (p.Metal || p.metal || '').toLowerCase().includes(query) ||
-      (p.SKU || p.sku || '').toLowerCase().includes(query)
-    );
+    const baseProducts = getDisplayProducts(products);
+    const matches = [];
+
+    baseProducts.forEach(baseProd => {
+      const prodId = baseProd.ID_Producto || baseProd.id;
+      const variants = getProductVariants(prodId, products);
+      const specificSkuVariant = variants.find(v => (v.SKU || v.sku || '').toLowerCase().includes(query));
+      const textMatch =
+        (baseProd.Nombre_Producto || baseProd.name || '').toLowerCase().includes(query) ||
+        (baseProd.Detalle || baseProd.description || '').toLowerCase().includes(query) ||
+        (baseProd.Metal || baseProd.metal || '').toLowerCase().includes(query);
+
+      if (textMatch) {
+        matches.push(baseProd);
+      } else if (specificSkuVariant) {
+        matches.push(specificSkuVariant);
+      }
+    });
     
     searchResults.innerHTML = '';
     
@@ -526,19 +568,22 @@ function initSearch() {
     }
     
     matches.forEach(product => {
+      const prodId = product.ID_Producto || product.id;
+      const prodSku = product.SKU || product.sku || '';
       const el = document.createElement('div');
       el.className = 'search-result-item';
       el.innerHTML = `
-        <img src="${(product.image || `img/${product.ID_Producto}/1.jpg`).split('?')[0]}?v=5.0" class="search-result-img" onerror="this.style.display='none'">
+        <img src="${(product.image || `img/${prodId}/1.jpg`).split('?')[0]}?v=5.0" class="search-result-img" onerror="this.style.display='none'">
         <div>
           <h4 style="margin:0;font-size:1.1rem;font-family:var(--font-heading)">${product.Nombre_Producto || product.name}</h4>
-          <span style="font-size:0.8rem;opacity:0.7">${product.SKU || product.sku} | S/ ${(product.PV || product.price).toLocaleString()}</span>
+          <span style="font-size:0.8rem;opacity:0.7">${prodSku} | S/ ${(product.PV || product.price || 0).toLocaleString('es-PE')}</span>
         </div>
       `;
       
       el.addEventListener('click', () => {
         closeSearch();
-        window.location.href = `product-detail.html?id=${product.ID_Producto || product.id}`;
+        const skuParam = prodSku && !prodSku.endsWith('01') ? `&sku=${encodeURIComponent(prodSku)}` : '';
+        window.location.href = `product-detail.html?id=${prodId}${skuParam}`;
       });
       
       searchResults.appendChild(el);
@@ -580,15 +625,37 @@ function initCart() {
   updateCartUI();
 }
 
-function addToCart(productId) {
-  const product = products.find(p => p.id === productId || p.ID_Producto === productId);
+function addToCart(skuOrId, selectedMetal = null) {
+  let product = products.find(p => (p.SKU && p.SKU === skuOrId) || (p.sku && p.sku === skuOrId));
+  if (!product) {
+    product = products.find(p => p.id === skuOrId);
+  }
+  if (!product) {
+    const variants = getProductVariants(skuOrId, products);
+    product = variants.find(v => String(v.SKU || v.sku || '').trim().endsWith('01')) || variants[0];
+  }
   if (!product) return;
-  
-  const existingItem = cart.find(item => item.id === product.id || item.ID_Producto === product.ID_Producto);
+
+  const variantSku = product.SKU || product.sku || String(product.id);
+  const chosenMetal = selectedMetal || getDefaultMetal(product.Metal || product.metal);
+  const chosenCarat = formatCaratLabel(product.Quilates || product.carat);
+  const cartKey = `${variantSku}__${chosenMetal}`;
+
+  const existingItem = cart.find(item => item.cartKey === cartKey);
   if (existingItem) {
-    existingItem.quantity += 1;
+    existingItem.quantity = (existingItem.quantity || 1) + 1;
+    existingItem.PV = product.PV || product.price || existingItem.PV;
+    existingItem.price = existingItem.PV;
   } else {
-    cart.push({ ...product, quantity: 1 });
+    cart.push({
+      ...product,
+      SKU: variantSku,
+      sku: variantSku,
+      selectedMetal: chosenMetal,
+      selectedCarat: chosenCarat,
+      cartKey: cartKey,
+      quantity: 1
+    });
   }
   
   localStorage.setItem('bellini_cart', JSON.stringify(cart));
@@ -596,8 +663,13 @@ function addToCart(productId) {
   showToast('Producto agregado al carrito');
 }
 
-function removeFromCart(productId) {
-  cart = cart.filter(item => item.id !== productId && item.ID_Producto !== productId);
+function removeFromCart(cartKeyOrId) {
+  cart = cart.filter(item =>
+    item.cartKey !== cartKeyOrId &&
+    String(item.id) !== String(cartKeyOrId) &&
+    item.SKU !== cartKeyOrId &&
+    item.ID_Producto !== cartKeyOrId
+  );
   localStorage.setItem('bellini_cart', JSON.stringify(cart));
   updateCartUI();
 }
@@ -628,6 +700,12 @@ function updateCartUI() {
     const qty = item.quantity || 1;
     const price = item.PV || item.price || 0;
     total += price * qty;
+
+    const itemSku = item.SKU || item.sku || '';
+    const metalDisplay = item.selectedMetal || getDefaultMetal(item.Metal || item.metal);
+    const caratDisplay = item.selectedCarat || formatCaratLabel(item.Quilates || item.carat);
+    const removeKey = item.cartKey || itemSku || item.id || item.ID_Producto;
+    const specsLine = [metalDisplay, caratDisplay].filter(Boolean).join(' • ');
     
     const el = document.createElement('div');
     el.className = 'cart-item';
@@ -635,18 +713,20 @@ function updateCartUI() {
       <img src="${(item.image || `img/${item.ID_Producto}/1.jpg`).split('?')[0]}?v=5.0" alt="${item.Nombre_Producto || item.name}" class="cart-item-img" onerror="this.style.display='none'">
       <div class="cart-item-info">
         <div class="cart-item-title">${item.Nombre_Producto || item.name}</div>
-        <div class="cart-item-meta">Cant: ${qty} | ${item.Metal || item.metal || ''}</div>
+        <div class="cart-item-meta">Cant: ${qty}${specsLine ? ' | ' + specsLine : ''}${itemSku ? ' (' + itemSku + ')' : ''}</div>
         <div class="cart-item-price">S/ ${(price * qty).toLocaleString('es-PE')}</div>
-        <button class="cart-item-remove" onclick="removeFromCart(${item.id || `'${item.ID_Producto}'`})">Eliminar</button>
+        <button class="cart-item-remove" data-remove-key="${removeKey}">Eliminar</button>
       </div>
     `;
+    el.querySelector('.cart-item-remove').addEventListener('click', () => removeFromCart(removeKey));
     cartItems.appendChild(el);
   });
   
   cartTotal.textContent = `S/ ${total.toLocaleString('es-PE')}`;
 }
 
-// Make globally available for inline onclick
+// Make globally available
+window.addToCart = addToCart;
 window.removeFromCart = removeFromCart;
 
 // 7. Toast Notification

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css?v=3.6">
+  <link rel="stylesheet" href="styles.css?v=5.0">
 </head>
 <body class="checkout-body">
 
@@ -467,7 +467,7 @@
   </div>
 
   <!-- SCRIPTS -->
-  <script src="script.js?v=4.0"></script>
+  <script src="script.js?v=5.0"></script>
   <script>
     // Checkout specific controller
     let checkoutShippingCost = 0;
@@ -478,6 +478,10 @@
     document.addEventListener('DOMContentLoaded', () => {
       renderCheckoutSummary();
       prefillLoggedInUser();
+    });
+
+    window.addEventListener('productsUpdated', () => {
+      renderCheckoutSummary();
     });
 
     // Packaging Selection
@@ -550,16 +554,21 @@
       listEl.innerHTML = '';
 
       currentCart.forEach(item => {
-        const prod = products.find(p => p.id == item.id || p.ID_Producto === item.id) || item;
+        const itemSku = item.SKU || item.sku || '';
+        const prod = (itemSku ? products.find(p => (p.SKU || p.sku) === itemSku) : null)
+          || products.find(p => p.id == item.id)
+          || item;
         const qty = item.quantity || 1;
-        const price = prod.PV || prod.price || 0;
+        const price = prod.PV || prod.price || item.PV || item.price || 0;
         const itemTotal = price * qty;
         subtotal += itemTotal;
 
         const img = `${(prod.image || `img/${prod.ID_Producto || 'PRD0001'}/1.jpg`).split('?')[0]}?v=5.0`;
         const name = prod.Nombre_Producto || prod.name || 'Joya BELLINI';
-        const meta = prod.Metal || prod.metal || '';
-        const metaWithQty = qty > 1 ? `Cant: ${qty} • ${meta}` : meta;
+        const metal = item.selectedMetal || getDefaultMetal(prod.Metal || prod.metal || '');
+        const carat = item.selectedCarat || formatCaratLabel(prod.Quilates || prod.carat || '');
+        const specs = [metal, carat, itemSku ? `SKU: ${itemSku}` : ''].filter(Boolean).join(' • ');
+        const metaWithQty = qty > 1 ? `Cant: ${qty} • ${specs}` : specs;
 
         const itemRow = document.createElement('div');
         itemRow.className = 'summary-product-item';
@@ -828,15 +837,28 @@
 
       let subtotal = 0;
       let totalArticulos = 0;
+      const itemsSummaryList = [];
       const itemsPayload = currentCart.map(item => {
-        const prod = products.find(p => p.id == item.id || p.ID_Producto === item.id) || item;
-        const price = prod.PV || prod.price || 0;
+        const itemSku = item.SKU || item.sku || '';
+        const prod = (itemSku ? products.find(p => (p.SKU || p.sku) === itemSku) : null)
+          || products.find(p => p.id == item.id)
+          || item;
+        const price = prod.PV || prod.price || item.PV || item.price || 0;
         const qty = item.quantity || 1;
+        const metal = item.selectedMetal || getDefaultMetal(prod.Metal || prod.metal || '');
+        const carat = item.selectedCarat || formatCaratLabel(prod.Quilates || prod.carat || '');
+        const baseName = prod.Nombre_Producto || prod.name || 'Joya';
+        const finalSku = itemSku || prod.SKU || prod.sku || '';
+        const specSuffix = [metal, carat, finalSku].filter(Boolean).join(', ');
         subtotal += price * qty;
         totalArticulos += qty;
+        itemsSummaryList.push(`${qty}x ${baseName} (${specSuffix})`);
         return {
           ID_Producto: prod.ID_Producto || `PRD${prod.id}`,
-          Nombre_Producto: prod.Nombre_Producto || prod.name || 'Joya',
+          SKU: finalSku,
+          Nombre_Producto: specSuffix ? `${baseName} (${specSuffix})` : baseName,
+          Metal: metal,
+          Quilates: carat,
           quantity: qty,
           PV: price
         };
@@ -898,7 +920,7 @@
       document.getElementById('modalTotal').textContent = `S/ ${total.toLocaleString('es-PE')}`;
       document.getElementById('modalShipping').textContent = checkoutShippingMethodName;
 
-      let waMsg = `Hola Bellini Fine Jewelry, acabo de realizar mi pedido ${registeredOrderId} por S/ ${total.toLocaleString('es-PE')}. Nombre: ${firstName} ${lastName}, Correo: ${email}, Packaging: ${selectedPackagingName}.`;
+      let waMsg = `Hola Bellini Fine Jewelry, acabo de realizar mi pedido ${registeredOrderId} por S/ ${total.toLocaleString('es-PE')}. Detalle: ${itemsSummaryList.join('; ')}. Nombre: ${firstName} ${lastName}, Correo: ${email}, Packaging: ${selectedPackagingName}.`;
       if (brideName) waMsg += ` Novia: ${brideName}.`;
       if (dedication) waMsg += ` Dedicatoria: "${dedication}".`;
       waMsg += ` Solicito confirmación y comprobante.`;

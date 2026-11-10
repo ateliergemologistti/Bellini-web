@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="styles.css?v=3.6">
+  <link rel="stylesheet" href="styles.css?v=5.0">
   
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="img/logo-bellini-diamond.png?v=3.0">
@@ -313,42 +313,152 @@
   <div class="toast-container" id="toastContainer"></div>
 
   <!-- Scripts -->
-  <script src="script.js?v=4.0"></script>
+  <script src="script.js?v=5.0"></script>
   <script>
+    let detailCurrentProdId = null;
+    let detailSelectedSku = null;
+    let detailSelectedMetal = null;
+
+    function updateDetailVariantUI() {
+      if (!detailCurrentProdId) return;
+      const variants = getProductVariants(detailCurrentProdId, products);
+      if (!variants.length) return;
+
+      const activeVariant = variants.find(v => (v.SKU || v.sku) === detailSelectedSku) || variants[0];
+      const vSku = activeVariant.SKU || activeVariant.sku || '';
+      const vName = activeVariant.Nombre_Producto || activeVariant.name || '';
+      const vPrice = (activeVariant.PV || activeVariant.price || 0).toLocaleString('es-PE');
+      const vCarat = formatCaratLabel(activeVariant.Quilates || activeVariant.carat || '');
+      const vDetail = activeVariant.Detalle || activeVariant.description || '';
+      const badgeText = getProductBadge(activeVariant);
+
+      // Update active states on Metal buttons
+      document.querySelectorAll('#metalSelectorGroup .metal-btn').forEach(btn => {
+        const isSelected = btn.getAttribute('data-metal') === detailSelectedMetal;
+        btn.classList.toggle('active', isSelected);
+        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      });
+
+      // Update active states on Carat buttons
+      document.querySelectorAll('#caratSelectorGroup .carat-btn').forEach(btn => {
+        const isSelected = btn.getAttribute('data-sku') === vSku;
+        btn.classList.toggle('active', isSelected);
+        btn.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+      });
+
+      // Update SKU, Price, and Description dynamically
+      const skuEl = document.getElementById('detailSku');
+      const priceEl = document.getElementById('detailPrice');
+      const descEl = document.getElementById('detailDescription');
+      const waBtn = document.getElementById('detailWhatsappBtn');
+
+      if (skuEl) skuEl.textContent = `SKU: ${vSku}`;
+      if (priceEl) {
+        const badgeHTML = badgeText ? `<span class="detail-price-badge">${badgeText}</span>` : '';
+        priceEl.innerHTML = `<span>S/ ${vPrice}</span>${badgeHTML}`;
+      }
+      if (descEl) descEl.textContent = vDetail;
+      if (waBtn) {
+        const waText = `Hola Bellini Fine Jewelry me gustaría más información sobre el producto ${vSku} (${vName} - ${detailSelectedMetal}, ${vCarat})`;
+        waBtn.href = `https://wa.me/51922427713?text=${encodeURIComponent(waText)}`;
+      }
+    }
+
     function renderDetail() {
       const urlParams = new URLSearchParams(window.location.search);
       const rawId = urlParams.get('id') || 'PRD0001';
-      const product = products.find(p => p.ID_Producto === rawId || p.id == rawId || p.SKU === rawId || p.sku === rawId) || products[0];
-      
-      if (!product) {
+      const rawSku = urlParams.get('sku') || '';
+
+      const matched = products.find(p =>
+        p.ID_Producto === rawId ||
+        p.SKU === rawId ||
+        p.sku === rawId ||
+        String(p.id) === String(rawId)
+      ) || products[0];
+
+      if (!matched) {
         document.getElementById('detailContainer').innerHTML = '<h2>Producto no encontrado</h2>';
         return;
       }
-      
-      const catName = (product.Categoria === 'AC' || product.category === 'compromiso') ? 'Anillos de Compromiso' : 'Aros de Matrimonio';
-      const caratValue = product.Quilates || product.carat;
-      const caratInfo = caratValue ? `<div class="detail-meta-item"><span class="detail-meta-label">Quilates</span><span>${caratValue}</span></div>` : '';
-      const metalValue = product.Metal || product.metal || 'Oro 18K';
-      const productName = product.Nombre_Producto || product.name;
-      const productSku = product.SKU || product.sku;
-      const productPrice = (product.PV || product.price || 0).toLocaleString('es-PE');
-      const productDetail = product.Detalle || product.description;
-      
-      const img1 = `img/${product.ID_Producto}/1.jpg?v=5.0`;
-      const img2 = `img/${product.ID_Producto}/2.jpg?v=5.0`;
-      
+
+      const prodId = matched.ID_Producto || String(matched.id);
+      const variants = getProductVariants(prodId, products);
+      const defaultVariant = variants.find(v => String(v.SKU || v.sku || '').trim().endsWith('01')) || variants[0] || matched;
+
+      // Initialize defaults on first load of this product (Oro Amarillo + 1 ct SKU -01)
+      if (detailCurrentProdId !== prodId) {
+        detailCurrentProdId = prodId;
+        const urlMatchedVariant =
+          (rawSku && variants.find(v => (v.SKU || v.sku) === rawSku)) ||
+          variants.find(v => (v.SKU || v.sku) === rawId);
+        const initialVariant = urlMatchedVariant || defaultVariant;
+        detailSelectedSku = initialVariant.SKU || initialVariant.sku || '';
+        detailSelectedMetal = getDefaultMetal(initialVariant.Metal || initialVariant.metal);
+      } else {
+        // Preserve user's active selection if live data refreshes
+        if (!variants.some(v => (v.SKU || v.sku) === detailSelectedSku)) {
+          detailSelectedSku = defaultVariant.SKU || defaultVariant.sku || '';
+        }
+      }
+
+      const activeVariant = variants.find(v => (v.SKU || v.sku) === detailSelectedSku) || defaultVariant;
+      const metalOptions = parseMetalOptions(activeVariant.Metal || activeVariant.metal);
+      if (!metalOptions.includes(detailSelectedMetal)) {
+        detailSelectedMetal = getDefaultMetal(activeVariant.Metal || activeVariant.metal);
+      }
+
+      const catName = (activeVariant.Categoria === 'AC' || activeVariant.category === 'compromiso')
+        ? 'Anillos de Compromiso'
+        : 'Aros de Matrimonio';
+      const productName = activeVariant.Nombre_Producto || activeVariant.name;
+      const productSku = activeVariant.SKU || activeVariant.sku;
+      const productPrice = (activeVariant.PV || activeVariant.price || 0).toLocaleString('es-PE');
+      const productDetail = activeVariant.Detalle || activeVariant.description || '';
+      const badgeText = getProductBadge(activeVariant);
+      const badgeHTML = badgeText ? `<span class="detail-price-badge">${badgeText}</span>` : '';
+
+      const img1 = `img/${prodId}/1.jpg?v=5.0`;
+      const img2 = `img/${prodId}/2.jpg?v=5.0`;
+      const existingMainImg = document.getElementById('mainImg');
+      const currentImgSrc = existingMainImg && existingMainImg.getAttribute('src') === img2 ? img2 : img1;
+
+      const metalButtonsHTML = metalOptions.map(metal => {
+        const isActive = metal === detailSelectedMetal;
+        const dotClass = getMetalDotClass(metal);
+        return `
+          <button type="button" class="variant-btn metal-btn${isActive ? ' active' : ''}" data-metal="${metal}" aria-pressed="${isActive}">
+            <span class="metal-dot ${dotClass}"></span>
+            <span>${metal}</span>
+          </button>
+        `;
+      }).join('');
+
+      const caratButtonsHTML = variants.map(v => {
+        const vSku = v.SKU || v.sku || '';
+        const vCarat = formatCaratLabel(v.Quilates || v.carat || '');
+        const isActive = vSku === productSku;
+        return `
+          <button type="button" class="variant-btn carat-btn${isActive ? ' active' : ''}" data-sku="${vSku}" aria-pressed="${isActive}">
+            ${vCarat}
+          </button>
+        `;
+      }).join('');
+
+      const activeCaratLabel = formatCaratLabel(activeVariant.Quilates || activeVariant.carat || '');
+      const waInitialText = `Hola Bellini Fine Jewelry me gustaría más información sobre el producto ${productSku} (${productName} - ${detailSelectedMetal}, ${activeCaratLabel})`;
+
       // Render details
       document.getElementById('detailContainer').innerHTML = `
         <div class="product-gallery">
           <div class="gallery-main">
-            <img src="${img1}" alt="${productName}" id="mainImg" onerror="this.src='${product.image}'">
+            <img src="${currentImgSrc}" alt="${productName}" id="mainImg" onerror="this.src='${activeVariant.image}'">
           </div>
           <div class="gallery-thumbs">
-            <div class="gallery-thumb active" onclick="changeImage('${img1}', this)">
-              <img src="${img1}" alt="${productName}" onerror="this.src='${product.image}'">
+            <div class="gallery-thumb${currentImgSrc === img1 ? ' active' : ''}" onclick="changeImage('${img1}', this)">
+              <img src="${img1}" alt="${productName}" onerror="this.src='${activeVariant.image}'">
             </div>
-            <div class="gallery-thumb" onclick="changeImage('${img2}', this)">
-              <img src="${img2}" alt="${productName} en mano" onerror="this.src='${product.imageHover}'">
+            <div class="gallery-thumb${currentImgSrc === img2 ? ' active' : ''}" onclick="changeImage('${img2}', this)">
+              <img src="${img2}" alt="${productName} en mano" onerror="this.src='${activeVariant.imageHover}'">
             </div>
           </div>
         </div>
@@ -357,58 +467,78 @@
             <a href="index.html">BELLINI</a> > <a href="index.html#productos">${catName}</a> > <span>${productName}</span>
           </div>
           <h1 class="detail-name">${productName}</h1>
-          <div class="detail-sku">SKU: ${productSku}</div>
-          <div class="detail-price">S/ ${productPrice}</div>
+          <div class="detail-sku" id="detailSku">SKU: ${productSku}</div>
+          <div class="detail-price" id="detailPrice"><span>S/ ${productPrice}</span>${badgeHTML}</div>
           
           <div class="detail-meta">
             <div class="detail-meta-item">
               <span class="detail-meta-label">Metal</span>
-              <span style="display: flex; align-items: center; gap: 8px;">
-                <span style="width: 12px; height: 12px; border-radius: 50%; display: inline-block; background: ${metalValue.includes('Blanco') ? '#e6e8fa' : metalValue.includes('Rosa') ? '#e9c6ba' : '#f0d984'}; border: 1px solid #ddd;"></span>
-                ${metalValue}
-              </span>
+              <div class="detail-selector-group" id="metalSelectorGroup">
+                ${metalButtonsHTML}
+              </div>
             </div>
-            ${caratInfo}
+            <div class="detail-meta-item">
+              <span class="detail-meta-label">Quilates</span>
+              <div class="detail-selector-group" id="caratSelectorGroup">
+                ${caratButtonsHTML}
+              </div>
+            </div>
           </div>
           
-          <div class="detail-description">
-            ${productDetail}
-          </div>
+          <div class="detail-description" id="detailDescription">${productDetail}</div>
           
           <div class="detail-actions">
-            <button class="btn-add-cart" onclick="addToCart(${product.id || 1})">Agregar al Carrito</button>
-            <a href="https://wa.me/51922427713?text=Hola%20Bellini%20Fine%20Jewelry%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20producto%20${productSku}%20(${encodeURIComponent(productName)})" class="btn-whatsapp-detail" target="_blank">
+            <button class="btn-add-cart" id="detailAddCartBtn" type="button">Agregar al Carrito</button>
+            <a href="https://wa.me/51922427713?text=${encodeURIComponent(waInitialText)}" id="detailWhatsappBtn" class="btn-whatsapp-detail" target="_blank">
               Consultar por WhatsApp
             </a>
           </div>
           
           <div class="detail-trust">
             <div class="detail-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg> Garantía de por vida</div>
-            <div class="detail-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Envío Asegurado</div>
+            <div class="detail-trust-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> Envío Asegurado</div>
           </div>
         </div>
       `;
+
+      // Attach listeners for Metal selector buttons
+      document.querySelectorAll('#metalSelectorGroup .metal-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          detailSelectedMetal = btn.getAttribute('data-metal');
+          updateDetailVariantUI();
+        });
+      });
+
+      // Attach listeners for Carat selector buttons
+      document.querySelectorAll('#caratSelectorGroup .carat-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          detailSelectedSku = btn.getAttribute('data-sku');
+          updateDetailVariantUI();
+        });
+      });
+
+      // Attach listener for Add to Cart button
+      document.getElementById('detailAddCartBtn').addEventListener('click', () => {
+        addToCart(detailSelectedSku, detailSelectedMetal);
+      });
       
-      // Render Related
-      const related = products.filter(p => (p.Categoria === product.Categoria || p.category === product.category) && (p.ID_Producto !== product.ID_Producto && p.id !== product.id)).slice(0, 4);
+      // Render Related (only unique products with SKU ending in 01)
+      const displayProducts = getDisplayProducts(products);
+      const related = displayProducts
+        .filter(p => (p.Categoria === activeVariant.Categoria || p.category === activeVariant.category) && p.ID_Producto !== prodId)
+        .slice(0, 4);
       const relatedGrid = document.getElementById('relatedGrid');
       relatedGrid.innerHTML = '';
       
       related.forEach(rel => {
-        let badgeText = '';
-        const disc = rel.Descuentos !== undefined ? rel.Descuentos : rel.descuento;
-        if (disc !== null && disc !== '' && disc !== undefined && disc !== 0 && disc !== '0') {
-          let num = typeof disc === 'number' ? disc : (parseFloat(String(disc).replace('%', '').trim()) / (String(disc).includes('%') ? 100 : 1));
-          if (!isNaN(num) && num > 0) {
-            badgeText = `${Math.round(num <= 1 ? num * 100 : num)}% OFF`;
-          }
-        }
-        const badgeHTML = badgeText ? `<span class="product-badge">${badgeText}</span>` : '';
-        const relCarat = rel.Quilates || rel.carat;
+        const relBadge = getProductBadge(rel);
+        const relBadgeHTML = relBadge ? `<span class="product-badge">${relBadge}</span>` : '';
+        const relCarat = formatCaratLabel(rel.Quilates || rel.carat);
         const relMetal = rel.Metal || rel.metal;
         const metaText = relCarat ? `${relCarat} | ${relMetal}` : relMetal;
         const relName = rel.Nombre_Producto || rel.name;
         const relPrice = (rel.PV || rel.price || 0).toLocaleString('es-PE');
+        const relSku = rel.SKU || rel.sku || '';
         const relImg1 = `img/${rel.ID_Producto}/1.jpg?v=5.0`;
         const relImg2 = `img/${rel.ID_Producto}/2.jpg?v=5.0`;
         
@@ -417,7 +547,7 @@
         card.style.cursor = 'pointer';
         card.innerHTML = `
           <div class="product-img-wrap">
-            ${badgeHTML}
+            ${relBadgeHTML}
             <img src="${relImg1}" alt="${relName}" class="product-img product-img-main" onerror="this.src='${rel.image}'">
             <img src="${relImg2}" alt="${relName} en mano" class="product-img product-img-hover" onerror="this.style.display='none'">
           </div>
@@ -425,7 +555,7 @@
             <h3 class="product-name">${relName}</h3>
             <p class="product-meta">${metaText}</p>
             <div class="product-price">S/ ${relPrice}</div>
-            <button class="btn-outline add-to-cart-btn" data-id="${rel.id}">Agregar al Carrito</button>
+            <button class="btn-outline add-to-cart-btn" data-sku="${relSku}" data-id="${rel.id}">Agregar al Carrito</button>
           </div>
         `;
         
@@ -440,8 +570,9 @@
       document.querySelectorAll('#relatedGrid .add-to-cart-btn').forEach(btn => {
         btn.addEventListener('click', (e) => {
           e.stopPropagation();
-          const id = parseInt(e.target.getAttribute('data-id'));
-          addToCart(id);
+          const sku = e.currentTarget.getAttribute('data-sku');
+          const id = parseInt(e.currentTarget.getAttribute('data-id'));
+          addToCart(sku || id);
         });
       });
     }
