@@ -1,16 +1,13 @@
 /**
- * BELLINI Fine Jewelry — Receptor de Webhooks de Openpay Perú
+ * BELLINI Fine Jewelry — Receptor Privado de Webhooks de Openpay Perú
  * Endpoint HTTPS (Puerto 443 con certificado SSL válido):
  * https://bellinifinejewelry.com/api/openpay-webhook
  *
- * Recibe eventos POST desde Openpay:
- * - verification (envía verification_code al registrar el Webhook en el Dashboard de Openpay)
- * - charge.succeeded (pago completado exitosamente)
- * - charge.failed / charge.cancelled / charge.created
+ * - Las notificaciones POST de Openpay se registran de forma privada en los logs internos del servidor.
+ * - Las consultas públicas GET no exponen ningún movimiento ni dato de transacciones.
  */
 
 let lastVerificationCode = null;
-let lastWebhookEvent = null;
 
 module.exports = async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -21,13 +18,22 @@ module.exports = async function handler(req, res) {
     return res.status(200).end();
   }
 
-  // GET: Permite verificar que el endpoint está activo y consultar el último código de verificación
+  // GET público: Solo confirma que el endpoint está en línea sin mostrar ningún movimiento
   if (req.method === 'GET') {
+    const adminKey = req.query && req.query.admin_key;
+    const expectedKey = process.env.WEBHOOK_ADMIN_KEY || 'bellini_openpay_admin';
+
+    // Solo si el administrador consulta con ?admin_key=bellini_openpay_admin muestra el código de verificación
+    if (adminKey && adminKey === expectedKey) {
+      return res.status(200).json({
+        status: 'ok',
+        last_verification_code: lastVerificationCode
+      });
+    }
+
     return res.status(200).json({
       status: 'ok',
-      service: 'BELLINI Fine Jewelry - Openpay Webhook Endpoint',
-      last_verification_code: lastVerificationCode,
-      last_event: lastWebhookEvent
+      service: 'BELLINI Fine Jewelry - Openpay Webhook Receiver'
     });
   }
 
@@ -39,30 +45,24 @@ module.exports = async function handler(req, res) {
       // Si es el evento de verificación de Openpay al dar de alta el Webhook
       if (eventType === 'verification' || event.verification_code) {
         lastVerificationCode = event.verification_code || null;
-        console.log('[OPENPAY WEBHOOK VERIFICATION CODE]:', lastVerificationCode, JSON.stringify(event));
+        console.log('[OPENPAY WEBHOOK VERIFICATION CODE]:', lastVerificationCode);
       } else {
-        console.log(`[OPENPAY WEBHOOK EVENT: ${eventType}]`, JSON.stringify(event));
+        console.log(`[OPENPAY WEBHOOK EVENT: ${eventType}]`, JSON.stringify({
+          type: eventType,
+          event_date: event.event_date,
+          transaction_id: event.transaction ? event.transaction.id : null,
+          order_id: event.transaction ? event.transaction.order_id : null,
+          status: event.transaction ? event.transaction.status : null
+        }));
       }
-
-      lastWebhookEvent = {
-        type: eventType,
-        event_date: event.event_date || new Date().toISOString(),
-        verification_code: event.verification_code || null,
-        transaction_id: event.transaction ? event.transaction.id : null,
-        order_id: event.transaction ? event.transaction.order_id : null,
-        status: event.transaction ? event.transaction.status : null
-      };
 
       // Openpay requiere respuesta HTTP 200 OK para confirmar recepción del Webhook
       return res.status(200).json({
         status: 'ok',
-        received: true,
-        type: eventType,
-        verification_code: event.verification_code || undefined
+        received: true
       });
     } catch (err) {
       console.error('[OPENPAY WEBHOOK ERROR]:', err);
-      // Aun en error de parseo devolvemos 200 para no bloquear reintentos innecesarios
       return res.status(200).json({
         status: 'ok',
         received: true
