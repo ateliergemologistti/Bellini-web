@@ -2,6 +2,8 @@
   "cleanUrls": true,
   "rewrites": [
     { "source": "/producto", "destination": "/product-detail.html" },
-    { "source": "/checkout", "destination": "/checkout.html" }
+    { "source": "/checkout", "destination": "/checkout.html" },
+    { "source": "/terminos-y-condiciones", "destination": "/terminos-y-condiciones.html" },
+    { "source": "/politica-de-privacidad", "destination": "/politica-de-privacidad.html" }
   ]
 }

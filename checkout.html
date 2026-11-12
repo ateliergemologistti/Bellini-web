@@ -375,7 +375,11 @@
 
             </div>
 
-            <button type="button" class="auth-btn-black checkout-btn-step" id="btnPlaceOrder" onclick="handlePlaceOrder()" style="margin-top: 2rem;">
+            <p style="font-size: 0.82rem; color: var(--color-steel); margin-top: 1.5rem; margin-bottom: 0.75rem; line-height: 1.5;">
+              Al realizar su pedido, usted acepta nuestros <a href="terminos-y-condiciones.html" target="_blank" style="color: var(--color-dark); text-decoration: underline;">Términos y Condiciones</a> y nuestra <a href="politica-de-privacidad.html" target="_blank" style="color: var(--color-dark); text-decoration: underline;">Política de Privacidad y Seguridad de Datos</a>.
+            </p>
+
+            <button type="button" class="auth-btn-black checkout-btn-step" id="btnPlaceOrder" onclick="handlePlaceOrder()" style="margin-top: 0.5rem;">
               PAGAR CON TARJETA (OPENPAY)
             </button>
           </div>
@@ -420,6 +424,18 @@
 
     </div>
   </main>
+
+  <footer style="border-top: 1px solid var(--color-border); padding: 1.75rem 0; margin-top: 3rem; background: #FDF8F6; font-size: 0.84rem; color: var(--color-steel);">
+    <div class="container" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem;">
+      <div>
+        <strong>BELLINI Fine Jewelry — ATELIER JOYAS MARKETING S.A.</strong> • Tel: <a href="tel:+51922427713" style="color: var(--color-dark);">+51 922 427 713</a> • Correo: <a href="mailto:ateliergemologistti@gmail.com" style="color: var(--color-dark);">ateliergemologistti@gmail.com</a>
+      </div>
+      <div style="display: flex; gap: 1.25rem;">
+        <a href="terminos-y-condiciones.html" style="color: var(--color-dark); text-decoration: underline;">Términos y Condiciones</a>
+        <a href="politica-de-privacidad.html" style="color: var(--color-dark); text-decoration: underline;">Política de Privacidad</a>
+      </div>
+    </div>
+  </footer>
 
   <!-- ORDER SUCCESS MODAL -->
   <div class="order-modal-overlay" id="orderSuccessModal">
