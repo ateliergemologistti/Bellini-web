@@ -513,9 +513,6 @@
           </div>
         </div>
         <div class="product-detail-info">
-          <div class="breadcrumb">
-            <a href="index.html">BELLINI</a> > <a href="index.html#productos">${catName}</a> > <span>${productName}</span>
-          </div>
           <h1 class="detail-name">${productName}</h1>
           <div class="detail-sku" id="detailSku">SKU: ${productSku}</div>
           <div class="detail-price" id="detailPrice"><span>S/ ${productPrice}</span>${badgeHTML}</div>
@@ -551,8 +548,8 @@
         </div>
       `;
 
-      // Actualizar SEO dinámico (Title, Meta Description, Canonical y Schema.org Product + BreadcrumbList)
-      document.title = `${productName} | ${catName} | BELLINI Fine Jewelry`;
+      // Actualizar SEO dinámico (Title solo con el nombre del producto, Meta Description, Canonical y Schema.org Product)
+      document.title = productName;
       const canonicalUrl = `https://bellinifinejewelry.com/product-detail.html?id=${encodeURIComponent(prodId)}`;
       const canonicalEl = document.getElementById('canonicalLink');
       if (canonicalEl) canonicalEl.setAttribute('href', canonicalUrl);
@@ -568,55 +565,27 @@
         schemaEl.id = 'productStructuredData';
         document.head.appendChild(schemaEl);
       }
-      const catSlug = (activeVariant.Categoria === 'AC' || activeVariant.category === 'compromiso') ? 'compromiso' : 'matrimonio';
       schemaEl.textContent = JSON.stringify({
         "@context": "https://schema.org",
-        "@graph": [
-          {
-            "@type": "BreadcrumbList",
-            "itemListElement": [
-              {
-                "@type": "ListItem",
-                "position": 1,
-                "name": "BELLINI",
-                "item": "https://bellinifinejewelry.com/"
-              },
-              {
-                "@type": "ListItem",
-                "position": 2,
-                "name": catName,
-                "item": `https://bellinifinejewelry.com/?cat=${catSlug}#productos`
-              },
-              {
-                "@type": "ListItem",
-                "position": 3,
-                "name": productName,
-                "item": canonicalUrl
-              }
-            ]
-          },
-          {
-            "@type": "Product",
-            "name": productName,
-            "sku": productSku,
-            "productID": prodId,
-            "category": catName,
-            "description": seoDescription,
-            "image": galleryImgs.map(src => `https://bellinifinejewelry.com/${src.split('?')[0]}`),
-            "brand": {
-              "@type": "Brand",
-              "name": "BELLINI Fine Jewelry"
-            },
-            "offers": {
-              "@type": "Offer",
-              "url": canonicalUrl,
-              "priceCurrency": "PEN",
-              "price": Number(activeVariant.PV || activeVariant.price || 0),
-              "availability": "https://schema.org/InStock",
-              "itemCondition": "https://schema.org/NewCondition"
-            }
-          }
-        ]
+        "@type": "Product",
+        "name": productName,
+        "sku": productSku,
+        "productID": prodId,
+        "category": catName,
+        "description": seoDescription,
+        "image": galleryImgs.map(src => `https://bellinifinejewelry.com/${src.split('?')[0]}`),
+        "brand": {
+          "@type": "Brand",
+          "name": "BELLINI Fine Jewelry"
+        },
+        "offers": {
+          "@type": "Offer",
+          "url": canonicalUrl,
+          "priceCurrency": "PEN",
+          "price": Number(activeVariant.PV || activeVariant.price || 0),
+          "availability": "https://schema.org/InStock",
+          "itemCondition": "https://schema.org/NewCondition"
+        }
       });
 
       // Attach listeners for Metal selector buttons
