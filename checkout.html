@@ -299,7 +299,7 @@
 
             <div class="payment-methods-accordion">
 
-              <!-- OPTION A: CREDIT / DEBIT CARD (Default) -->
+              <!-- OPTION A: CREDIT / DEBIT CARD VIA OPENPAY REDIRECT (Default) -->
               <div class="payment-card-option active" id="payOptionCards">
                 <label class="payment-card-header" onclick="selectPaymentMethod('cards')">
                   <input type="radio" name="paymentOption" value="cards" checked>
@@ -308,38 +308,30 @@
                       <rect width="24" height="16" rx="2" fill="#261E20"/>
                       <rect y="4" width="24" height="3" fill="#D9A7A3"/>
                     </svg>
-                    <span>Tarjetas de Crédito / Débito</span>
+                    <span>Tarjetas de Crédito / Débito (Openpay BBVA)</span>
                   </div>
                   <div class="card-icons">
                     <span class="card-tag">VISA</span>
                     <span class="card-tag">MC</span>
                     <span class="card-tag">AMEX</span>
+                    <span class="card-tag">DINERS</span>
                   </div>
                 </label>
 
                 <div class="payment-card-body" id="bodyPayCards">
-                  <p class="payment-note">Todos los campos son obligatorios para procesar su pago seguro con encriptación TLS de 256 bits.</p>
-
-                  <div class="auth-input-group">
-                    <label class="auth-label">Número de tarjeta*</label>
-                    <input type="text" class="auth-input" id="cardNum" placeholder="4557 8806 8697 4555" maxlength="19" oninput="formatCardNumber(this)">
-                  </div>
-
-                  <div class="auth-row-names">
-                    <div class="auth-input-group">
-                      <label class="auth-label">Fecha de expiración*</label>
-                      <input type="text" class="auth-input" id="cardExp" placeholder="MM/AA" maxlength="5" oninput="formatCardExp(this)">
+                  <div style="background: #FDF8F6; border: 1px solid #E3C7B8; border-radius: 6px; padding: 1.1rem 1.25rem; margin-bottom: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.45rem; color: #261E20; font-weight: 600; font-size: 0.92rem;">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6D5B57" stroke-width="2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                      </svg>
+                      <span>Pasarela Segura Oficial Openpay by BBVA</span>
                     </div>
-                    <div class="auth-input-group">
-                      <label class="auth-label">Código de seguridad (CVV)*</label>
-                      <input type="password" class="auth-input" id="cardCvv" placeholder="3 dígitos" maxlength="4">
-                    </div>
+                    <p class="payment-note" style="margin: 0; color: #6D5B57; line-height: 1.55;">
+                      Al hacer clic en <strong>PAGAR CON TARJETA (OPENPAY)</strong>, será redirigido al formulario seguro de <strong>Openpay</strong> con encriptación TLS de 256 bits y validación 3D Secure para ingresar los datos de su tarjeta Visa, Mastercard, American Express o Diners Club.
+                    </p>
                   </div>
-
-                  <div class="auth-input-group">
-                    <label class="auth-label">Nombre del titular en la tarjeta*</label>
-                    <input type="text" class="auth-input" id="cardName" placeholder="Como figura en la tarjeta">
-                  </div>
+                  <div id="openpayStatusNotice" style="display: none; margin-top: 0.85rem; padding: 0.85rem 1rem; border-radius: 6px; font-size: 0.88rem; line-height: 1.45;"></div>
                 </div>
               </div>
 
@@ -384,7 +376,7 @@
             </div>
 
             <button type="button" class="auth-btn-black checkout-btn-step" id="btnPlaceOrder" onclick="handlePlaceOrder()" style="margin-top: 2rem;">
-              REALIZAR PEDIDO
+              PAGAR CON TARJETA (OPENPAY)
             </button>
           </div>
         </div>
@@ -453,6 +445,10 @@
           <span>Método de Envío:</span>
           <span id="modalShipping">-</span>
         </div>
+        <div class="order-detail-row" id="modalOpenpayRow" style="display: none;">
+          <span>Operación Openpay:</span>
+          <strong id="modalOpenpayAuth">-</strong>
+        </div>
       </div>
 
       <p class="order-next-step">Hemos enviado una confirmación a su correo electrónico. También puede contactar a su asesor para seguimiento en tiempo real:</p>
@@ -474,10 +470,12 @@
     let checkoutShippingMethodName = 'Entrega asegurada con firma';
     let checkoutShippingMethodCode = 'standard';
     let selectedPackagingName = 'Clásico (Salmón)';
+    let selectedPaymentMethod = 'cards';
 
     document.addEventListener('DOMContentLoaded', () => {
       renderCheckoutSummary();
       prefillLoggedInUser();
+      checkOpenpayReturn();
     });
 
     window.addEventListener('productsUpdated', () => {
@@ -740,47 +738,250 @@
 
     // Payment Method Selection
     window.selectPaymentMethod = function(method) {
+      selectedPaymentMethod = method;
       document.querySelectorAll('.payment-card-option').forEach(c => c.classList.remove('active'));
       document.getElementById('bodyPayCards').style.display = 'none';
       document.getElementById('bodyPayTransfer').style.display = 'none';
       document.getElementById('bodyPayWhatsapp').style.display = 'none';
 
+      const btn = document.getElementById('btnPlaceOrder');
+
       if (method === 'cards') {
         document.getElementById('payOptionCards').classList.add('active');
         document.getElementById('bodyPayCards').style.display = 'block';
+        if (btn && !btn.disabled) btn.textContent = 'PAGAR CON TARJETA (OPENPAY)';
       } else if (method === 'transfer') {
         document.getElementById('payOptionTransfer').classList.add('active');
         document.getElementById('bodyPayTransfer').style.display = 'block';
+        if (btn && !btn.disabled) btn.textContent = 'REALIZAR PEDIDO';
       } else if (method === 'whatsapp') {
         document.getElementById('payOptionWhatsapp').classList.add('active');
         document.getElementById('bodyPayWhatsapp').style.display = 'block';
+        if (btn && !btn.disabled) btn.textContent = 'REALIZAR PEDIDO';
       }
     };
 
-    // Formatters
-    window.formatCardNumber = function(input) {
-      let v = input.value.replace(/\D/g, '').substring(0, 16);
-      let parts = [];
-      for (let i = 0; i < v.length; i += 4) {
-        parts.push(v.substring(i, i + 4));
+    function showOpenpayNotice(type, htmlMessage) {
+      const notice = document.getElementById('openpayStatusNotice');
+      if (!notice) return;
+      notice.style.display = 'block';
+      if (type === 'error') {
+        notice.style.background = '#FDF1F1';
+        notice.style.border = '1px solid #D9A7A3';
+        notice.style.color = '#7A2E2E';
+      } else if (type === 'info') {
+        notice.style.background = '#FDF8F6';
+        notice.style.border = '1px solid #E3C7B8';
+        notice.style.color = '#6D5B57';
+      } else if (type === 'success') {
+        notice.style.background = '#F2F9F5';
+        notice.style.border = '1px solid #A3D9B8';
+        notice.style.color = '#1E5631';
       }
-      input.value = parts.join(' ');
-    };
+      notice.innerHTML = htmlMessage;
+    }
 
-    window.formatCardExp = function(input) {
-      let v = input.value.replace(/\D/g, '').substring(0, 4);
-      if (v.length >= 2) {
-        input.value = v.substring(0, 2) + '/' + v.substring(2, 4);
+    async function registerOrderInGoogleSheets(orderPayload) {
+      let registeredOrderId = orderPayload.ID_Pedido;
+      try {
+        const response = await fetch(`${API_URL}?action=createOrder&data=${encodeURIComponent(JSON.stringify(orderPayload))}`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.status === 'success' && result.orderId) {
+            registeredOrderId = result.orderId;
+          }
+        }
+      } catch (err) {
+        fetch(API_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(orderPayload)
+        }).catch(() => {});
+      }
+      return registeredOrderId;
+    }
+
+    function openSuccessModalWithData(data) {
+      document.getElementById('modalOrderId').textContent = data.orderId;
+      document.getElementById('modalCustomerName').textContent = `${data.firstName} ${data.lastName}`.trim();
+      document.getElementById('modalTotal').textContent = `S/ ${Number(data.total || 0).toLocaleString('es-PE')}`;
+      document.getElementById('modalShipping').textContent = data.shippingMethodName || 'Entrega asegurada con firma';
+
+      const openpayRow = document.getElementById('modalOpenpayRow');
+      const openpayAuth = document.getElementById('modalOpenpayAuth');
+      if (data.openpayChargeId && openpayRow && openpayAuth) {
+        openpayRow.style.display = 'flex';
+        openpayAuth.textContent = data.openpayAuthorization
+          ? `Auth #${data.openpayAuthorization} (${data.openpayChargeId})`
+          : data.openpayChargeId;
+      } else if (openpayRow) {
+        openpayRow.style.display = 'none';
+      }
+
+      let waMsg = `Hola Bellini Fine Jewelry, acabo de realizar mi pedido ${data.orderId} por S/ ${Number(data.total || 0).toLocaleString('es-PE')}. Detalle: ${(data.itemsSummaryList || []).join('; ')}. Nombre: ${data.firstName} ${data.lastName}, Correo: ${data.email}, Packaging: ${data.packagingName}.`;
+      if (data.openpayChargeId) {
+        waMsg += ` Pago procesado con Tarjeta vía Openpay (ID: ${data.openpayChargeId}${data.openpayAuthorization ? ', Auth: ' + data.openpayAuthorization : ''}).`;
+      }
+      if (data.brideName) waMsg += ` Novia: ${data.brideName}.`;
+      if (data.dedication) waMsg += ` Dedicatoria: "${data.dedication}".`;
+      waMsg += ` Solicito confirmación y comprobante.`;
+
+      document.getElementById('modalWhatsappBtn').href = `https://wa.me/51922427713?text=${encodeURIComponent(waMsg)}`;
+      document.getElementById('orderSuccessModal').classList.add('open');
+    }
+
+    function restoreCheckoutStepsFromPending(pending) {
+      if (!pending || !pending.orderPayload) return;
+      const p = pending.orderPayload;
+      if (p.Correo) document.getElementById('checkoutEmail').value = p.Correo;
+      if (p.Nombre) document.getElementById('shipFirstName').value = p.Nombre;
+      if (p.Apellido) document.getElementById('shipLastName').value = p.Apellido;
+      if (p.DNI) document.getElementById('shipDni').value = p.DNI;
+      if (pending.rawPhone) document.getElementById('shipPhone').value = pending.rawPhone;
+      if (p.Direccion) document.getElementById('shipAddress').value = p.Direccion;
+      if (p.Refrenecia) document.getElementById('shipReference').value = p.Refrenecia;
+
+      // Mark Step 1 & Step 2 completed and open Step 3 directly
+      document.getElementById('summaryEmailText').textContent = p.Correo || '-';
+      document.getElementById('step1Content').style.display = 'none';
+      document.getElementById('step1Summary').style.display = 'block';
+      document.getElementById('step1EditBtn').style.display = 'block';
+      document.getElementById('step1Number').classList.add('completed');
+
+      document.getElementById('summaryAddressText').textContent = `${p.Nombre || ''} ${p.Apellido || ''}, ${p.Direccion || ''}, ${p.Distrito || ''}, ${p.Departamento || ''}`;
+      document.getElementById('summaryMethodText').textContent = `Método: ${pending.shippingMethodName || 'Entrega asegurada'} | Packaging: ${pending.packagingName || 'Clásico'}`;
+      document.getElementById('step2Content').style.display = 'none';
+      document.getElementById('step2Summary').style.display = 'block';
+      document.getElementById('step2EditBtn').style.display = 'block';
+      document.getElementById('step2Number').classList.add('completed');
+      document.getElementById('step2Container').classList.remove('disabled');
+
+      const step3 = document.getElementById('step3Container');
+      step3.classList.remove('disabled');
+      step3.classList.add('active');
+      document.getElementById('step3Content').style.display = 'block';
+    }
+
+    // Verificar retorno desde la pasarela Openpay Redirect (?id=tr...)
+    async function checkOpenpayReturn() {
+      const urlParams = new URLSearchParams(window.location.search);
+      let chargeId = urlParams.get('id') || urlParams.get('charge_id') || '';
+
+      // En caso de query string concatenado por redirección
+      if (!chargeId && window.location.search.includes('id=tr')) {
+        const match = window.location.search.match(/id=(tr[a-zA-Z0-9]+)/);
+        if (match) chargeId = match[1];
+      }
+
+      if (!chargeId) return;
+
+      let pending = null;
+      try {
+        const rawPending = localStorage.getItem('bellini_pending_openpay');
+        if (rawPending) pending = JSON.parse(rawPending);
+      } catch (e) {}
+
+      if (pending) {
+        restoreCheckoutStepsFromPending(pending);
       } else {
-        input.value = v;
+        const step3 = document.getElementById('step3Container');
+        step3.classList.remove('disabled');
+        step3.classList.add('active');
+        document.getElementById('step3Content').style.display = 'block';
       }
-    };
+
+      const btn = document.getElementById('btnPlaceOrder');
+      if (btn) {
+        btn.disabled = true;
+        btn.textContent = 'VERIFICANDO PAGO EN OPENPAY...';
+      }
+      showOpenpayNotice('info', 'Verificando el estado de su transacción con <strong>Openpay by BBVA</strong>...');
+
+      try {
+        const resp = await fetch(`/api/openpay-charge?id=${encodeURIComponent(chargeId)}`);
+        const result = await resp.json();
+
+        if (resp.ok && result.status === 'success' && result.charge) {
+          const charge = result.charge;
+
+          if (charge.status === 'completed') {
+            showOpenpayNotice('success', `¡Pago aprobado exitosamente! Código de autorización: <strong>${charge.authorization || 'OK'}</strong>.`);
+
+            let finalOrderId = charge.order_id || (pending && pending.orderPayload ? pending.orderPayload.ID_Pedido : `PED-${Date.now()}`);
+
+            if (pending && pending.orderPayload && !pending.registeredInSheets) {
+              pending.orderPayload.Metodo_Pago = 'Openpay Tarjeta';
+              pending.orderPayload.ID_Transaccion_Openpay = charge.id;
+              pending.orderPayload.Autorizacion_Openpay = charge.authorization || '';
+              finalOrderId = await registerOrderInGoogleSheets(pending.orderPayload);
+              pending.registeredInSheets = true;
+              localStorage.setItem('bellini_pending_openpay', JSON.stringify(pending));
+            }
+
+            openSuccessModalWithData({
+              orderId: finalOrderId,
+              firstName: pending ? pending.firstName : (charge.customer ? charge.customer.name : 'Cliente'),
+              lastName: pending ? pending.lastName : '',
+              email: pending ? pending.email : '',
+              total: charge.amount || (pending ? pending.total : 0),
+              shippingMethodName: pending ? pending.shippingMethodName : checkoutShippingMethodName,
+              packagingName: pending ? pending.packagingName : selectedPackagingName,
+              brideName: pending ? pending.brideName : '',
+              dedication: pending ? pending.dedication : '',
+              itemsSummaryList: pending ? pending.itemsSummaryList : [],
+              openpayChargeId: charge.id,
+              openpayAuthorization: charge.authorization
+            });
+
+            // Limpiar carrito y estado pendiente
+            localStorage.removeItem('bellini_cart');
+            localStorage.removeItem('bellini_pending_openpay');
+            cart = [];
+            renderCheckoutSummary();
+
+            if (window.history && window.history.replaceState) {
+              window.history.replaceState({}, document.title, window.location.pathname);
+            }
+            return;
+          } else {
+            // Transacción fallida, cancelada o pendiente
+            const reason = charge.error_message
+              || (charge.status === 'charge_pending' ? 'La operación no fue completada en el formulario de pago.' : 'La tarjeta fue denegada por el banco emisor.');
+            showOpenpayNotice(
+              'error',
+              `<strong>No se pudo completar el cargo en Openpay:</strong> ${reason}<br>Su carrito sigue intacto. Puede hacer clic en <strong>PAGAR CON TARJETA (OPENPAY)</strong> para intentarlo nuevamente o seleccionar otro método de pago.`
+            );
+          }
+        } else {
+          showOpenpayNotice(
+            'error',
+            `No se pudo verificar la transacción (${result.message || 'Error de consulta'}). Si desea reintentar el pago, haga clic en el botón inferior.`
+          );
+        }
+      } catch (err) {
+        showOpenpayNotice(
+          'error',
+          'Error de conexión al verificar el estado del pago en Openpay. Por favor intente nuevamente.'
+        );
+      }
+
+      if (btn) {
+        btn.disabled = false;
+        btn.textContent = selectedPaymentMethod === 'cards' ? 'PAGAR CON TARJETA (OPENPAY)' : 'REALIZAR PEDIDO';
+      }
+      if (window.history && window.history.replaceState) {
+        window.history.replaceState({}, document.title, window.location.pathname);
+      }
+    }
 
     // Place Order
     window.handlePlaceOrder = async function() {
       const btn = document.getElementById('btnPlaceOrder');
       btn.disabled = true;
-      btn.textContent = 'PROCESANDO PEDIDO...';
+
+      const notice = document.getElementById('openpayStatusNotice');
+      if (notice) notice.style.display = 'none';
 
       // 1. Datos Requisito 1 (Correo)
       let email = document.getElementById('checkoutEmail').value.trim();
@@ -836,6 +1037,13 @@
         const storedCart = localStorage.getItem('bellini_cart');
         if (storedCart) currentCart = JSON.parse(storedCart);
       } catch (e) {}
+
+      if (!currentCart || currentCart.length === 0) {
+        btn.disabled = false;
+        btn.textContent = selectedPaymentMethod === 'cards' ? 'PAGAR CON TARJETA (OPENPAY)' : 'REALIZAR PEDIDO';
+        showOpenpayNotice('error', 'No hay productos en su cesta de compras.');
+        return;
+      }
 
       let subtotal = 0;
       let totalArticulos = 0;
@@ -895,44 +1103,94 @@
         items: itemsPayload
       };
 
-      let registeredOrderId = fallbackOrderId;
+      // =====================================================================
+      // OPCIÓN A: PAGO CON TARJETA VÍA OPENPAY REDIRECT (OPCIÓN 2)
+      // =====================================================================
+      if (selectedPaymentMethod === 'cards') {
+        btn.textContent = 'REDIRIGIENDO A PASARELA OPENPAY...';
+        showOpenpayNotice('info', 'Generando sesión de pago segura con <strong>Openpay by BBVA</strong>. Por favor espere...');
 
-      // 7. Enviar a Google Apps Script
-      try {
-        const response = await fetch(`${API_URL}?action=createOrder&data=${encodeURIComponent(JSON.stringify(orderPayload))}`);
-        if (response.ok) {
-          const result = await response.json();
-          if (result.status === 'success' && result.orderId) {
-            registeredOrderId = result.orderId;
+        try {
+          const returnUrl = `${window.location.origin}${window.location.pathname}`;
+          const openpayResp = await fetch('/api/openpay-charge', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              amount: total,
+              currency: 'PEN',
+              order_id: fallbackOrderId,
+              description: `Pedido BELLINI Fine Jewelry - ${itemsSummaryList.join('; ')}`.substring(0, 240),
+              redirect_url: returnUrl,
+              customer: {
+                name: firstName || 'Cliente',
+                last_name: lastName || 'BELLINI',
+                email: email || 'clientes@bellinifinejewelry.com',
+                phone_number: rawPhone || '922427713'
+              }
+            })
+          });
+
+          const openpayData = await openpayResp.json();
+
+          if (!openpayResp.ok || openpayData.status !== 'success' || !openpayData.redirect_url) {
+            throw new Error(openpayData.message || 'No se pudo generar el formulario de pago en Openpay.');
           }
+
+          // Guardar contexto del pedido antes de redirigir a Openpay
+          localStorage.setItem('bellini_pending_openpay', JSON.stringify({
+            chargeId: openpayData.charge_id,
+            openpayOrderId: openpayData.openpay_order_id,
+            orderPayload: orderPayload,
+            itemsSummaryList: itemsSummaryList,
+            total: total,
+            shippingMethodName: checkoutShippingMethodName,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            rawPhone: rawPhone,
+            packagingName: selectedPackagingName,
+            brideName: brideName,
+            dedication: dedication,
+            registeredInSheets: false,
+            createdAt: Date.now()
+          }));
+
+          // Redirigir al formulario seguro card_capture de Openpay
+          window.location.href = openpayData.redirect_url;
+          return;
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = 'PAGAR CON TARJETA (OPENPAY)';
+          showOpenpayNotice(
+            'error',
+            `<strong>Error al conectar con Openpay:</strong> ${err.message || 'Intente nuevamente en unos segundos.'}`
+          );
+          return;
         }
-      } catch (err) {
-        // En caso de bloqueo CORS del navegador, respaldo por POST no-cors
-        fetch(API_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'text/plain' },
-          body: JSON.stringify(orderPayload)
-        }).catch(() => {});
       }
 
-      // 8. Mostrar Modal de Éxito
-      document.getElementById('modalOrderId').textContent = registeredOrderId;
-      document.getElementById('modalCustomerName').textContent = `${firstName} ${lastName}`;
-      document.getElementById('modalTotal').textContent = `S/ ${total.toLocaleString('es-PE')}`;
-      document.getElementById('modalShipping').textContent = checkoutShippingMethodName;
+      // =====================================================================
+      // OPCIÓN B / C: TRANSFERENCIA / YAPE / PLIN O WHATSAPP
+      // =====================================================================
+      btn.textContent = 'PROCESANDO PEDIDO...';
+      const registeredOrderId = await registerOrderInGoogleSheets(orderPayload);
 
-      let waMsg = `Hola Bellini Fine Jewelry, acabo de realizar mi pedido ${registeredOrderId} por S/ ${total.toLocaleString('es-PE')}. Detalle: ${itemsSummaryList.join('; ')}. Nombre: ${firstName} ${lastName}, Correo: ${email}, Packaging: ${selectedPackagingName}.`;
-      if (brideName) waMsg += ` Novia: ${brideName}.`;
-      if (dedication) waMsg += ` Dedicatoria: "${dedication}".`;
-      waMsg += ` Solicito confirmación y comprobante.`;
+      openSuccessModalWithData({
+        orderId: registeredOrderId,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        total: total,
+        shippingMethodName: checkoutShippingMethodName,
+        packagingName: selectedPackagingName,
+        brideName: brideName,
+        dedication: dedication,
+        itemsSummaryList: itemsSummaryList
+      });
 
-      document.getElementById('modalWhatsappBtn').href = `https://wa.me/51922427713?text=${encodeURIComponent(waMsg)}`;
-
-      document.getElementById('orderSuccessModal').classList.add('open');
-
-      // 9. Limpiar carrito
+      // Limpiar carrito
       localStorage.removeItem('bellini_cart');
+      localStorage.removeItem('bellini_pending_openpay');
       cart = [];
     };
   </script>
