@@ -1,10 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Página Principal -->
   <url>
     <loc>https://bellinifinejewelry.com/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- Productos (Anillos de Compromiso y Aros de Matrimonio) -->
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0001</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0002</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0003</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0004</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0005</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0006</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0007</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bellinifinejewelry.com/product-detail.html?id=PRD0008</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Páginas Legales -->
   <url>
     <loc>https://bellinifinejewelry.com/terminos-y-condiciones</loc>
     <changefreq>monthly</changefreq>

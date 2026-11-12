@@ -9,8 +9,8 @@
       location.replace('https://' + location.host + location.pathname + location.search + location.hash);
     }
   </script>
-  <meta name="description" content="BELLINI | Alta joyería, anillos de compromiso y aros de matrimonio con diamantes certificados.">
-  <link rel="canonical" href="https://bellinifinejewelry.com/product-detail.html">
+  <meta name="description" id="metaDescription" content="BELLINI | Alta joyería, anillos de compromiso y aros de matrimonio con diamantes certificados.">
+  <link rel="canonical" id="canonicalLink" href="https://bellinifinejewelry.com/product-detail.html">
   <title>BELLINI | Detalles del Producto</title>
   
   <!-- Fonts -->
@@ -21,10 +21,10 @@
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css?v=6.0">
   
-  <!-- Favicon (Diamante Blanco sobre Círculo Rosado BELLINI) -->
-  <link rel="icon" type="image/png" href="/img/logo-bellini-diamond-badge.png?v=9.0">
-  <link rel="shortcut icon" href="/favicon.ico?v=9.0">
-  <link rel="apple-touch-icon" href="/img/logo-bellini-diamond-badge.png?v=9.0">
+  <!-- Favicon (Diamante Negro Original) -->
+  <link rel="icon" type="image/png" href="/img/logo-bellini-diamond.png?v=10.0">
+  <link rel="shortcut icon" href="/favicon.ico?v=10.0">
+  <link rel="apple-touch-icon" href="/img/logo-bellini-diamond.png?v=10.0">
 </head>
 <body style="background: var(--color-bg);">
 
@@ -550,6 +550,74 @@
           </div>
         </div>
       `;
+
+      // Actualizar SEO dinámico (Title, Meta Description, Canonical y Schema.org Product + BreadcrumbList)
+      document.title = `${productName} | ${catName} | BELLINI Fine Jewelry`;
+      const canonicalUrl = `https://bellinifinejewelry.com/product-detail.html?id=${encodeURIComponent(prodId)}`;
+      const canonicalEl = document.getElementById('canonicalLink');
+      if (canonicalEl) canonicalEl.setAttribute('href', canonicalUrl);
+
+      const metaDescEl = document.getElementById('metaDescription');
+      const seoDescription = `${productName} — ${catName} en ${detailSelectedMetal} (${activeCaratLabel}). ${productDetail || 'Alta joyería con diamantes certificados en BELLINI Fine Jewelry.'}`;
+      if (metaDescEl) metaDescEl.setAttribute('content', seoDescription);
+
+      let schemaEl = document.getElementById('productStructuredData');
+      if (!schemaEl) {
+        schemaEl = document.createElement('script');
+        schemaEl.type = 'application/ld+json';
+        schemaEl.id = 'productStructuredData';
+        document.head.appendChild(schemaEl);
+      }
+      const catSlug = (activeVariant.Categoria === 'AC' || activeVariant.category === 'compromiso') ? 'compromiso' : 'matrimonio';
+      schemaEl.textContent = JSON.stringify({
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "BELLINI",
+                "item": "https://bellinifinejewelry.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": catName,
+                "item": `https://bellinifinejewelry.com/?cat=${catSlug}#productos`
+              },
+              {
+                "@type": "ListItem",
+                "position": 3,
+                "name": productName,
+                "item": canonicalUrl
+              }
+            ]
+          },
+          {
+            "@type": "Product",
+            "name": productName,
+            "sku": productSku,
+            "productID": prodId,
+            "category": catName,
+            "description": seoDescription,
+            "image": galleryImgs.map(src => `https://bellinifinejewelry.com/${src.split('?')[0]}`),
+            "brand": {
+              "@type": "Brand",
+              "name": "BELLINI Fine Jewelry"
+            },
+            "offers": {
+              "@type": "Offer",
+              "url": canonicalUrl,
+              "priceCurrency": "PEN",
+              "price": Number(activeVariant.PV || activeVariant.price || 0),
+              "availability": "https://schema.org/InStock",
+              "itemCondition": "https://schema.org/NewCondition"
+            }
+          }
+        ]
+      });
 
       // Attach listeners for Metal selector buttons
       document.querySelectorAll('#metalSelectorGroup .metal-btn').forEach(btn => {
