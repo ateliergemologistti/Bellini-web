@@ -233,7 +233,7 @@
               </div>
               <div class="auth-input-group">
                 <label class="auth-label">Número de celular*</label>
-                <input type="tel" class="auth-input" id="createPhone" required autocomplete="tel-national" placeholder="922 427 713">
+                <input type="tel" class="auth-input" id="createPhone" required autocomplete="tel-national" placeholder="922427713" maxlength="9" minlength="9" pattern="\d{9}" inputmode="numeric" oninput="this.value = this.value.replace(/\D/g, '').slice(0, 9)" title="Ingrese los 9 dígitos de su celular">
               </div>
             </div>
 
