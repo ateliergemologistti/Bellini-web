@@ -262,7 +262,7 @@ function getProductVariants(prodId, sourceList = products) {
   });
 }
 
-const IMG_CACHE_VER = 'v=7.0';
+const IMG_CACHE_VER = 'v=8.0';
 const PRODUCT_GALLERY_MAP = {
   PRD0001: ['img/PRD0001/1.jpg', 'img/PRD0001/2.png', 'img/PRD0001/3.jpg'],
   PRD0002: ['img/PRD0002/1.jpg', 'img/PRD0002/2.jpg'],
@@ -271,7 +271,7 @@ const PRODUCT_GALLERY_MAP = {
   PRD0005: ['img/PRD0005/1.jpg', 'img/PRD0005/2.jpg'],
   PRD0006: ['img/PRD0006/1.jpg', 'img/PRD0006/2.jpg'],
   PRD0007: ['img/PRD0007/1.png', 'img/PRD0007/2.png', 'img/PRD0007/3.png'],
-  PRD0008: ['img/PRD0008/1.jpg', 'img/PRD0008/2.jpg']
+  PRD0008: ['img/PRD0008/1.png', 'img/PRD0008/2.png', 'img/PRD0008/3.jpg']
 };
 
 function getProductGallery(productOrId) {
@@ -324,13 +324,14 @@ window.handleImgFallback = handleImgFallback;
 
 // API Endpoint - Google Apps Script (Atelier&Gemologist E-commerce DB)
 const API_URL = 'https://script.google.com/macros/s/AKfycbxXxlINQu2iUSKrFrvF8JuR_FW-VgJKYt8x-DBHX1DWrJO1zakfyf1ciDw6glUu2vM2/exec';
-const PRODUCTS_CACHE_KEY = 'bellini_products_v3';
+const PRODUCTS_CACHE_KEY = 'bellini_products_v4';
 
 // Load cached products if available, otherwise use initialProducts
 let products = (() => {
   try {
     localStorage.removeItem('bellini_products');
     localStorage.removeItem('bellini_products_v2');
+    localStorage.removeItem('bellini_products_v3');
     const cached = localStorage.getItem(PRODUCTS_CACHE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
