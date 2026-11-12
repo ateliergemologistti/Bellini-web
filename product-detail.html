@@ -3,7 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <script>
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
   <meta name="description" content="BELLINI | Alta joyería, anillos de compromiso y aros de matrimonio con diamantes certificados.">
+  <link rel="canonical" href="https://bellinifinejewelry.com/product-detail.html">
   <title>BELLINI | Detalles del Producto</title>
   
   <!-- Fonts -->
@@ -14,8 +21,10 @@
   <!-- CSS -->
   <link rel="stylesheet" href="styles.css?v=6.0">
   
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="img/logo-bellini-diamond.png?v=3.0">
+  <!-- Favicon (Diamante Blanco) -->
+  <link rel="icon" type="image/png" href="/img/logo-bellini-diamond-white.png">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/img/logo-bellini-diamond-white.png">
 </head>
 <body style="background: var(--color-bg);">
 

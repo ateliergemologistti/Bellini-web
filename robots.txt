@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://bellinifinejewelry.com/sitemap.xml
+Host: https://bellinifinejewelry.com
