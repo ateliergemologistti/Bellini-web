@@ -394,6 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initSmoothScroll();
   initHeroSlideshow();
   initAuth();
+  initCookieBanner();
   fetchLiveProducts();
 });
 
@@ -1276,4 +1277,52 @@ function updateAuthUI() {
     }
   }
 }
+
+// ──────────────────────────────────────────
+// 12. COOKIE CONSENT BANNER (Footer Popup)
+// ──────────────────────────────────────────
+function initCookieBanner() {
+  try {
+    if (localStorage.getItem('bellini_cookies_accepted') === 'true') return;
+  } catch (e) {}
+
+  if (document.getElementById('belliniCookieBanner')) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'belliniCookieBanner';
+  banner.className = 'cookie-banner';
+  banner.setAttribute('role', 'region');
+  banner.setAttribute('aria-label', 'Aviso de cookies');
+  banner.innerHTML = `
+    <div class="cookie-banner-content">
+      <p class="cookie-banner-text">
+        Usamos cookies necesarias para que el sitio funcione correctamente y para recordar tus preferencias. Puedes consultar más información en nuestra <a href="politica-de-cookies.html">Política de Cookies</a>.
+      </p>
+      <button type="button" class="cookie-accept-btn" id="acceptCookiesBtn">Aceptar</button>
+    </div>
+  `;
+
+  document.body.appendChild(banner);
+
+  // Trigger smooth entrance animation
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      banner.classList.add('visible');
+    }, 150);
+  });
+
+  const acceptBtn = document.getElementById('acceptCookiesBtn');
+  if (acceptBtn) {
+    acceptBtn.addEventListener('click', () => {
+      try {
+        localStorage.setItem('bellini_cookies_accepted', 'true');
+      } catch (e) {}
+      banner.classList.remove('visible');
+      setTimeout(() => {
+        banner.remove();
+      }, 350);
+    });
+  }
+}
+
 

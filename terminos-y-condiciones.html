@@ -3,13 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <script>
+    if (location.protocol === 'http:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
+      location.replace('https://' + location.host + location.pathname + location.search + location.hash);
+    }
+  </script>
   <title>Términos y Condiciones | BELLINI Fine Jewelry</title>
-  <meta name="description" content="Términos y Condiciones de compra, envíos asegurados, garantías y pagos mediante pasarela Openpay BBVA en BELLINI Fine Jewelry.">
+  <meta name="description" content="Términos y Condiciones de uso, compra, medios de pago Openpay BBVA, envíos y cambios en BELLINI Fine Jewelry (ATELIER JOYAS MARKETING S.A.).">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
   <link rel="canonical" href="https://bellinifinejewelry.com/terminos-y-condiciones">
-  <link rel="stylesheet" href="styles.css?v=7.0">
+  <link rel="stylesheet" href="styles.css?v=9.0">
   <link rel="icon" type="image/png" href="/img/logo-bellini-diamond.png?v=10.0">
   <link rel="shortcut icon" href="/favicon.ico?v=10.0">
   <link rel="apple-touch-icon" href="/img/logo-bellini-diamond.png?v=10.0">
@@ -41,7 +47,7 @@
       color: var(--color-steel);
     }
     .legal-container {
-      max-width: 860px;
+      max-width: 880px;
       margin: 0 auto;
       padding: 3.5rem 1.5rem 5rem;
     }
@@ -60,7 +66,7 @@
     }
     .legal-section h2 {
       font-family: var(--font-heading);
-      font-size: 1.4rem;
+      font-size: 1.38rem;
       color: var(--color-text);
       margin-bottom: 0.85rem;
       padding-bottom: 0.45rem;
@@ -70,7 +76,7 @@
     .legal-section li {
       font-size: 0.94rem;
       color: var(--color-steel);
-      line-height: 1.75;
+      line-height: 1.78;
       margin-bottom: 0.75rem;
     }
     .legal-section ul {
@@ -114,7 +120,7 @@
           <a href="index.html#productos" style="color: var(--color-black);">Colecciones</a>
         </div>
         <div class="nav-item">
-          <a href="index.html#nosotros" style="color: var(--color-black);">Nosotros</a>
+          <a href="recojos-y-envios.html" style="color: var(--color-black);">Recojos y Envíos</a>
         </div>
         <div class="nav-item">
           <a href="politica-de-privacidad.html" style="color: var(--color-black);">Política de Privacidad</a>
@@ -129,9 +135,9 @@
   <!-- HERO -->
   <section class="legal-hero">
     <div class="container">
-      <span class="legal-badge">Información Legal del Comercio</span>
+      <span class="legal-badge">Normativa Legal y Comercial</span>
       <h1 class="legal-title">Términos y Condiciones</h1>
-      <p class="legal-updated">Última actualización: Noviembre 2026 • ATELIER JOYAS MARKETING S.A. (BELLINI Fine Jewelry)</p>
+      <p class="legal-updated">ATELIER JOYAS MARKETING S.A. (BELLINI Fine Jewelry)</p>
     </div>
   </section>
 
@@ -140,67 +146,74 @@
     <div class="legal-card">
 
       <div class="legal-section">
-        <h2>1. Identificación del Comercio y Datos de Contacto</h2>
-        <p>El presente sitio web <strong>www.bellinifinejewelry.com</strong> es operado por <strong>ATELIER JOYAS MARKETING S.A.</strong> bajo la marca comercial <strong>BELLINI Fine Jewelry</strong>. Al navegar, registrarse o realizar una compra en nuestra tienda virtual, el usuario acepta íntegramente los presentes Términos y Condiciones.</p>
+        <h2>I. Aviso Legal</h2>
+        <p>El presente sitio web <strong>https://bellinifinejewelry.com</strong> es de titularidad y operado por <strong>ATELIER JOYAS MARKETING S.A.</strong> (en adelante, <strong>BELLINI Fine Jewelry</strong>), empresa dedicada a la promoción, diseño y comercialización de productos de alta joyería en oro de 18 quilates (Oro Amarillo y Oro Blanco), diamantes certificados y piedras preciosas, así como al asesoramiento especializado en anillos de compromiso y aros de matrimonio.</p>
+        <p>Nuestras piezas son elaboradas por maestros orfebres en talleres especializados y bajo rigurosos controles gemológicos de calidad. La aceptación de los presentes Términos y Condiciones es un requisito obligatorio e indispensable para registrarse y/o adquirir productos en nuestro sitio web.</p>
         <div class="legal-highlight-box">
-          <p><strong>Razón Social:</strong> ATELIER JOYAS MARKETING S.A.</p>
-          <p><strong>Nombre Comercial:</strong> BELLINI Fine Jewelry</p>
-          <p><strong>Teléfono de Contacto y Atención al Cliente:</strong> <a href="tel:+51922427713" style="color: var(--color-dark); text-decoration: underline;">+51 922 427 713</a></p>
-          <p><strong>Correo Electrónico Oficial:</strong> <a href="mailto:ateliergemologistti@gmail.com" style="color: var(--color-dark); text-decoration: underline;">ateliergemologistti@gmail.com</a></p>
+          <p><strong>Titular del Comercio:</strong> ATELIER JOYAS MARKETING S.A. (BELLINI Fine Jewelry)</p>
+          <p><strong>Teléfono / WhatsApp de Atención al Cliente:</strong> <a href="tel:+51922427713" style="color: var(--color-dark); text-decoration: underline;">+51 922 427 713</a></p>
+          <p><strong>Correo Electrónico Corporativo:</strong> <a href="mailto:ateliergemologistti@gmail.com" style="color: var(--color-dark); text-decoration: underline;">ateliergemologistti@gmail.com</a></p>
+          <p><strong>Tienda habilitada para recojo:</strong> San Isidro: M. Dasso 160</p>
         </div>
       </div>
 
       <div class="legal-section">
-        <h2>2. Productos, Especificaciones Gemológicas y Precios</h2>
-        <p>BELLINI Fine Jewelry comercializa piezas de alta joyería elaboradas en metales preciosos (Oro Amarillo de 18k y Oro Blanco de 18k) y piedras preciosas seleccionadas, cuyos detalles, quilates (ct) y códigos SKU se especifican en la ficha de cada producto.</p>
+        <h2>II. Condiciones de Uso del Sitio Web</h2>
+        <p>El acceso, navegación y uso del sitio web se rigen por la legislación vigente en la República del Perú (incluyendo el Código de Protección y Defensa del Consumidor – Ley N° 29571) y bajo el principio de buena fe.</p>
+        <p>Queda expresamente prohibido cualquier uso del sitio web con fines ilícitos, fraudulentos o que atenten contra la ley, los derechos de terceros, la moral o el orden público. <strong>BELLINI Fine Jewelry</strong> se reserva el derecho de restringir el acceso a usuarios que incurran en conductas contrarias a estas disposiciones.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>III. Capacidad Legal de los Usuarios y Registro</h2>
+        <p>Los servicios y transacciones ofrecidos en este portal están destinados exclusivamente a personas mayores de edad con plena capacidad legal para contratar conforme a las leyes peruanas. En caso de que menores de edad o personas sin capacidad legal operen en la plataforma, la responsabilidad civil recaerá íntegramente sobre sus padres, tutores o representantes legales.</p>
+        <p>El usuario se obliga a proporcionar datos personales veraces, exactos, actuales y completos tanto en el formulario de registro como en el proceso de compra (nombre, apellido, DNI, teléfono, correo electrónico y dirección de entrega), los cuales tienen carácter de <strong>declaración jurada</strong>.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>IV. Modificaciones del Sitio y de los Términos</h2>
+        <p><strong>BELLINI Fine Jewelry</strong> se reserva la facultad de actualizar, modificar, añadir o suprimir contenidos del sitio web, especificaciones del catálogo, precios y los presentes Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor a partir de su publicación en el portal digital, respetándose siempre las condiciones vigentes al momento de las compras ya perfeccionadas.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>V. Procedimiento de Compra, Comprobantes y Medios de Pago (Pasarela Openpay BBVA)</h2>
+        <p>Todos los precios exhibidos en el sitio web están expresados en <strong>Soles Peruanos (S/ – PEN)</strong> e incluyen el Impuesto General a las Ventas (IGV 18%). En la ficha de cada joya, el cliente puede seleccionar el metal (Oro Amarillo u Oro Blanco) y el quilataje (1 ct, 1.5 ct o 2 ct), adecuándose dinámicamente el código SKU y el precio correspondiente antes de añadir el artículo al carrito.</p>
+        <p>El pago se realiza al finalizar el proceso de compra en la pantalla de Checkout y constituye condición indispensable para la formalización del pedido. Con la confirmación de la compra se emite el respectivo comprobante de pago electrónico (boleta o factura). Los medios de pago admitidos son:</p>
         <ul>
-          <li>Todos los precios exhibidos en el sitio web están expresados en <strong>Soles Peruanos (S/ - PEN)</strong> e incluyen el Impuesto General a las Ventas (IGV 18%).</li>
-          <li>El precio final de cada joya se actualiza dinámicamente en función del quilate seleccionado por el cliente antes de añadir el artículo a la bolsa de compras.</li>
-          <li>Cada pieza se entrega acompañada de su certificado de autenticidad y empaque de lujo seleccionado durante el proceso de compra.</li>
+          <li><strong>Tarjetas de Crédito y Débito vía Pasarela Oficial Openpay (BBVA):</strong> Aceptamos tarjetas <strong>Visa, Mastercard, American Express y Diners Club</strong>. El procesamiento del pago se realiza de forma segura a través de la pasarela <strong>Openpay Perú (Openpay by BBVA)</strong> mediante redirección a su entorno certificado con encriptación <strong>TLS de 256 bits</strong>, cumplimiento <strong>PCI-DSS Nivel 1</strong> y validación antifraude <strong>3D Secure</strong>.</li>
+          <li><strong>Transferencias o Depósitos Bancarios y Billeteras Digitales:</strong> A través de nuestras cuentas corporativas oficiales en BCP y BBVA, así como mediante Yape o Plin al número oficial <strong>922 427 713</strong>, enviando la constancia de operación por WhatsApp para su validación inmediata.</li>
+          <li><strong>Coordinación con Asesor Personalizado por WhatsApp:</strong> Atención directa con un asesor gemólogo al <strong>+51 922 427 713</strong>.</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>3. Medios de Pago y Pasarela de Pagos Openpay (BBVA)</h2>
-        <p>Para garantizar la máxima seguridad en todas las transacciones en línea, los pagos con tarjetas de crédito y débito (<strong>Visa, Mastercard, American Express y Diners Club</strong>) en nuestro sitio web son procesados a través de la pasarela de pagos oficial <strong>Openpay Perú (Openpay by BBVA)</strong>.</p>
-        <div class="legal-highlight-box">
-          <p><strong>Seguridad Transaccional con Openpay:</strong></p>
-          <p>Al elegir el pago con tarjeta, el cliente es redirigido al entorno seguro certificado de <strong>Openpay</strong> bajo protocolo <strong>HTTPS / TLS de 256 bits</strong>, cumpliendo con los estándares internacionales <strong>PCI-DSS Nivel 1</strong> y autenticación <strong>3D Secure</strong>.</p>
-        </div>
+        <h2>VI. Despacho, Envíos, Recojo en Tienda e Incidencias de Entrega</h2>
+        <p>Las condiciones detalladas de despacho se encuentran publicadas en nuestro apartado de <a href="recojos-y-envios.html" style="color: var(--color-dark); text-decoration: underline;">Recojos y Envíos</a> y comprenden:</p>
         <ul>
-          <li><strong>BELLINI Fine Jewelry (ATELIER JOYAS MARKETING S.A.) no almacena ni tiene acceso a los números completos de tarjeta, fechas de vencimiento ni códigos de seguridad (CVV)</strong> de los clientes, los cuales son procesados directamente por Openpay.</li>
-          <li>Adicionalmente, ofrecemos como medios de pago alternativos transferencia bancaria (BCP / BBVA), billeteras digitales (Yape / Plin) y atención personalizada por WhatsApp.</li>
-          <li>Toda orden pagada con tarjeta queda sujeta a la validación antifraude y autorización del banco emisor a través de Openpay.</li>
+          <li><strong>Envío Gratis:</strong> Plazo de hasta <strong>3 días hábiles</strong> únicamente para los distritos de <strong>Lince, Magdalena del Mar, Miraflores, Pueblo Libre, San Borja, San Isidro, San Luis, San Miguel, Santiago de Surco y Surquillo</strong>.</li>
+          <li><strong>Otros distritos, provincias y destinos internacionales:</strong> Se debe coordinar la disponibilidad, el plazo y la tarifa directamente por WhatsApp al <a href="https://wa.me/51922427713" target="_blank" style="color: var(--color-dark); text-decoration: underline;"><strong>+51 922 427 713</strong></a>.</li>
+          <li><strong>Recojo en Tienda:</strong> Disponible sin costo y sin restricción geográfica. El pedido estará listo para recojo en <strong>3 días hábiles</strong> en nuestra sucursal habilitada en <strong>San Isidro: M. Dasso 160</strong>.</li>
+          <li><strong>Entregas fallidas:</strong> En caso de que el servicio de mensajería no logre ubicar la dirección indicada, no se encuentre al destinatario titular o persona autorizada en el domicilio, o se rechace la recepción, la joya retornará bajo custodia de seguridad a nuestra boutique y nos comunicaremos con el cliente para coordinar el recojo en tienda o un segundo envío (cuyo costo logístico adicional correrá por cuenta del cliente).</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>4. Despacho, Envíos Asegurados y Tiempos de Entrega</h2>
-        <p>Todas nuestras joyas viajan protegidas con seguro de cobertura total hasta la recepción firmada por el destinatario titular:</p>
+        <h2>VII. Políticas de Cambios y Devoluciones</h2>
         <ul>
-          <li><strong>Entrega Asegurada Gratuita con Firma:</strong> Plazo estimado de 2 a 4 días hábiles en embalaje de seguridad sellado sin costo adicional.</li>
-          <li><strong>Entrega Inmediata (Express):</strong> Disponible en Lima Metropolitana en el mismo día o dentro de las 24 horas hábiles mediante courier privado de alta seguridad (S/ 25.00).</li>
-          <li><strong>Recojo en Boutique / Showroom:</strong> Disponible sin costo previa coordinación de cita con nuestros asesores gemólogos al <strong>+51 922 427 713</strong> o al correo <strong>ateliergemologistti@gmail.com</strong>.</li>
+          <li>Los cambios de productos podrán solicitarse dentro de los <strong>siete (7) días hábiles</strong> siguientes a la fecha de entrega o recepción del pedido.</li>
+          <li>Para que proceda el cambio, es requisito indispensable que la joya <strong>no haya sido utilizada</strong>, se encuentre en perfecto estado de conservación, mantenga intactos sus precintos de seguridad y se entregue con su estuche, empaque y certificados originales completos, además del comprobante de compra.</li>
+          <li>No proceden cambios ni devoluciones en joyas que hayan sido grabadas, modificadas a pedido o fabricadas bajo especificaciones personalizadas del cliente.</li>
+          <li>Los costos asociados al recojo y reenvío por gestión de cambio corren por cuenta del cliente.</li>
         </ul>
       </div>
 
       <div class="legal-section">
-        <h2>5. Garantía, Cambios, Ajustes de Talla y Devoluciones</h2>
-        <ul>
-          <li><strong>Garantía de Autenticidad y Manufactura:</strong> Todas las joyas de BELLINI Fine Jewelry cuentan con garantía sobre la pureza del metal (Oro 18k) y las características gemológicas certificadas, así como mantenimiento de limpieza y pulido.</li>
-          <li><strong>Ajuste de Talla:</strong> Ofrecemos el primer ajuste de medida sin costo dentro de los primeros 30 días calendario posteriores a la entrega, siempre que el diseño del anillo lo permita técnicamente.</li>
-          <li><strong>Cambios y Devoluciones:</strong> Se aceptan solicitudes dentro de los 7 días calendario posteriores a la recepción del pedido, siempre que la joya se encuentre sin señales de uso, en perfecto estado original, con sus precintos de seguridad, empaque completo y certificados originales, y no corresponda a un pedido grabado o personalizado a medida.</li>
-          <li>En caso de reembolso aprobado por una compra realizada mediante tarjeta en la pasarela <strong>Openpay</strong>, el extorno se gestionará a la misma tarjeta utilizada en la compra, rigiéndose los tiempos de abono en cuenta por los plazos operativos del banco emisor del cliente.</li>
-        </ul>
+        <h2>VIII. Propiedad Intelectual</h2>
+        <p><strong>BELLINI Fine Jewelry (ATELIER JOYAS MARKETING S.A.)</strong> es la única y exclusiva titular de la marca, logotipos, diseños de joyería y de todos los derechos de propiedad intelectual e industrial referidos a los contenidos incluidos en este sitio web (textos, fotografías, catálogos, videos, gráficos, código fuente y diseño visual). Queda estrictamente prohibida su reproducción, distribución, comunicación pública, transformación o cualquier otra forma de explotación sin autorización previa, expresa y por escrito de la empresa.</p>
       </div>
 
       <div class="legal-section">
-        <h2>6. Legislación Aplicable y Atención de Consultas</h2>
-        <p>Los presentes Términos y Condiciones se rigen por las leyes vigentes de la República del Perú, incluyendo el Código de Protección y Defensa del Consumidor (Ley N° 29571). Para cualquier consulta, solicitud o reclamo sobre su pedido, puede comunicarse directamente con nosotros:</p>
-        <ul>
-          <li><strong>Teléfono / WhatsApp:</strong> +51 922 427 713</li>
-          <li><strong>Correo Electrónico:</strong> ateliergemologistti@gmail.com</li>
-        </ul>
+        <h2>IX. Protección de Datos Personales y Cookies</h2>
+        <p>El tratamiento de la información personal proporcionada por los usuarios y el uso de cookies en este portal se rigen por lo dispuesto en nuestra <a href="politica-de-privacidad.html" style="color: var(--color-dark); text-decoration: underline;">Política de Privacidad</a> y en nuestra <a href="politica-de-cookies.html" style="color: var(--color-dark); text-decoration: underline;">Política de Cookies</a>, las cuales forman parte integrante de los presentes Términos y Condiciones.</p>
       </div>
 
     </div>
@@ -223,29 +236,35 @@
         </ul>
       </div>
       <div>
-        <h4 class="footer-title">Nosotros</h4>
+        <h4 class="footer-title">Información Legal</h4>
         <ul class="footer-links">
-          <li><a href="index.html#nosotros">Nuestra Historia</a></li>
+          <li><a href="recojos-y-envios.html">Recojos y Envíos</a></li>
+          <li><a href="terminos-y-condiciones.html">Términos y Condiciones</a></li>
           <li><a href="politica-de-privacidad.html">Política de Privacidad</a></li>
+          <li><a href="politica-de-cookies.html">Política de Cookies</a></li>
         </ul>
       </div>
       <div>
-        <h4 class="footer-title">Datos de Contacto</h4>
+        <h4 class="footer-title">Atención y Contacto</h4>
         <ul class="footer-links">
           <li><a href="tel:+51922427713">Teléfono: +51 922 427 713</a></li>
           <li><a href="mailto:ateliergemologistti@gmail.com">Correo: ateliergemologistti@gmail.com</a></li>
+          <li><a href="recojos-y-envios.html">Tienda: San Isidro: M. Dasso 160</a></li>
           <li><a href="https://wa.me/51922427713?text=Hola%20Bellini%20Fine%20Jewelry%20me%20gustar%C3%ADa%20m%C3%A1s%20informaci%C3%B3n" target="_blank">Atención por WhatsApp</a></li>
         </ul>
       </div>
     </div>
     <div class="container footer-bottom">
       <p>&copy; 2026 BELLINI Fine Jewelry — ATELIER JOYAS MARKETING S.A. Todos los derechos reservados.</p>
-      <div style="display:flex; gap:1.5rem;">
+      <div style="display:flex; flex-wrap:wrap; gap:1.5rem;">
+        <a href="recojos-y-envios.html" style="color:rgba(255,255,255,0.85);">Recojos y Envíos</a>
         <a href="terminos-y-condiciones.html" style="color:rgba(255,255,255,0.85);">Términos y Condiciones</a>
         <a href="politica-de-privacidad.html" style="color:rgba(255,255,255,0.85);">Política de Privacidad</a>
+        <a href="politica-de-cookies.html" style="color:rgba(255,255,255,0.85);">Política de Cookies</a>
       </div>
     </div>
   </footer>
 
+  <script src="script.js?v=9.0"></script>
 </body>
 </html>
