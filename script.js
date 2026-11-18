@@ -33,7 +33,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 3600, Descuentos: 0,
     name: 'Brillante Solitario Sweet', sku: 'AC-02-01', price: 3600, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0002',
-    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/2.jpg'
+    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/3.jpg'
   },
   {
     id: 5, ID_Producto: 'PRD0002', SKU: 'AC-02-02', Nombre_Producto: 'Brillante Solitario Sweet',
@@ -41,7 +41,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 4200, Descuentos: 0,
     name: 'Brillante Solitario Sweet', sku: 'AC-02-02', price: 4200, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0002',
-    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/2.jpg'
+    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/3.jpg'
   },
   {
     id: 6, ID_Producto: 'PRD0002', SKU: 'AC-02-03', Nombre_Producto: 'Brillante Solitario Sweet',
@@ -49,7 +49,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 4700, Descuentos: 0,
     name: 'Brillante Solitario Sweet', sku: 'AC-02-03', price: 4700, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0002',
-    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/2.jpg'
+    badge: '', image: 'img/PRD0002/1.jpg', imageHover: 'img/PRD0002/3.jpg'
   },
 
   // PRD0003 - Brillante Halo
@@ -85,7 +85,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5900, Descuentos: 0,
     name: 'Oval Glamuroso', sku: 'AC-04-01', price: 5900, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0004',
-    badge: '', image: 'img/PRD0004/1.jpg', imageHover: 'img/PRD0004/2.jpg'
+    badge: '', image: 'img/PRD0004/1.png', imageHover: 'img/PRD0004/3.png'
   },
   {
     id: 11, ID_Producto: 'PRD0004', SKU: 'AC-04-02', Nombre_Producto: 'Oval Glamuroso',
@@ -93,7 +93,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6550, Descuentos: 0,
     name: 'Oval Glamuroso', sku: 'AC-04-02', price: 6550, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0004',
-    badge: '', image: 'img/PRD0004/1.jpg', imageHover: 'img/PRD0004/2.jpg'
+    badge: '', image: 'img/PRD0004/1.png', imageHover: 'img/PRD0004/3.png'
   },
   {
     id: 12, ID_Producto: 'PRD0004', SKU: 'AC-04-03', Nombre_Producto: 'Oval Glamuroso',
@@ -101,7 +101,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6950, Descuentos: 0,
     name: 'Oval Glamuroso', sku: 'AC-04-03', price: 6950, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0004',
-    badge: '', image: 'img/PRD0004/1.jpg', imageHover: 'img/PRD0004/2.jpg'
+    badge: '', image: 'img/PRD0004/1.png', imageHover: 'img/PRD0004/3.png'
   },
 
   // PRD0005 - Esmeralda Elegante
@@ -111,7 +111,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 4500, Descuentos: 0,
     name: 'Esmeralda Elegante', sku: 'AC-05-01', price: 4500, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0005',
-    badge: '', image: 'img/PRD0005/1.jpg', imageHover: 'img/PRD0005/2.jpg'
+    badge: '', image: 'img/PRD0005/1.png', imageHover: 'img/PRD0005/3.png'
   },
   {
     id: 14, ID_Producto: 'PRD0005', SKU: 'AC-05-02', Nombre_Producto: 'Esmeralda Elegante',
@@ -119,7 +119,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5200, Descuentos: 0,
     name: 'Esmeralda Elegante', sku: 'AC-05-02', price: 5200, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0005',
-    badge: '', image: 'img/PRD0005/1.jpg', imageHover: 'img/PRD0005/2.jpg'
+    badge: '', image: 'img/PRD0005/1.png', imageHover: 'img/PRD0005/3.png'
   },
   {
     id: 15, ID_Producto: 'PRD0005', SKU: 'AC-05-03', Nombre_Producto: 'Esmeralda Elegante',
@@ -127,7 +127,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5600, Descuentos: 0,
     name: 'Esmeralda Elegante', sku: 'AC-05-03', price: 5600, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0005',
-    badge: '', image: 'img/PRD0005/1.jpg', imageHover: 'img/PRD0005/2.jpg'
+    badge: '', image: 'img/PRD0005/1.png', imageHover: 'img/PRD0005/3.png'
   },
 
   // PRD0006 - Esmeralda Hidden Halo
@@ -137,7 +137,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 5550, Descuentos: 0,
     name: 'Esmeralda Hidden Halo', sku: 'AC-06-01', price: 5550, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1 ct', description: 'Texto descripción PRD0006',
-    badge: '', image: 'img/PRD0006/1.jpg', imageHover: 'img/PRD0006/2.jpg'
+    badge: '', image: 'img/PRD0006/1.png', imageHover: 'img/PRD0006/3.png'
   },
   {
     id: 17, ID_Producto: 'PRD0006', SKU: 'AC-06-02', Nombre_Producto: 'Esmeralda Hidden Halo',
@@ -145,7 +145,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6200, Descuentos: 0,
     name: 'Esmeralda Hidden Halo', sku: 'AC-06-02', price: 6200, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '1,5 ct', description: 'Texto descripción PRD0006',
-    badge: '', image: 'img/PRD0006/1.jpg', imageHover: 'img/PRD0006/2.jpg'
+    badge: '', image: 'img/PRD0006/1.png', imageHover: 'img/PRD0006/3.png'
   },
   {
     id: 18, ID_Producto: 'PRD0006', SKU: 'AC-06-03', Nombre_Producto: 'Esmeralda Hidden Halo',
@@ -153,7 +153,7 @@ const initialProducts = [
     Metal: 'Oro Blanco / Oro Amarillo', PV: 6700, Descuentos: 0,
     name: 'Esmeralda Hidden Halo', sku: 'AC-06-03', price: 6700, category: 'compromiso',
     metal: 'Oro Blanco / Oro Amarillo', carat: '2 ct', description: 'Texto descripción PRD0006',
-    badge: '', image: 'img/PRD0006/1.jpg', imageHover: 'img/PRD0006/2.jpg'
+    badge: '', image: 'img/PRD0006/1.png', imageHover: 'img/PRD0006/3.png'
   },
 
   // PRD0007 - Pera Glamuroso
@@ -262,14 +262,14 @@ function getProductVariants(prodId, sourceList = products) {
   });
 }
 
-const IMG_CACHE_VER = 'v=8.0';
+const IMG_CACHE_VER = 'v=10.0';
 const PRODUCT_GALLERY_MAP = {
   PRD0001: ['img/PRD0001/1.jpg', 'img/PRD0001/2.png', 'img/PRD0001/3.jpg'],
-  PRD0002: ['img/PRD0002/1.jpg', 'img/PRD0002/2.jpg'],
+  PRD0002: ['img/PRD0002/1.jpg', 'img/PRD0002/2.png', 'img/PRD0002/3.jpg'],
   PRD0003: ['img/PRD0003/1.png', 'img/PRD0003/2.png', 'img/PRD0003/3.png'],
-  PRD0004: ['img/PRD0004/1.jpg', 'img/PRD0004/2.jpg'],
-  PRD0005: ['img/PRD0005/1.jpg', 'img/PRD0005/2.jpg'],
-  PRD0006: ['img/PRD0006/1.jpg', 'img/PRD0006/2.jpg'],
+  PRD0004: ['img/PRD0004/1.png', 'img/PRD0004/2.png', 'img/PRD0004/3.png'],
+  PRD0005: ['img/PRD0005/1.png', 'img/PRD0005/2.png', 'img/PRD0005/3.png'],
+  PRD0006: ['img/PRD0006/1.png', 'img/PRD0006/2.png', 'img/PRD0006/3.png'],
   PRD0007: ['img/PRD0007/1.png', 'img/PRD0007/2.png', 'img/PRD0007/3.png'],
   PRD0008: ['img/PRD0008/1.png', 'img/PRD0008/2.png', 'img/PRD0008/3.jpg']
 };
@@ -324,7 +324,7 @@ window.handleImgFallback = handleImgFallback;
 
 // API Endpoint - Google Apps Script (Atelier&Gemologist E-commerce DB)
 const API_URL = 'https://script.google.com/macros/s/AKfycbxXxlINQu2iUSKrFrvF8JuR_FW-VgJKYt8x-DBHX1DWrJO1zakfyf1ciDw6glUu2vM2/exec';
-const PRODUCTS_CACHE_KEY = 'bellini_products_v4';
+const PRODUCTS_CACHE_KEY = 'bellini_products_v5';
 
 // Load cached products if available, otherwise use initialProducts
 let products = (() => {
@@ -332,6 +332,7 @@ let products = (() => {
     localStorage.removeItem('bellini_products');
     localStorage.removeItem('bellini_products_v2');
     localStorage.removeItem('bellini_products_v3');
+    localStorage.removeItem('bellini_products_v4');
     const cached = localStorage.getItem(PRODUCTS_CACHE_KEY);
     if (cached) {
       const parsed = JSON.parse(cached);
