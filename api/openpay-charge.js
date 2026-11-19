@@ -6,13 +6,14 @@
  * - GET  /api/openpay-charge?id={transaction_id} : Consulta el estado real de una transacción en Openpay
  */
 
-const OPENPAY_MERCHANT_ID = process.env.OPENPAY_MERCHANT_ID || 'mfuzppxtix8ad5sbkcbd';
-const OPENPAY_SK = process.env.OPENPAY_SK || 'sk_db4d0b4e7f9545a78dc52c82c237d9ce';
-const OPENPAY_ENV = (process.env.OPENPAY_ENV || 'sandbox').toLowerCase();
+const OPENPAY_MERCHANT_ID = process.env.OPENPAY_MERCHANT_ID || 'matkbk74vv77brm4tkao';
+const OPENPAY_SK = process.env.OPENPAY_SK || 'sk_18bd40ca5a4d4915af05a9596e4ff54e';
+const OPENPAY_PK = process.env.OPENPAY_PK || 'pk_4aaa0bc5fde64512910a1ce437a00094';
+const OPENPAY_ENV = (process.env.OPENPAY_ENV || 'production').toLowerCase();
 
-const OPENPAY_BASE_URL = OPENPAY_ENV === 'production'
-  ? `https://api.openpay.pe/v1/${OPENPAY_MERCHANT_ID}`
-  : `https://sandbox-api.openpay.pe/v1/${OPENPAY_MERCHANT_ID}`;
+const OPENPAY_BASE_URL = OPENPAY_ENV === 'sandbox'
+  ? `https://sandbox-api.openpay.pe/v1/${OPENPAY_MERCHANT_ID}`
+  : `https://api.openpay.pe/v1/${OPENPAY_MERCHANT_ID}`;
 
 module.exports = async function handler(req, res) {
   // CORS Headers
